@@ -14,16 +14,7 @@ class TimeTableScreen extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       drawer: DrawerMenu(),
       key: context.read<Controller>().scaffoldKey,
-      body: const SafeArea(
-          child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            flex: 5,
-            child: TimeTableDashboard(),
-          )
-        ],
-      )),
+      body: TimeTableDashboard(),
     );
   }
 }
