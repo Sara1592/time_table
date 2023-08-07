@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:student_management_web/view/components/subject_allocated.dart';
 
 import '../../widgets/staff_alloction.dart';
 import '../../widgets/subject.dart';
+import 'custom_appbar.dart';
 
 class Header extends StatefulWidget {
-  const Header({super.key});
+  Header({
+    super.key,
+  });
 
   @override
   State<Header> createState() => _HeaderState();
@@ -34,27 +38,64 @@ class _HeaderState extends State<Header> {
       Color.fromARGB(255, 186, 117, 220),
       Color.fromARGB(255, 9, 26, 47),
     ];
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
+    Widget subject1 = Container(
+      height: height * 0.13,
+      width: width * 0.07,
+      color: arrColors[2],
+      child: Text('Opps'),
+    );
+    Widget subject2 = Container(
+      height: height * 0.13,
+      width: width * 0.07,
+      color: arrColors[0],
+      child: Text('Opps'),
+    );
+
     return Column(
       children: <Widget>[
         Row(
           children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(bottom: height * 0.01),
+                  child: Text(""),
+                ),
+                SizedBox(
+                  width: width * 0.05,
+                  child: Padding(
+                      padding: EdgeInsets.only(
+                        left: width * 0.02,
+                      ),
+                      child: CustomAppbar()),
+                )
+              ],
+            ),
             SizedBox(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: width * 0.07),
+                    padding: EdgeInsets.only(left: width * 0.05),
                     child: Text(
                       "NO",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 175, 175, 175),
+                      ),
                     ),
                   ),
                   SizedBox(
                     width: width * 0.1,
                     child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.06),
+                      padding: EdgeInsets.only(left: width * 0.04),
                       child: TextFormField(
                           cursorColor: const Color.fromARGB(255, 26, 25, 25),
                           decoration: const InputDecoration(
@@ -66,7 +107,7 @@ class _HeaderState extends State<Header> {
                               ),
                               hintText: "01",
                               hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w700, fontSize: 19))),
+                                  fontWeight: FontWeight.w800, fontSize: 20))),
                     ),
                   )
                 ],
@@ -78,8 +119,15 @@ class _HeaderState extends State<Header> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: width * 0.01, bottom: height * 0.01),
-                  child: Text("Department Name"),
+                      left: width * 0.02, bottom: height * 0.01),
+                  child: Text(
+                    "Department Name",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 175, 175, 175),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: width * 0.15,
@@ -89,14 +137,24 @@ class _HeaderState extends State<Header> {
                       decoration: const InputDecoration(
                         fillColor: Color.fromARGB(254, 223, 223, 223),
                         filled: true,
-                        hintText: "Computer Science",
+                        hintText: "Select the Field ",
                         hintStyle: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w400),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
+                            color: Color.fromARGB(255, 54, 54, 54),
+                            fontWeight: FontWeight.w600),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Color.fromARGB(254, 223, 223, 223),
+                            ),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(25.0),
+                            )),
+
+                        // focusedBorder: OutlineInputBorder(
+                        //   borderSide: BorderSide(
+                        //     width: 1,
+                        //     color: Color.fromARGB(254, 223, 223, 223),
+                        //   ),
+                        // ),
                       ),
                       items: _Department.map((e) => DropdownMenuItem(
                             value: e,
@@ -119,7 +177,14 @@ class _HeaderState extends State<Header> {
                 Padding(
                   padding: EdgeInsets.only(
                       left: width * 0.02, bottom: height * 0.01),
-                  child: Text("Batch"),
+                  child: Text(
+                    "Batch",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 175, 175, 175),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: width * 0.13,
@@ -129,9 +194,10 @@ class _HeaderState extends State<Header> {
                       decoration: const InputDecoration(
                         fillColor: Color.fromARGB(254, 223, 223, 223),
                         filled: true,
-                        hintText: "2023",
+                        hintText: "Batch",
                         hintStyle: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w700),
+                            color: Color.fromARGB(255, 54, 54, 54),
+                            fontWeight: FontWeight.w700),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
@@ -159,7 +225,14 @@ class _HeaderState extends State<Header> {
                 Padding(
                   padding: EdgeInsets.only(
                       left: width * 0.02, bottom: height * 0.01),
-                  child: Text("Year"),
+                  child: Text(
+                    "Year",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 175, 175, 175),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: width * 0.12,
@@ -171,12 +244,13 @@ class _HeaderState extends State<Header> {
                         filled: true,
                         hintText: "1st",
                         hintStyle: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w700),
+                            color: Color.fromARGB(255, 54, 54, 54),
+                            fontWeight: FontWeight.w700),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
+                        enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 3)),
                       ),
                       items: _Year.map((e) => DropdownMenuItem(
                             value: e,
@@ -199,7 +273,14 @@ class _HeaderState extends State<Header> {
                 Padding(
                   padding: EdgeInsets.only(
                       left: width * 0.05, bottom: height * 0.01),
-                  child: Text("Class"),
+                  child: Text(
+                    "Class",
+                    style: GoogleFonts.montserrat(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w600,
+                      color: Color.fromARGB(255, 175, 175, 175),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: width * 0.19,
@@ -328,369 +409,89 @@ class _HeaderState extends State<Header> {
                   ],
                 ),
               ),
-              Padding(
-                padding:
-                    EdgeInsets.only(top: height * 0.02, left: width * 0.10),
-                child: Subject(colors: arrColors[0], subName: 'Opps'),
+              Row(
+                children: [
+                  // SubjectAlocated(),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: height * 0.02, left: width * 0.10),
+                    child: Draggable(
+                      data: Container(
+                        child: Subject(colors: arrColors[0], subName: 'Opps'),
+                      ),
+                      child: Subject(colors: arrColors[0], subName: 'Opps'),
+                      feedback: Material(
+                          child:
+                              Subject(subName: 'Opps', colors: arrColors[0])),
+                      childWhenDragging:
+                          Subject(subName: 'Opps', colors: arrColors[0]),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
+                    child: Draggable(
+                      data: Container(
+                        child: Subject(colors: arrColors[1], subName: 'Java'),
+                      ),
+                      child: Subject(colors: arrColors[1], subName: 'Java'),
+                      feedback: Material(
+                          child:
+                              Subject(subName: 'Java', colors: arrColors[1])),
+                      childWhenDragging:
+                          Subject(subName: 'Java', colors: arrColors[1]),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
+                    child: Draggable(
+                      data: Container(
+                        child: Subject(colors: arrColors[4], subName: 'Python'),
+                      ),
+                      child: Subject(colors: arrColors[4], subName: 'Python'),
+                      feedback: Material(
+                          child:
+                              Subject(subName: 'Python', colors: arrColors[4])),
+                      childWhenDragging:
+                          Subject(subName: 'Python', colors: arrColors[4]),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
+                    child: Draggable(
+                      data: Container(
+                        child: Subject(colors: arrColors[0], subName: 'Opps'),
+                      ),
+                      child: Subject(colors: arrColors[0], subName: 'Opps'),
+                      feedback: Material(
+                          child:
+                              Subject(subName: 'Opps', colors: arrColors[0])),
+                      childWhenDragging:
+                          Subject(subName: 'Opps', colors: arrColors[0]),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
+                    child: Draggable(
+                      data: Container(
+                        child: Subject(colors: arrColors[1], subName: 'Java'),
+                      ),
+                      child: Subject(colors: arrColors[1], subName: 'Java'),
+                      feedback: Material(
+                          child:
+                              Subject(subName: 'Java', colors: arrColors[1])),
+                      childWhenDragging:
+                          Subject(subName: 'Java', colors: arrColors[1]),
+                    ),
+                  ),
+                ],
               )
             ],
           ),
         ))
-        // SizedBox(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.start,
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     children: [
-        //       Padding(
-        //         padding:
-        //             EdgeInsets.only(right: width * 0.83, top: height * 0.02),
-        //         child: const Text(
-        //           "Staff Details",
-        //           style: TextStyle(
-        //               fontSize: 12,
-        //               color: Color.fromARGB(255, 175, 175, 175)),
-        //         ),
-        //       ),
-        //       Row(
-        //         children: [
-        //           StaffAllocation(
-        //             staffId: 'Staff Id:001',
-        //             staffName: 'Mansoor',
-        //             subName: 'Opps',
-        //           )
-        //         ],
-        //       )
-        //       // Row(
-        //       //   children: [
-        //       //     Padding(
-        //       //       padding: EdgeInsets.only(top: height * 0.01),
-        //       //       child: StaffAllocation(
-        //       //         staffId: 'Staff:001',
-        //       //         subName: 'Opps',
-        //       //         staffName: 'Mansoor',
-        //       //       ),
-        //       //       // child: Container(
-        //       //       //   height: height * 0.1,
-        //       //       //   width: width * 0.14,
-        //       //       //   decoration: const BoxDecoration(
-        //       //       //       borderRadius:
-        //       //       //           BorderRadius.all(Radius.circular(9)),
-        //       //       //       color: Color.fromARGB(255, 255, 255, 255),
-        //       //       //       boxShadow: [
-        //       //       //         BoxShadow(
-        //       //       //           color: Color.fromARGB(255, 221, 221, 221),
-        //       //       //           blurRadius: 7.0,
-        //       //       //         ),
-        //       //       //       ]),
-        //       //       //   child: Column(
-        //       //       //     children: [
-        //       //       //       Padding(
-        //       //       //         padding: EdgeInsets.only(
-        //       //       //             right: width * 0.07,
-        //       //       //             top: height * 0.015),
-        //       //       //         child: const Text(
-        //       //       //           "Mansoor",
-        //       //       //           style: TextStyle(
-        //       //       //               fontSize: 19,
-        //       //       //               fontWeight: FontWeight.bold),
-        //       //       //         ),
-        //       //       //       ),
-        //       //       //       Padding(
-        //       //       //         padding: EdgeInsets.only(
-        //       //       //             left: width * 0.01, top: height * 0.01),
-        //       //       //         child: Row(
-        //       //       //           children: [
-        //       //       //             const Text(
-        //       //       //               "Opps",
-        //       //       //               style: TextStyle(
-        //       //       //                   fontSize: 10,
-        //       //       //                   fontWeight: FontWeight.w500,
-        //       //       //                   color: Colors.grey),
-        //       //       //             ),
-        //       //       //             Padding(
-        //       //       //               padding: EdgeInsets.only(
-        //       //       //                   left: width * 0.046),
-        //       //       //               child: const Text(
-        //       //       //                 "Staff ID : 001",
-        //       //       //                 style: TextStyle(
-        //       //       //                     fontSize: 10,
-        //       //       //                     fontWeight: FontWeight.w500,
-        //       //       //                     color: Colors.grey),
-        //       //       //               ),
-        //       //       //             ),
-        //       //       //           ],
-        //       //       //         ),
-        //       //       //       ),
-        //       //       //     ],
-        //       //       //   ),
-
-        //       //       // ),
-        //       //     ),
-        //       //     // SizedBox(
-        //       //     //   width: width * 0.01,
-        //       //     // ),
-        //       //     // Padding(
-        //       //     //   padding: EdgeInsets.only(top: height * 0.01),
-        //       //     //   child: Container(
-        //       //     //     height: height * 0.1,
-        //       //     //     width: width * 0.15,
-        //       //     //     decoration: const BoxDecoration(
-        //       //     //         borderRadius: BorderRadius.all(Radius.circular(9)),
-        //       //     //         color: Color.fromARGB(255, 255, 255, 255),
-        //       //     //         boxShadow: [
-        //       //     //           BoxShadow(
-        //       //     //             color: Color.fromARGB(255, 221, 221, 221),
-        //       //     //             blurRadius: 7.0,
-        //       //     //           ),
-        //       //     //         ]),
-        //       //     //     child: Column(
-        //       //     //       children: [
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               right: width * 0.07, top: height * 0.015),
-        //       //     //           child: const Text(
-        //       //     //             "Ambrose",
-        //       //     //             style: TextStyle(
-        //       //     //                 fontSize: 19, fontWeight: FontWeight.bold),
-        //       //     //           ),
-        //       //     //         ),
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               left: width * 0.01, top: height * 0.01),
-        //       //     //           child: Row(
-        //       //     //             children: [
-        //       //     //               const Text(
-        //       //     //                 "Java",
-        //       //     //                 style: TextStyle(
-        //       //     //                     fontSize: 10,
-        //       //     //                     fontWeight: FontWeight.w500,
-        //       //     //                     color: Colors.grey),
-        //       //     //               ),
-        //       //     //               Padding(
-        //       //     //                 padding: EdgeInsets.only(left: width * 0.046),
-        //       //     //                 child: const Text(
-        //       //     //                   "Staff ID : 002",
-        //       //     //                   style: TextStyle(
-        //       //     //                       fontSize: 10,
-        //       //     //                       fontWeight: FontWeight.w500,
-        //       //     //                       color: Colors.grey),
-        //       //     //                 ),
-        //       //     //               ),
-        //       //     //             ],
-        //       //     //           ),
-        //       //     //         )
-        //       //     //       ],
-        //       //     //     ),
-        //       //     //   ),
-        //       //     // ),
-        //       //     // SizedBox(
-        //       //     //   width: width * 0.01,
-        //       //     // ),
-        //       //     // Padding(
-        //       //     //   padding: EdgeInsets.only(top: height * 0.01),
-        //       //     //   child: Container(
-        //       //     //     height: height * 0.1,
-        //       //     //     width: width * 0.15,
-        //       //     //     decoration: const BoxDecoration(
-        //       //     //         borderRadius: BorderRadius.all(Radius.circular(9)),
-        //       //     //         color: Color.fromARGB(255, 255, 255, 255),
-        //       //     //         boxShadow: [
-        //       //     //           BoxShadow(
-        //       //     //             color: Color.fromARGB(255, 221, 221, 221),
-        //       //     //             blurRadius: 7.0,
-        //       //     //           ),
-        //       //     //         ]),
-        //       //     //     child: Column(
-        //       //     //       children: [
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               right: width * 0.06, top: height * 0.015),
-        //       //     //           child: const Text(
-        //       //     //             "Sanjai Balaji",
-        //       //     //             style: TextStyle(
-        //       //     //                 fontSize: 19, fontWeight: FontWeight.bold),
-        //       //     //           ),
-        //       //     //         ),
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               left: width * 0.01, top: height * 0.01),
-        //       //     //           child: Row(
-        //       //     //             children: [
-        //       //     //               const Text(
-        //       //     //                 "Python",
-        //       //     //                 style: TextStyle(
-        //       //     //                     fontSize: 10,
-        //       //     //                     fontWeight: FontWeight.w500,
-        //       //     //                     color: Colors.grey),
-        //       //     //               ),
-        //       //     //               Padding(
-        //       //     //                 padding: EdgeInsets.only(left: width * 0.046),
-        //       //     //                 child: const Text(
-        //       //     //                   "Staff ID : 003",
-        //       //     //                   style: TextStyle(
-        //       //     //                       fontSize: 10,
-        //       //     //                       fontWeight: FontWeight.w500,
-        //       //     //                       color: Colors.grey),
-        //       //     //                 ),
-        //       //     //               ),
-        //       //     //             ],
-        //       //     //           ),
-        //       //     //         )
-        //       //     //       ],
-        //       //     //     ),
-        //       //     //   ),
-        //       //     // ),
-        //       //     // SizedBox(
-        //       //     //   width: width * 0.01,
-        //       //     // ),
-        //       //     // Padding(
-        //       //     //   padding: EdgeInsets.only(top: height * 0.01),
-        //       //     //   child: Container(
-        //       //     //     height: height * 0.1,
-        //       //     //     width: width * 0.15,
-        //       //     //     decoration: const BoxDecoration(
-        //       //     //         borderRadius: BorderRadius.all(Radius.circular(9)),
-        //       //     //         color: Color.fromARGB(255, 255, 255, 255),
-        //       //     //         boxShadow: [
-        //       //     //           BoxShadow(
-        //       //     //             color: Color.fromARGB(255, 221, 221, 221),
-        //       //     //             blurRadius: 7.0,
-        //       //     //           ),
-        //       //     //         ]),
-        //       //     //     child: Column(
-        //       //     //       children: [
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               right: width * 0.09, top: height * 0.015),
-        //       //     //           child: const Text(
-        //       //     //             "Vijay",
-        //       //     //             style: TextStyle(
-        //       //     //                 fontSize: 19, fontWeight: FontWeight.bold),
-        //       //     //           ),
-        //       //     //         ),
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               left: width * 0.01, top: height * 0.01),
-        //       //     //           child: Row(
-        //       //     //             children: [
-        //       //     //               const Text(
-        //       //     //                 "Oops",
-        //       //     //                 style: TextStyle(
-        //       //     //                     fontSize: 10,
-        //       //     //                     fontWeight: FontWeight.w500,
-        //       //     //                     color: Colors.grey),
-        //       //     //               ),
-        //       //     //               Padding(
-        //       //     //                 padding: EdgeInsets.only(left: width * 0.046),
-        //       //     //                 child: const Text(
-        //       //     //                   "Staff ID : 004",
-        //       //     //                   style: TextStyle(
-        //       //     //                       fontSize: 10,
-        //       //     //                       fontWeight: FontWeight.w500,
-        //       //     //                       color: Colors.grey),
-        //       //     //                 ),
-        //       //     //               ),
-        //       //     //             ],
-        //       //     //           ),
-        //       //     //         )
-        //       //     //       ],
-        //       //     //     ),
-        //       //     //   ),
-        //       //     // ),
-        //       //     // SizedBox(
-        //       //     //   width: width * 0.01,
-        //       //     // ),
-        //       //     // Padding(
-        //       //     //   padding: EdgeInsets.only(top: height * 0.01),
-        //       //     //   child: Container(
-        //       //     //     height: height * 0.1,
-        //       //     //     width: width * 0.15,
-        //       //     //     decoration: const BoxDecoration(
-        //       //     //         borderRadius: BorderRadius.all(Radius.circular(9)),
-        //       //     //         color: Color.fromARGB(255, 255, 255, 255),
-        //       //     //         boxShadow: [
-        //       //     //           BoxShadow(
-        //       //     //             color: Color.fromARGB(255, 221, 221, 221),
-        //       //     //             blurRadius: 7.0,
-        //       //     //           ),
-        //       //     //         ]),
-        //       //     //     child: Column(
-        //       //     //       children: [
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               right: width * 0.10, top: height * 0.015),
-        //       //     //           child: const Text(
-        //       //     //             "Priya",
-        //       //     //             style: TextStyle(
-        //       //     //                 fontSize: 19, fontWeight: FontWeight.bold),
-        //       //     //           ),
-        //       //     //         ),
-        //       //     //         Padding(
-        //       //     //           padding: EdgeInsets.only(
-        //       //     //               left: width * 0.01, top: height * 0.01),
-        //       //     //           child: Row(
-        //       //     //             children: [
-        //       //     //               const Text(
-        //       //     //                 "Oops",
-        //       //     //                 style: TextStyle(
-        //       //     //                     fontSize: 10,
-        //       //     //                     fontWeight: FontWeight.w500,
-        //       //     //                     color: Colors.grey),
-        //       //     //               ),
-        //       //     //               Padding(
-        //       //     //                 padding: EdgeInsets.only(left: width * 0.046),
-        //       //     //                 child: const Text(
-        //       //     //                   "Staff ID : 004",
-        //       //     //                   style: TextStyle(
-        //       //     //                       fontSize: 10,
-        //       //     //                       fontWeight: FontWeight.w500,
-        //       //     //                       color: Colors.grey),
-        //       //     //                 ),
-        //       //     //               ),
-        //       //     //             ],
-        //       //     //           ),
-        //       //     //         )
-        //       //     //       ],
-        //       //     //     ),
-        //       //     //   ),
-        //       //     // )
-        //       //   ],
-        //       // ),
-        //     ],
-        //   ),
-        // ),
-        // // Row(
-        //   children: [
-        //     Row(
-        //       children: [
-        //         Padding(
-        //           padding:
-        //               EdgeInsets.only(left: width * 0.08, top: height * 0.07),
-        //           child: Container(
-        //             color: arrColors[0],
-        //             width: 90,
-        //             height: 90,
-        //             child: Column(children: [
-        //               Center(
-        //                 child: Padding(
-        //                   padding: EdgeInsets.only(top: height * 0.05),
-        //                   child: Text(
-        //                     "Oops",
-        //                     style: GoogleFonts.montserrat(
-        //                       fontSize: 18.0,
-        //                       fontWeight: FontWeight.w700,
-        //                       color: Colors.white,
-        //                     ),
-        //                   ),
-        //                 ),
-        //               )
-        //             ]),
-        //           ),
-        //         ),
-        //       ],
-        //     )
-        //   ],
-        // )
       ],
     );
   }

@@ -34,16 +34,19 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
         body: SingleChildScrollView(
       child: Column(
         children: <Widget>[
+          // Container(
+          //   color: Colors.white,
+          //   child: CustomAppbar(),
+          // ),
           Container(
-            color: Colors.white,
-            child: CustomAppbar(),
-          ),
-          Container(
-              height: height * 0.45,
+              height: height * 0.55,
               color: Color.fromARGB(255, 255, 255, 255),
-              child: const Column(
+              child: Column(
                 children: [
-                  Header(),
+                  Padding(
+                    padding: EdgeInsets.only(top: height * 0.03),
+                    child: Header(),
+                  ),
                   // StaffHorizontList(),
                 ],
               )),
@@ -144,7 +147,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
           //       //                             color: Colors.white),
           //       //                       ),
           //       //                     ),
-          //       //                     Padding(
+          //       //                    Padding(
           //       //                       padding:
           //       //                           EdgeInsets.only(left: 50.0, top: 30),
           //       //                       child: Text(

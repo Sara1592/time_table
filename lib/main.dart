@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_management_web/view/time_table_screen.dart';
-
 import 'controllers/controller.dart';
 
 void main() {

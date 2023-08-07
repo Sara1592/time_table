@@ -14,8 +14,17 @@ class PeriodAllocation extends StatefulWidget {
 }
 
 class _PeriodAllocationState extends State<PeriodAllocation> {
+  // Color arrColor = const Color.fromARGB(255, 9, 26, 47);
+  List<Widget> oppsdropitem1 = [];
+  List<Widget> oppsdropitem = [];
+  List<Widget> javadropitem = [];
+  List<Widget> pythondropitem = [];
+  List<Widget> datasciencedropitem = [];
+
   @override
   Widget build(BuildContext context) {
+    // final showDraggable = arrColor == const Color.fromARGB(255, 9, 26, 47);
+
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     var arrColors = [
@@ -104,7 +113,28 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[5], subName: ''),
+            DragTarget<Widget>(
+              // onAccept: (data) => setState(() => arrColor = data),
+              builder: (context, accepted, rejected) {
+                return Container(
+                  height: height * 0.13,
+                  width: width * 0.07,
+                  color: arrColors[5],
+                  child: Column(
+                    children:
+                        oppsdropitem.isEmpty ? [const Text('')] : oppsdropitem,
+                  ),
+                );
+              },
+              onWillAccept: (Widget? data) {
+                return true;
+              },
+              onAccept: (Widget data) {
+                setState(() {
+                  oppsdropitem.add(data);
+                });
+              },
+            ),
             SizedBox(
               height: height * 0.02,
             ),
@@ -127,7 +157,28 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[5], subName: ''),
+            DragTarget<Widget>(
+              // onAccept: (data) => setState(() => arrColor = data),
+              builder: (context, accepted, rejected) {
+                return Container(
+                  height: height * 0.13,
+                  width: width * 0.07,
+                  color: arrColors[5],
+                  child: Column(
+                    children:
+                        javadropitem.isEmpty ? [const Text('')] : javadropitem,
+                  ),
+                );
+              },
+              onWillAccept: (Widget? data) {
+                return true;
+              },
+              onAccept: (data) {
+                setState(() {
+                  javadropitem.add(data);
+                });
+              },
+            ),
             SizedBox(
               height: height * 0.02,
             ),
@@ -193,7 +244,29 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[5], subName: ''),
+            DragTarget<Widget>(
+              // onAccept: (data) => setState(() => arrColor = data),
+              builder: (context, accepted, rejected) {
+                return Container(
+                  height: height * 0.13,
+                  width: width * 0.07,
+                  color: arrColors[5],
+                  child: Column(
+                    children: oppsdropitem1.isEmpty
+                        ? [const Text('')]
+                        : oppsdropitem1,
+                  ),
+                );
+              },
+              onWillAccept: (Widget? data) {
+                return true;
+              },
+              onAccept: (Widget data) {
+                setState(() {
+                  oppsdropitem1.add(data);
+                });
+              },
+            ),
             SizedBox(
               height: height * 0.02,
             ),
@@ -251,7 +324,29 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[5], subName: ''),
+            DragTarget<Widget>(
+              // onAccept: (data) => setState(() => arrColor = data),
+              builder: (context, accepted, rejected) {
+                return Container(
+                  height: height * 0.13,
+                  width: width * 0.07,
+                  color: arrColors[5],
+                  child: Column(
+                    children: pythondropitem.isEmpty
+                        ? [const Text('')]
+                        : pythondropitem,
+                  ),
+                );
+              },
+              onWillAccept: (Widget? data) {
+                return true;
+              },
+              onAccept: (Widget data) {
+                setState(() {
+                  pythondropitem.add(data);
+                });
+              },
+            ),
             SizedBox(
               height: height * 0.02,
             ),
@@ -271,6 +366,5 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
         ),
       ],
     );
- 
   }
 }
