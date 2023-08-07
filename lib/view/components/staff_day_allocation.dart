@@ -21,7 +21,7 @@ class _StaffDayOrderState extends State<StaffDayOrder> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                left: width * 0.03,
+                left: width * 0.02,
                 top: height * 0.03,
               ),
               child: Text("Day Order",

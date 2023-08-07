@@ -11,9 +11,10 @@ class StaffPeriod extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.only(
-        bottom: height * 0.09,
-        left: width * 0.04,
-      ),
+          bottom: height * 0.09,
+          left: width * 0.027,
+          top: height * 0.04,
+          right: width * 0.027),
       child: Column(
         children: [
           Text(

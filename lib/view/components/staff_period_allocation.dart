@@ -25,7 +25,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  left: width * 0.03,
+                  left: width * 0.01,
                   top: height * 0.03,
                   bottom: height * 0.03),
               child: Text("Period No",
@@ -41,32 +41,22 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             StaffPeriod(
               staffPer: '01',
             ),
-            Padding(
-                padding: EdgeInsets.only(top: height * 0.04),
-                child: StaffPeriod(
-                  staffPer: '02',
-                )),
+            StaffPeriod(
+              staffPer: '02',
+            ),
 
-            Padding(
-                padding: EdgeInsets.only(top: height * 0.04),
-                child: StaffPeriod(
-                  staffPer: '03',
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: height * 0.04),
-                child: StaffPeriod(
-                  staffPer: '04',
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: height * 0.04),
-                child: StaffPeriod(
-                  staffPer: '05',
-                )),
+            StaffPeriod(
+              staffPer: '03',
+            ),
+            StaffPeriod(
+              staffPer: '04',
+            ),
+            StaffPeriod(
+              staffPer: '05',
+            ),
           ],
         ),
-        SizedBox(
-          width: width * 0.023,
-        ),
+        SizedBox(width: width * 0.004),
         Column(
           children: [
             SizedBox(

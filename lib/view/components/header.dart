@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:student_management_web/view/components/subject_allocated.dart';
-
 import '../../widgets/staff_alloction.dart';
 import '../../widgets/subject.dart';
 import 'custom_appbar.dart';
@@ -28,6 +27,12 @@ class _HeaderState extends State<Header> {
   List<String> _Class = ['Morning', 'Evening'];
   String? _selectedValClass = "";
   bool _isShow = false;
+  bool _isOppsShow = false;
+  bool _isJavaShow = false;
+  bool _isJavaShow1 = false;
+  bool _isPythonShow = false;
+  bool _isOppsShow1 = false;
+
   @override
   Widget build(BuildContext context) {
     var arrColors = [
@@ -70,7 +75,7 @@ class _HeaderState extends State<Header> {
                   width: width * 0.05,
                   child: Padding(
                       padding: EdgeInsets.only(
-                        left: width * 0.02,
+                        left: width * 0.01,
                       ),
                       child: CustomAppbar()),
                 )
@@ -107,7 +112,10 @@ class _HeaderState extends State<Header> {
                               ),
                               hintText: "01",
                               hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 20))),
+                                fontWeight: FontWeight.w800,
+                                fontSize: 20,
+                                color: Color.fromARGB(255, 54, 54, 54),
+                              ))),
                     ),
                   )
                 ],
@@ -148,13 +156,6 @@ class _HeaderState extends State<Header> {
                             borderRadius: BorderRadius.all(
                               Radius.circular(25.0),
                             )),
-
-                        // focusedBorder: OutlineInputBorder(
-                        //   borderSide: BorderSide(
-                        //     width: 1,
-                        //     color: Color.fromARGB(254, 223, 223, 223),
-                        //   ),
-                        // ),
                       ),
                       items: _Department.map((e) => DropdownMenuItem(
                             value: e,
@@ -381,112 +382,185 @@ class _HeaderState extends State<Header> {
                 padding: EdgeInsets.only(left: width * 0.06),
                 child: Row(
                   children: [
-                    StaffAllocation(
-                      staffId: 'Staff Id :001',
-                      staffName: 'Mansoor',
-                      subName: 'Oops',
-                    ),
-                    StaffAllocation(
-                      staffId: 'Staff Id :002',
-                      staffName: 'Ambrose',
-                      subName: 'Java',
-                    ),
-                    StaffAllocation(
-                      staffId: 'Staff Id :003',
-                      staffName: 'Sanjai Balaji',
-                      subName: 'Python',
-                    ),
-                    StaffAllocation(
-                      staffId: 'Staff Id :004',
-                      staffName: 'Vijay',
-                      subName: 'Oops',
-                    ),
-                    StaffAllocation(
-                      staffId: 'Staff Id :005',
-                      staffName: 'Priya',
-                      subName: 'Java',
-                    ),
+                    SizedBox(
+                        child: InkWell(
+                      child: StaffAllocation(
+                        staffId: 'Staff Id :001',
+                        staffName: 'Mansoor',
+                        subName: 'Oops',
+                      ),
+                      onTap: () {
+                        setState(
+                          () {
+                            _isOppsShow = !_isOppsShow;
+                          },
+                        );
+                      },
+                    )),
+                    SizedBox(
+                        child: InkWell(
+                      child: StaffAllocation(
+                        staffId: 'Staff Id :002',
+                        staffName: 'Ambrose',
+                        subName: 'Java',
+                      ),
+                      onTap: () {
+                        setState(
+                          () {
+                            _isJavaShow = !_isJavaShow;
+                          },
+                        );
+                      },
+                    )),
+                    SizedBox(
+                        child: InkWell(
+                      child: StaffAllocation(
+                        staffId: 'Staff Id :003',
+                        staffName: 'Sanjai Balaji',
+                        subName: 'Python',
+                      ),
+                      onTap: () {
+                        setState(
+                          () {
+                            _isPythonShow = !_isPythonShow;
+                          },
+                        );
+                      },
+                    )),
+                    SizedBox(
+                        child: InkWell(
+                      child: StaffAllocation(
+                        staffId: 'Staff Id :004',
+                        staffName: 'Vijay',
+                        subName: 'Oops',
+                      ),
+                      onTap: () {
+                        setState(
+                          () {
+                            _isOppsShow1 = !_isOppsShow1;
+                          },
+                        );
+                      },
+                    )),
+                    SizedBox(
+                        child: InkWell(
+                      child: StaffAllocation(
+                        staffId: 'Staff Id :005',
+                        staffName: 'Priya',
+                        subName: 'Java',
+                      ),
+                      onTap: () {
+                        setState(
+                          () {
+                            _isJavaShow1 = !_isJavaShow1;
+                          },
+                        );
+                      },
+                    )),
                   ],
                 ),
               ),
               Row(
                 children: [
                   // SubjectAlocated(),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: height * 0.02, left: width * 0.10),
-                    child: Draggable(
-                      data: Container(
+                  SizedBox(
+                      child: Visibility(
+                    visible: _isOppsShow,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.02, left: width * 0.10),
+                      child: Draggable(
+                        data: Container(
+                          child: Subject(colors: arrColors[0], subName: 'Opps'),
+                        ),
                         child: Subject(colors: arrColors[0], subName: 'Opps'),
+                        feedback: Material(
+                            child:
+                                Subject(subName: 'Opps', colors: arrColors[0])),
+                        childWhenDragging:
+                            Subject(subName: 'Opps', colors: arrColors[0]),
                       ),
-                      child: Subject(colors: arrColors[0], subName: 'Opps'),
-                      feedback: Material(
-                          child:
-                              Subject(subName: 'Opps', colors: arrColors[0])),
-                      childWhenDragging:
-                          Subject(subName: 'Opps', colors: arrColors[0]),
+                    ),
+                  )),
+                  SizedBox(
+                    child: Visibility(
+                      visible: _isJavaShow,
+                      child: Padding(
+                        padding: EdgeInsets.only(
+                            top: height * 0.02, left: width * 0.07),
+                        child: Draggable(
+                          data: Container(
+                            child:
+                                Subject(colors: arrColors[1], subName: 'Java'),
+                          ),
+                          child: Subject(colors: arrColors[1], subName: 'Java'),
+                          feedback: Material(
+                              child: Subject(
+                                  subName: 'Java', colors: arrColors[1])),
+                          childWhenDragging:
+                              Subject(subName: 'Java', colors: arrColors[1]),
+                        ),
+                      ),
                     ),
                   ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
-                    child: Draggable(
-                      data: Container(
-                        child: Subject(colors: arrColors[1], subName: 'Java'),
-                      ),
-                      child: Subject(colors: arrColors[1], subName: 'Java'),
-                      feedback: Material(
+                  SizedBox(
+                      child: Visibility(
+                    visible: _isPythonShow,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.02, left: width * 0.07),
+                      child: Draggable(
+                        data: Container(
                           child:
-                              Subject(subName: 'Java', colors: arrColors[1])),
-                      childWhenDragging:
-                          Subject(subName: 'Java', colors: arrColors[1]),
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
-                    child: Draggable(
-                      data: Container(
+                              Subject(colors: arrColors[4], subName: 'Python'),
+                        ),
                         child: Subject(colors: arrColors[4], subName: 'Python'),
+                        feedback: Material(
+                            child: Subject(
+                                subName: 'Python', colors: arrColors[4])),
+                        childWhenDragging:
+                            Subject(subName: 'Python', colors: arrColors[4]),
                       ),
-                      child: Subject(colors: arrColors[4], subName: 'Python'),
-                      feedback: Material(
-                          child:
-                              Subject(subName: 'Python', colors: arrColors[4])),
-                      childWhenDragging:
-                          Subject(subName: 'Python', colors: arrColors[4]),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
-                    child: Draggable(
-                      data: Container(
+                  )),
+                  SizedBox(
+                      child: Visibility(
+                    visible: _isOppsShow1,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.02, left: width * 0.07),
+                      child: Draggable(
+                        data: Container(
+                          child: Subject(colors: arrColors[0], subName: 'Opps'),
+                        ),
                         child: Subject(colors: arrColors[0], subName: 'Opps'),
+                        feedback: Material(
+                            child:
+                                Subject(subName: 'Opps', colors: arrColors[0])),
+                        childWhenDragging:
+                            Subject(subName: 'Opps', colors: arrColors[0]),
                       ),
-                      child: Subject(colors: arrColors[0], subName: 'Opps'),
-                      feedback: Material(
-                          child:
-                              Subject(subName: 'Opps', colors: arrColors[0])),
-                      childWhenDragging:
-                          Subject(subName: 'Opps', colors: arrColors[0]),
                     ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsets.only(top: height * 0.02, left: width * 0.07),
-                    child: Draggable(
-                      data: Container(
+                  )),
+                  SizedBox(
+                      child: Visibility(
+                    visible: _isJavaShow1,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: height * 0.02, left: width * 0.07),
+                      child: Draggable(
+                        data: Container(
+                          child: Subject(colors: arrColors[1], subName: 'Java'),
+                        ),
                         child: Subject(colors: arrColors[1], subName: 'Java'),
+                        feedback: Material(
+                            child:
+                                Subject(subName: 'Java', colors: arrColors[1])),
+                        childWhenDragging:
+                            Subject(subName: 'Java', colors: arrColors[1]),
                       ),
-                      child: Subject(colors: arrColors[1], subName: 'Java'),
-                      feedback: Material(
-                          child:
-                              Subject(subName: 'Java', colors: arrColors[1])),
-                      childWhenDragging:
-                          Subject(subName: 'Java', colors: arrColors[1]),
                     ),
-                  ),
+                  )),
                 ],
               )
             ],
