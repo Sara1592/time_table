@@ -27,11 +27,11 @@ class _HeaderState extends State<Header> {
   List<String> _Class = ['Morning', 'Evening'];
   String? _selectedValClass = "";
   bool _isShow = false;
-  bool _isOppsShow = false;
+  bool _isoopsShow = false;
   bool _isJavaShow = false;
   bool _isJavaShow1 = false;
   bool _isPythonShow = false;
-  bool _isOppsShow1 = false;
+  bool _isoopsShow1 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,22 +43,8 @@ class _HeaderState extends State<Header> {
       Color.fromARGB(255, 186, 117, 220),
       Color.fromARGB(255, 9, 26, 47),
     ];
-
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    Widget subject1 = Container(
-      height: height * 0.13,
-      width: width * 0.07,
-      color: arrColors[2],
-      child: Text('Opps'),
-    );
-    Widget subject2 = Container(
-      height: height * 0.13,
-      width: width * 0.07,
-      color: arrColors[0],
-      child: Text('Opps'),
-    );
-
     return Column(
       children: <Widget>[
         Row(
@@ -87,7 +73,7 @@ class _HeaderState extends State<Header> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: width * 0.05),
+                    padding: EdgeInsets.only(left: width * 0.040),
                     child: Text(
                       "NO",
                       style: GoogleFonts.montserrat(
@@ -100,7 +86,7 @@ class _HeaderState extends State<Header> {
                   SizedBox(
                     width: width * 0.1,
                     child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.04),
+                      padding: EdgeInsets.only(left: width * 0.035),
                       child: TextFormField(
                           cursorColor: const Color.fromARGB(255, 26, 25, 25),
                           decoration: const InputDecoration(
@@ -127,7 +113,7 @@ class _HeaderState extends State<Header> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: width * 0.02, bottom: height * 0.01),
+                      left: width * 0.00, bottom: height * 0.01),
                   child: Text(
                     "Department Name",
                     style: GoogleFonts.montserrat(
@@ -138,24 +124,35 @@ class _HeaderState extends State<Header> {
                   ),
                 ),
                 SizedBox(
-                  width: width * 0.15,
+                  width: width * 0.16,
                   child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.01),
+                    padding: EdgeInsets.only(left: width * 0.00),
                     child: DropdownButtonFormField(
+                      iconEnabledColor:
+                          const Color.fromARGB(254, 223, 223, 223),
                       decoration: const InputDecoration(
+                        suffixIcon: Material(
+                          color: Color.fromARGB(255, 9, 26, 47),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(6),
+                            bottomRight: Radius.circular(6),
+                          ),
+                          child: Icon(Icons.arrow_drop_down,
+                              color: Colors.white, size: 45.0),
+                        ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
                         fillColor: Color.fromARGB(254, 223, 223, 223),
                         filled: true,
-                        hintText: "Select the Field ",
+                        hintText: "Department",
                         hintStyle: TextStyle(
                             color: Color.fromARGB(255, 54, 54, 54),
-                            fontWeight: FontWeight.w600),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromARGB(254, 223, 223, 223),
-                            ),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(25.0),
-                            )),
+                            fontWeight: FontWeight.w700),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide.none,
+                        ),
+                        enabledBorder:
+                            OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Department.map((e) => DropdownMenuItem(
                             value: e,
@@ -192,7 +189,20 @@ class _HeaderState extends State<Header> {
                   child: Padding(
                     padding: EdgeInsets.only(left: width * 0.02),
                     child: DropdownButtonFormField(
+                      iconEnabledColor:
+                          const Color.fromARGB(254, 223, 223, 223),
                       decoration: const InputDecoration(
+                        suffixIcon: Material(
+                          color: Color.fromARGB(255, 9, 26, 47),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(6),
+                            bottomRight: Radius.circular(6),
+                          ),
+                          child: Icon(Icons.arrow_drop_down,
+                              color: Colors.white, size: 45.0),
+                        ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
                         fillColor: Color.fromARGB(254, 223, 223, 223),
                         filled: true,
                         hintText: "Batch",
@@ -240,18 +250,34 @@ class _HeaderState extends State<Header> {
                   child: Padding(
                     padding: EdgeInsets.only(left: width * 0.02),
                     child: DropdownButtonFormField(
+                      validator: (value) =>
+                          value == null ? 'Fill the Section' : null,
+                      iconEnabledColor:
+                          const Color.fromARGB(254, 223, 223, 223),
                       decoration: const InputDecoration(
+                        errorStyle: TextStyle(fontSize: 16.0),
+                        suffixIcon: Material(
+                          color: Color.fromARGB(255, 9, 26, 47),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(6),
+                            bottomRight: Radius.circular(6),
+                          ),
+                          child: Icon(Icons.arrow_drop_down,
+                              color: Colors.white, size: 45.0),
+                        ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
                         fillColor: Color.fromARGB(254, 223, 223, 223),
                         filled: true,
-                        hintText: "1st",
+                        hintText: "Year",
                         hintStyle: TextStyle(
                             color: Color.fromARGB(255, 54, 54, 54),
                             fontWeight: FontWeight.w700),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide.none,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(width: 3)),
+                        enabledBorder:
+                            OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Year.map((e) => DropdownMenuItem(
                             value: e,
@@ -273,7 +299,7 @@ class _HeaderState extends State<Header> {
               children: [
                 Padding(
                   padding: EdgeInsets.only(
-                      left: width * 0.05, bottom: height * 0.01),
+                      left: width * 0.03, bottom: height * 0.01),
                   child: Text(
                     "Class",
                     style: GoogleFonts.montserrat(
@@ -288,10 +314,24 @@ class _HeaderState extends State<Header> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 40.0),
                     child: DropdownButtonFormField(
+                      iconEnabledColor:
+                          const Color.fromARGB(254, 223, 223, 223),
                       decoration: const InputDecoration(
+                        errorStyle: TextStyle(fontSize: 16.0),
+                        suffixIcon: Material(
+                          color: Color.fromARGB(255, 9, 26, 47),
+                          borderRadius: BorderRadius.only(
+                            topRight: Radius.circular(6),
+                            bottomRight: Radius.circular(6),
+                          ),
+                          child: Icon(Icons.arrow_drop_down,
+                              color: Colors.white, size: 45.0),
+                        ),
+                        contentPadding:
+                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
                         fillColor: Color.fromARGB(254, 223, 223, 223),
                         filled: true,
-                        hintText: "Morning",
+                        hintText: "Section",
                         hintStyle: TextStyle(
                             color: Colors.black, fontWeight: FontWeight.w700),
                         focusedBorder: OutlineInputBorder(
@@ -369,7 +409,7 @@ class _HeaderState extends State<Header> {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(top: height * 0.03, left: width * 0.07),
+                    EdgeInsets.only(top: height * 0.03, left: width * 0.09),
                 child: Text("Staff Details",
                     style: GoogleFonts.montserrat(
                       textStyle: const TextStyle(
@@ -379,7 +419,7 @@ class _HeaderState extends State<Header> {
                     )),
               ),
               Padding(
-                padding: EdgeInsets.only(left: width * 0.06),
+                padding: EdgeInsets.only(left: width * 0.07),
                 child: Row(
                   children: [
                     SizedBox(
@@ -392,7 +432,7 @@ class _HeaderState extends State<Header> {
                       onTap: () {
                         setState(
                           () {
-                            _isOppsShow = !_isOppsShow;
+                            _isoopsShow = !_isoopsShow;
                           },
                         );
                       },
@@ -437,7 +477,7 @@ class _HeaderState extends State<Header> {
                       onTap: () {
                         setState(
                           () {
-                            _isOppsShow1 = !_isOppsShow1;
+                            _isoopsShow1 = !_isoopsShow1;
                           },
                         );
                       },
@@ -460,112 +500,161 @@ class _HeaderState extends State<Header> {
                   ],
                 ),
               ),
-              Row(
+              Column(
                 children: [
-                  // SubjectAlocated(),
-                  SizedBox(
-                      child: Visibility(
-                    visible: _isOppsShow,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: height * 0.02, left: width * 0.10),
-                      child: Draggable(
-                        data: Container(
-                          child: Subject(colors: arrColors[0], subName: 'Opps'),
-                        ),
-                        child: Subject(colors: arrColors[0], subName: 'Opps'),
-                        feedback: Material(
+                  Row(
+                    children: [
+                      // SubjectAlocated(),
+                      SizedBox(
+                          child: Visibility(
+                        visible: _isoopsShow,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.02, left: width * 0.10),
+                          child: Draggable(
+                            data: Container(
+                              child: Subject(
+                                  colors: arrColors[0], subName: 'Oops'),
+                            ),
                             child:
-                                Subject(subName: 'Opps', colors: arrColors[0])),
-                        childWhenDragging:
-                            Subject(subName: 'Opps', colors: arrColors[0]),
+                                Subject(colors: arrColors[0], subName: 'Oops'),
+                            feedback: Material(
+                                child: Subject(
+                                    subName: 'Oops', colors: arrColors[0])),
+                            childWhenDragging:
+                                Subject(subName: 'Oops', colors: arrColors[0]),
+                          ),
+                        ),
+                      )),
+                      SizedBox(
+                        child: Visibility(
+                          visible: _isJavaShow,
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                top: height * 0.02, left: width * 0.07),
+                            child: Draggable(
+                              data: Container(
+                                child: Subject(
+                                    colors: arrColors[1], subName: 'Java'),
+                              ),
+                              child: Subject(
+                                  colors: arrColors[1], subName: 'Java'),
+                              feedback: Material(
+                                  child: Subject(
+                                      subName: 'Java', colors: arrColors[1])),
+                              childWhenDragging: Subject(
+                                  subName: 'Java', colors: arrColors[1]),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  )),
-                  SizedBox(
-                    child: Visibility(
-                      visible: _isJavaShow,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                            top: height * 0.02, left: width * 0.07),
-                        child: Draggable(
-                          data: Container(
+                      SizedBox(
+                          child: Visibility(
+                        visible: _isPythonShow,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.02, left: width * 0.07),
+                          child: Draggable(
+                            data: Container(
+                              child: Subject(
+                                  colors: arrColors[4], subName: 'Python'),
+                            ),
+                            child: Subject(
+                                colors: arrColors[4], subName: 'Python'),
+                            feedback: Material(
+                                child: Subject(
+                                    subName: 'Python', colors: arrColors[4])),
+                            childWhenDragging: Subject(
+                                subName: 'Python', colors: arrColors[4]),
+                          ),
+                        ),
+                      )),
+                      SizedBox(
+                          child: Visibility(
+                        visible: _isoopsShow1,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.02, left: width * 0.07),
+                          child: Draggable(
+                            data: Container(
+                              child: Subject(
+                                  colors: arrColors[0], subName: 'Oops'),
+                            ),
+                            child:
+                                Subject(colors: arrColors[0], subName: 'Oops'),
+                            feedback: Material(
+                                child: Subject(
+                                    subName: 'Oops', colors: arrColors[0])),
+                            childWhenDragging:
+                                Subject(subName: 'Oops', colors: arrColors[0]),
+                          ),
+                        ),
+                      )),
+                      SizedBox(
+                          child: Visibility(
+                        visible: _isJavaShow1,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              top: height * 0.02, left: width * 0.07),
+                          child: Draggable(
+                            data: Container(
+                              child: Subject(
+                                  colors: arrColors[1], subName: 'Java'),
+                            ),
                             child:
                                 Subject(colors: arrColors[1], subName: 'Java'),
+                            feedback: Material(
+                                child: Subject(
+                                    subName: 'Java', colors: arrColors[1])),
+                            childWhenDragging:
+                                Subject(subName: 'Java', colors: arrColors[1]),
                           ),
-                          child: Subject(colors: arrColors[1], subName: 'Java'),
-                          feedback: Material(
-                              child: Subject(
-                                  subName: 'Java', colors: arrColors[1])),
-                          childWhenDragging:
-                              Subject(subName: 'Java', colors: arrColors[1]),
                         ),
-                      ),
-                    ),
+                      )),
+                    ],
                   ),
-                  SizedBox(
-                      child: Visibility(
-                    visible: _isPythonShow,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: height * 0.02, left: width * 0.07),
-                      child: Draggable(
-                        data: Container(
-                          child:
-                              Subject(colors: arrColors[4], subName: 'Python'),
-                        ),
-                        child: Subject(colors: arrColors[4], subName: 'Python'),
-                        feedback: Material(
-                            child: Subject(
-                                subName: 'Python', colors: arrColors[4])),
-                        childWhenDragging:
-                            Subject(subName: 'Python', colors: arrColors[4]),
-                      ),
-                    ),
-                  )),
-                  SizedBox(
-                      child: Visibility(
-                    visible: _isOppsShow1,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: height * 0.02, left: width * 0.07),
-                      child: Draggable(
-                        data: Container(
-                          child: Subject(colors: arrColors[0], subName: 'Opps'),
-                        ),
-                        child: Subject(colors: arrColors[0], subName: 'Opps'),
-                        feedback: Material(
-                            child:
-                                Subject(subName: 'Opps', colors: arrColors[0])),
-                        childWhenDragging:
-                            Subject(subName: 'Opps', colors: arrColors[0]),
-                      ),
-                    ),
-                  )),
-                  SizedBox(
-                      child: Visibility(
-                    visible: _isJavaShow1,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          top: height * 0.02, left: width * 0.07),
-                      child: Draggable(
-                        data: Container(
-                          child: Subject(colors: arrColors[1], subName: 'Java'),
-                        ),
-                        child: Subject(colors: arrColors[1], subName: 'Java'),
-                        feedback: Material(
-                            child:
-                                Subject(subName: 'Java', colors: arrColors[1])),
-                        childWhenDragging:
-                            Subject(subName: 'Java', colors: arrColors[1]),
-                      ),
-                    ),
-                  )),
                 ],
               )
             ],
           ),
-        ))
+        )),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Padding(
+              padding: EdgeInsets.only(left: width * 0.73, top: height * 0.02),
+              child: SizedBox(
+                width: width * 0.13,
+                height: height * 0.06,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                        Color.fromARGB(255, 79, 140, 0)),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25),
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Save Details',
+                        style: GoogleFonts.montserrat(
+                            fontSize: 15,
+                            color: const Color.fromARGB(255, 255, 255, 255),
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
