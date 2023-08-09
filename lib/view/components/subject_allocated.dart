@@ -22,20 +22,17 @@ class _SubjectAlocatedState extends State<SubjectAlocated> {
       Color.fromARGB(255, 186, 117, 220),
       Color.fromARGB(255, 9, 26, 47),
     ];
-    return 
-    Padding(
+    return Padding(
       padding: EdgeInsets.only(top: height * 0.02, left: width * 0.10),
       child: Draggable(
         data: Container(
-          child: Subject(colors: arrColors[0], subName: 'Opps'),
+          child: Subject(colors: arrColors[0], subName: 'Oops'),
         ),
-        child: Subject(colors: arrColors[0], subName: 'Opps'),
+        child: Subject(colors: arrColors[0], subName: 'Oops'),
         feedback:
-            Material(child: Subject(subName: 'Opps', colors: arrColors[0])),
-        childWhenDragging: Subject(subName: 'Opps', colors: arrColors[0]),
+            Material(child: Subject(subName: 'Oops', colors: arrColors[0])),
+        childWhenDragging: Subject(subName: 'Oops', colors: arrColors[0]),
       ),
     );
-
-
   }
 }

@@ -15,8 +15,8 @@ class PeriodAllocation extends StatefulWidget {
 
 class _PeriodAllocationState extends State<PeriodAllocation> {
   // Color arrColor = const Color.fromARGB(255, 9, 26, 47);
-  List<Widget> oppsdropitem1 = [];
-  List<Widget> oppsdropitem = [];
+  List<Widget> oopsdropitem1 = [];
+  List<Widget> oopsdropitem = [];
   List<Widget> javadropitem = [];
   List<Widget> pythondropitem = [];
   List<Widget> datasciencedropitem = [];
@@ -101,15 +101,15 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             SizedBox(
               height: height * 0.01,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -122,7 +122,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   color: arrColors[5],
                   child: Column(
                     children:
-                        oppsdropitem.isEmpty ? [const Text('')] : oppsdropitem,
+                        oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
                   ),
                 );
               },
@@ -131,14 +131,14 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
               },
               onAccept: (Widget data) {
                 setState(() {
-                  oppsdropitem.add(data);
+                  oopsdropitem.add(data);
                 });
               },
             ),
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -236,11 +236,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
               height: height * 0.01,
               width: width * 0.0,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -252,9 +252,9 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   width: width * 0.07,
                   color: arrColors[5],
                   child: Column(
-                    children: oppsdropitem1.isEmpty
+                    children: oopsdropitem1.isEmpty
                         ? [const Text('')]
-                        : oppsdropitem1,
+                        : oopsdropitem1,
                   ),
                 );
               },
@@ -263,18 +263,18 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
               },
               onAccept: (Widget data) {
                 setState(() {
-                  oppsdropitem1.add(data);
+                  oopsdropitem1.add(data);
                 });
               },
             ),
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            Subject(colors: arrColors[0], subName: 'Opps'),
+            Subject(colors: arrColors[0], subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),

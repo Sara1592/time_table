@@ -62,53 +62,23 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.012,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -122,53 +92,23 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.012,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -182,23 +122,23 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -212,23 +152,83 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Opps'),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+          ],
+        ),
+        SizedBox(
+          width: width * 0.012,
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: height * 0.05,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+          ],
+        ),
+        SizedBox(
+          width: width * 0.012,
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: height * 0.05,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
