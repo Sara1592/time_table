@@ -5,6 +5,7 @@ import 'package:student_management_web/view/components/period_allocation.dart';
 import 'package:student_management_web/view/components/staff_day_allocation.dart';
 import 'package:student_management_web/view/components/staff_period_allocation.dart';
 
+import '../../cubit/timetable_admin_cubit.dart';
 import '../../widgets/day_order.dart';
 import 'custom_appbar.dart';
 import 'day_orderallocation.dart';
@@ -18,6 +19,12 @@ class TimeTableDashboard extends StatefulWidget {
 }
 
 class _TimeTableDashboardState extends State<TimeTableDashboard> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<TimetableAdminCubit>().deptInitial();
+  }
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
