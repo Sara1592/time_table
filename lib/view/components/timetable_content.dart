@@ -23,7 +23,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    context.read<TimetableAdminCubit>().deptInitial();
+    // context.read<TimetableAdminCubit>().deptInitial();
   }
   @override
   Widget build(BuildContext context) {

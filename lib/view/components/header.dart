@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:student_management_web/view/components/subject_allocated.dart';
+import '../../cubit/timetable_admin_cubit.dart';
 import '../../widgets/staff_alloction.dart';
 import '../../widgets/subject.dart';
 import 'custom_appbar.dart';
@@ -161,6 +163,7 @@ class _HeaderState extends State<Header> {
                       onChanged: (val) {
                         setState(() {
                           _selectedVal = val as String;
+                          // context.read<TimetableAdminCubit>().deptBatchList();
                         });
                       },
                     ),

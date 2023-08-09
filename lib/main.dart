@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:provider/provider.dart';
 import 'package:student_management_web/view/time_table_screen.dart';
 import 'controllers/controller.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           title: 'Time Table',
           theme: ThemeData(),
           debugShowCheckedModeBanner: false,
+          builder: EasyLoading.init(),
           home: MultiProvider(providers: [
             ChangeNotifierProvider(create: (context) => Controller())
           ], child: TimetableAdminLogic())),

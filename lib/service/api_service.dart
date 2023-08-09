@@ -14,4 +14,14 @@ class API_Service {
          print(rolelist);
     // return response;
   }
+   Future deptBatchList() async {
+    final response = await _helper.get("departmentbatchlist");
+    // print(response);
+    var rolelist = response['data']
+        .map<DeptListModel>(
+            (e) => DeptListModel.fromJson(e as Map<String, dynamic>))
+        .toList();
+         print(rolelist);
+    // return response;
+  }
 }
