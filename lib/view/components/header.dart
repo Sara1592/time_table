@@ -422,28 +422,10 @@ class _HeaderState extends State<Header> {
                 padding: EdgeInsets.only(left: width * 0.07),
                 child: Row(
                   children: [
+                    SizedBox(child: StaffAllocation()),
                     SizedBox(
                         child: InkWell(
-                      child: StaffAllocation(
-                        staffId: 'Staff Id :001',
-                        staffName: 'Mansoor',
-                        subName: 'Oops',
-                      ),
-                      onTap: () {
-                        setState(
-                          () {
-                            _isoopsShow = !_isoopsShow;
-                          },
-                        );
-                      },
-                    )),
-                    SizedBox(
-                        child: InkWell(
-                      child: StaffAllocation(
-                        staffId: 'Staff Id :002',
-                        staffName: 'Ambrose',
-                        subName: 'Java',
-                      ),
+                      child: StaffAllocation(),
                       onTap: () {
                         setState(
                           () {
@@ -454,11 +436,7 @@ class _HeaderState extends State<Header> {
                     )),
                     SizedBox(
                         child: InkWell(
-                      child: StaffAllocation(
-                        staffId: 'Staff Id :003',
-                        staffName: 'Sanjai Balaji',
-                        subName: 'Python',
-                      ),
+                      child: StaffAllocation(),
                       onTap: () {
                         setState(
                           () {
@@ -469,11 +447,7 @@ class _HeaderState extends State<Header> {
                     )),
                     SizedBox(
                         child: InkWell(
-                      child: StaffAllocation(
-                        staffId: 'Staff Id :004',
-                        staffName: 'Vijay',
-                        subName: 'Oops',
-                      ),
+                      child: StaffAllocation(),
                       onTap: () {
                         setState(
                           () {
@@ -484,11 +458,7 @@ class _HeaderState extends State<Header> {
                     )),
                     SizedBox(
                         child: InkWell(
-                      child: StaffAllocation(
-                        staffId: 'Staff Id :005',
-                        staffName: 'Priya',
-                        subName: 'Java',
-                      ),
+                      child: StaffAllocation(),
                       onTap: () {
                         setState(
                           () {
@@ -512,17 +482,15 @@ class _HeaderState extends State<Header> {
                           padding: EdgeInsets.only(
                               top: height * 0.02, left: width * 0.10),
                           child: Draggable(
-                            data: Container(
-                              child: Subject(
-                                  colors: arrColors[0], subName: 'Oops'),
-                            ),
-                            child:
+                            data:
                                 Subject(colors: arrColors[0], subName: 'Oops'),
                             feedback: Material(
                                 child: Subject(
                                     subName: 'Oops', colors: arrColors[0])),
                             childWhenDragging:
                                 Subject(subName: 'Oops', colors: arrColors[0]),
+                            child:
+                                Subject(colors: arrColors[0], subName: 'Oops'),
                           ),
                         ),
                       )),
@@ -537,13 +505,13 @@ class _HeaderState extends State<Header> {
                                 child: Subject(
                                     colors: arrColors[1], subName: 'Java'),
                               ),
-                              child: Subject(
-                                  colors: arrColors[1], subName: 'Java'),
                               feedback: Material(
                                   child: Subject(
                                       subName: 'Java', colors: arrColors[1])),
                               childWhenDragging: Subject(
                                   subName: 'Java', colors: arrColors[1]),
+                              child: Subject(
+                                  colors: arrColors[1], subName: 'Java'),
                             ),
                           ),
                         ),
@@ -555,10 +523,8 @@ class _HeaderState extends State<Header> {
                           padding: EdgeInsets.only(
                               top: height * 0.02, left: width * 0.07),
                           child: Draggable(
-                            data: Container(
-                              child: Subject(
-                                  colors: arrColors[4], subName: 'Python'),
-                            ),
+                            data: Subject(
+                                colors: arrColors[4], subName: 'Python'),
                             child: Subject(
                                 colors: arrColors[4], subName: 'Python'),
                             feedback: Material(

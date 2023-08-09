@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:student_management_web/view/time_table_screen.dart';
 import 'controllers/controller.dart';
+import 'models/staff_model.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,3 +23,4 @@ class MyApp extends StatelessWidget {
         ], child: TimeTableScreen()));
   }
 }
+
