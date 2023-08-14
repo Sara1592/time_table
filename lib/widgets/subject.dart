@@ -30,6 +30,5 @@ class Subject extends StatelessWidget {
         ],
       ),
     );
-  
   }
 }

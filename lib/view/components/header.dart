@@ -35,6 +35,47 @@ class _HeaderState extends State<Header> {
   bool _isPythonShow = false;
   bool _isoopsShow1 = false;
 
+  static List<dynamic> staffdata = [
+    {
+      "staffname": "Mansoor",
+      "staffid": "001",
+      "staffsub": ["Java", "Oops"]
+    },
+    {
+      "staffname": "Ambrose",
+      "staffid": "002",
+      "staffsub": ["Java", "Python"]
+    },
+    {
+      "staffname": "Sanjai Balaji",
+      "staffid": "003",
+      "staffsub": ["Python"]
+    },
+    {
+      "staffname": "Vijay",
+      "staffid": "004",
+      "staffsub": ["Python", "Oops"]
+    },
+    {
+      "staffname": "Priya",
+      "staffid": "005",
+      "staffsub": ["Python", "Java"]
+    },
+  ];
+
+  final List<dynamic> staffsubdata =
+      List.generate(staffdata.length, (index) => ('${staffdata.length}'));
+
+  List filterSub = [];
+  filterFunc(id) {
+    print(id);
+    setState(() {
+      filterSub =
+          staffdata.where((element) => element['staffid'] == id).toList();
+    });
+    print(filterSub);
+  }
+
   @override
   Widget build(BuildContext context) {
     var arrColors = [
@@ -421,169 +462,230 @@ class _HeaderState extends State<Header> {
                           color: Color.fromARGB(255, 54, 54, 54)),
                     )),
               ),
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.07),
-                child: Row(
-                  children: [
-                    SizedBox(child: StaffAllocation()),
-                    SizedBox(
-                        child: InkWell(
-                      child: StaffAllocation(),
-                      onTap: () {
-                        setState(
-                          () {
-                            _isJavaShow = !_isJavaShow;
-                          },
-                        );
-                      },
-                    )),
-                    SizedBox(
-                        child: InkWell(
-                      child: StaffAllocation(),
-                      onTap: () {
-                        setState(
-                          () {
-                            _isPythonShow = !_isPythonShow;
-                          },
-                        );
-                      },
-                    )),
-                    SizedBox(
-                        child: InkWell(
-                      child: StaffAllocation(),
-                      onTap: () {
-                        setState(
-                          () {
-                            _isoopsShow1 = !_isoopsShow1;
-                          },
-                        );
-                      },
-                    )),
-                    SizedBox(
-                        child: InkWell(
-                      child: StaffAllocation(),
-                      onTap: () {
-                        setState(
-                          () {
-                            _isJavaShow1 = !_isJavaShow1;
-                          },
-                        );
-                      },
-                    )),
-                  ],
-                ),
-              ),
+
               Column(
                 children: [
-                  Row(
-                    children: [
-                      // SubjectAlocated(),
-                      SizedBox(
-                          child: Visibility(
-                        visible: _isoopsShow,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: height * 0.02, left: width * 0.10),
-                          child: Draggable(
-                            data:
-                                Subject(colors: arrColors[0], subName: 'Oops'),
-                            feedback: Material(
-                                child: Subject(
-                                    subName: 'Oops', colors: arrColors[0])),
-                            childWhenDragging:
-                                Subject(subName: 'Oops', colors: arrColors[0]),
-                            child:
-                                Subject(colors: arrColors[0], subName: 'Oops'),
-                          ),
-                        ),
-                      )),
-                      SizedBox(
-                        child: Visibility(
-                          visible: _isJavaShow,
-                          child: Padding(
-                            padding: EdgeInsets.only(
-                                top: height * 0.02, left: width * 0.07),
-                            child: Draggable(
-                              data: Container(
-                                child: Subject(
-                                    colors: arrColors[1], subName: 'Java'),
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: width * 0.01, top: height * 0.01),
+                    child: SizedBox(
+                      height: height * 0.12,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                          itemCount: staffdata.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(right: width * 0.02),
+                              child: GestureDetector(
+                                onTap: () {
+                                  filterFunc(
+                                      staffdata[index]['staffid'].toString());
+                                },
+                                child: Container(
+                                  height: height * 0.10,
+                                  width: width * 0.13,
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(9)),
+                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color.fromARGB(
+                                              255, 221, 221, 221),
+                                          blurRadius: 7.0,
+                                        ),
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            right: width * 0.05,
+                                            top: height * 0.015),
+                                        child: Text(
+                                            '${staffdata[index]['staffname'].toString()}',
+                                            style: GoogleFonts.montserrat(
+                                              textStyle: const TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color.fromARGB(
+                                                      255, 54, 54, 54)),
+                                            )),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: width * 0.01,
+                                            top: height * 0.01),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              '${staffdata[index]['staffid'].toString()}',
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: width * 0.046),
+                                              child: Text(
+                                                  '${staffdata[index]['staffsub'][0].toString()}'),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                              feedback: Material(
-                                  child: Subject(
-                                      subName: 'Java', colors: arrColors[1])),
-                              childWhenDragging: Subject(
-                                  subName: 'Java', colors: arrColors[1]),
-                              child: Subject(
-                                  colors: arrColors[1], subName: 'Java'),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                          child: Visibility(
-                        visible: _isPythonShow,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: height * 0.02, left: width * 0.07),
-                          child: Draggable(
-                            data: Subject(
-                                colors: arrColors[4], subName: 'Python'),
-                            child: Subject(
-                                colors: arrColors[4], subName: 'Python'),
-                            feedback: Material(
-                                child: Subject(
-                                    subName: 'Python', colors: arrColors[4])),
-                            childWhenDragging: Subject(
-                                subName: 'Python', colors: arrColors[4]),
-                          ),
-                        ),
-                      )),
-                      SizedBox(
-                          child: Visibility(
-                        visible: _isoopsShow1,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: height * 0.02, left: width * 0.07),
-                          child: Draggable(
-                            data: Container(
-                              child: Subject(
-                                  colors: arrColors[0], subName: 'Oops'),
-                            ),
-                            child:
-                                Subject(colors: arrColors[0], subName: 'Oops'),
-                            feedback: Material(
-                                child: Subject(
-                                    subName: 'Oops', colors: arrColors[0])),
-                            childWhenDragging:
-                                Subject(subName: 'Oops', colors: arrColors[0]),
-                          ),
-                        ),
-                      )),
-                      SizedBox(
-                          child: Visibility(
-                        visible: _isJavaShow1,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                              top: height * 0.02, left: width * 0.07),
-                          child: Draggable(
-                            data: Container(
-                              child: Subject(
-                                  colors: arrColors[1], subName: 'Java'),
-                            ),
-                            child:
-                                Subject(colors: arrColors[1], subName: 'Java'),
-                            feedback: Material(
-                                child: Subject(
-                                    subName: 'Java', colors: arrColors[1])),
-                            childWhenDragging:
-                                Subject(subName: 'Java', colors: arrColors[1]),
-                          ),
-                        ),
-                      )),
-                    ],
+                            );
+                          }),
+                    ),
                   ),
+                  ListView.builder(
+                      // scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: filterSub.length,
+                      itemBuilder: (context, index) {
+                        return Center(
+                            child: Column(
+                          children: [
+                            // Text(filterSub[index]['staffid']),
+                            ListView.builder(
+                                // scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount: filterSub[index]['staffsub'].length,
+                                itemBuilder: (context, int subindex) {
+                                  return Text(filterSub[index]['staffsub']
+                                          [subindex]
+                                      .toString());
+                                  // return Subject(
+                                  //     subName: (filterSub[index]['staffsub']
+                                  //             [subindex]
+                                  //         .toString()),
+                                  //     colors: arrColors[2]);
+                                })
+                          ],
+                        ));
+                      })
                 ],
-              )
+              ),
+
+              // Padding(
+              //   padding: EdgeInsets.only(left: width * 0.00),
+              //   child: const Row(
+              //     children: [
+              //       SizedBox(child: StaffAllocation()),
+              //     ],
+              //   ),
+              // ),
+              // // Column(
+              // //   children: [
+              // //     Row(
+              // //       children: [
+              // //         // SubjectAlocated(),
+              // //         SizedBox(
+              // //             child: Visibility(
+              // //           visible: _isoopsShow,
+              // //           child: Padding(
+              // //             padding: EdgeInsets.only(
+              // //                 top: height * 0.02, left: width * 0.10),
+              // //             child: Draggable(
+              // //               data:
+              // //                   Subject(colors: arrColors[0], subName: 'Oops'),
+              // //               feedback: Material(
+              // //                   child: Subject(
+              // //                       subName: 'Oops', colors: arrColors[0])),
+              // //               childWhenDragging:
+              // //                   Subject(subName: 'Oops', colors: arrColors[0]),
+              // //               child:
+              // //                   Subject(colors: arrColors[0], subName: 'Oops'),
+              // //             ),
+              // //           ),
+              // //         )),
+              // //         SizedBox(
+              // //           child: Visibility(
+              // //             visible: _isJavaShow,
+              // //             child: Padding(
+              // //               padding: EdgeInsets.only(
+              // //                   top: height * 0.02, left: width * 0.07),
+              // //               child: Draggable(
+              // //                 data: Container(
+              // //                   child: Subject(
+              // //                       colors: arrColors[1], subName: 'Java'),
+              // //                 ),
+              // //                 feedback: Material(
+              // //                     child: Subject(
+              // //                         subName: 'Java', colors: arrColors[1])),
+              // //                 childWhenDragging: Subject(
+              // //                     subName: 'Java', colors: arrColors[1]),
+              // //                 child: Subject(
+              // //                     colors: arrColors[1], subName: 'Java'),
+              // //               ),
+              // //             ),
+              // //           ),
+              // //         ),
+              // //         SizedBox(
+              // //             child: Visibility(
+              // //           visible: _isPythonShow,
+              // //           child: Padding(
+              // //             padding: EdgeInsets.only(
+              // //                 top: height * 0.02, left: width * 0.07),
+              // //             child: Draggable(
+              // //               data: Subject(
+              // //                   colors: arrColors[4], subName: 'Python'),
+              // //               child: Subject(
+              // //                   colors: arrColors[4], subName: 'Python'),
+              // //               feedback: Material(
+              // //                   child: Subject(
+              // //                       subName: 'Python', colors: arrColors[4])),
+              // //               childWhenDragging: Subject(
+              // //                   subName: 'Python', colors: arrColors[4]),
+              // //             ),
+              // //           ),
+              // //         )),
+              // //         SizedBox(
+              // //             child: Visibility(
+              // //           visible: _isoopsShow1,
+              // //           child: Padding(
+              // //             padding: EdgeInsets.only(
+              // //                 top: height * 0.02, left: width * 0.07),
+              // //             child: Draggable(
+              // //               data: Container(
+              // //                 child: Subject(
+              // //                     colors: arrColors[0], subName: 'Oops'),
+              // //               ),
+              // //               child:
+              // //                   Subject(colors: arrColors[0], subName: 'Oops'),
+              // //               feedback: Material(
+              // //                   child: Subject(
+              // //                       subName: 'Oops', colors: arrColors[0])),
+              // //               childWhenDragging:
+              // //                   Subject(subName: 'Oops', colors: arrColors[0]),
+              // //             ),
+              // //           ),
+              // //         )),
+              // //         SizedBox(
+              // //             child: Visibility(
+              // //           visible: _isJavaShow1,
+              // //           child: Padding(
+              // //             padding: EdgeInsets.only(
+              // //                 top: height * 0.02, left: width * 0.07),
+              // //             child: Draggable(
+              // //               data: Container(
+              // //                 child: Subject(
+              // //                     colors: arrColors[1], subName: 'Java'),
+              // //               ),
+              // //               child:
+              // //                   Subject(colors: arrColors[1], subName: 'Java'),
+              // //               feedback: Material(
+              // //                   child: Subject(
+              // //                       subName: 'Java', colors: arrColors[1])),
+              // //               childWhenDragging:
+              // //                   Subject(subName: 'Java', colors: arrColors[1]),
+              // //             ),
+              // //           ),
+              // //         )),
+              // //       ],
+              // //     ),
+              // //   ],
+              // // )
             ],
           ),
         )),
