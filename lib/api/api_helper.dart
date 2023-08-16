@@ -30,7 +30,7 @@ class API_Helper {
   dynamic returnResponse(http.Response response) {
     switch (response.statusCode) {
       case 200:
-        final body = response.body;
+        final body = jsonDecode(response.body);
         return body;
       // case 404:
       //   throw BadRequestException(

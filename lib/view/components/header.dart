@@ -1,8 +1,11 @@
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:student_management_web/view/components/subject_allocated.dart';
 import '../../cubit/timetable_admin_cubit.dart';
+import '../../service/api_service.dart';
 import '../../widgets/staff_alloction.dart';
 import '../../widgets/subject.dart';
 import 'custom_appbar.dart';
@@ -21,28 +24,38 @@ class _HeaderState extends State<Header> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    
+    // context.read<TimetableAdminCubit>().deptInitial();
+    // context.read<TimetableAdminCubit>().fetchDeptBatchList('2');
 
-    print("Hello $_Department");
+    // print("Hello $_Department");
     fetch();
   }
 
-  fetch() async{
+  fetch() async {
     await context.read<TimetableAdminCubit>().deptInitial();
     _Department = context.read<TimetableAdminCubit>().deptList;
-    print("Hello $_Department");
+
+    // print("Hello $_Batch");
   }
 
-  List<String> _Department = [];
-  String? _selectedVal = "";
+  fetchDeptBatch(val) async {
+    await context.read<TimetableAdminCubit>().fetchDeptBatchList(val);
+    _Batch = context.read<TimetableAdminCubit>().deptBatchList;
+    _Year = _Batch;
+    _Class = _Batch;
+    print("Hello $_Batch");
+  }
 
-  List<String> _Batch = ['2023', '2022', '2021', '2020', '2019'];
+  List _Department = [];
+  String? _selectedVal;
+
+  List _Batch = [];
   String? _selectedValBat = "";
 
-  List<String> _Year = ['1st', '2nd', '3rd', '4th', '5th'];
+  List _Year = [];
   String? _selectedValYear = "";
 
-  List<String> _Class = ['Morning', 'Evening'];
+  List _Class = [];
   String? _selectedValClass = "";
   bool _isShow = false;
   bool _isoopsShow = false;
@@ -214,13 +227,14 @@ class _HeaderState extends State<Header> {
                             OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Department.map((e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
+                            value: e["dept_code"],
+                            child: Text(e["dept_name"]),
                           )).toList(),
                       onChanged: (val) {
                         setState(() {
                           _selectedVal = val as String;
-                          // context.read<TimetableAdminCubit>().deptBatchList();
+
+                          fetchDeptBatch(val);
                         });
                       },
                     ),
@@ -276,12 +290,12 @@ class _HeaderState extends State<Header> {
                             OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Batch.map((e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
+                            value: Text(e['batch']),
+                            child: Text(e['batch']),
                           )).toList(),
-                      onChanged: (val) {
+                      onChanged: (value) {
                         setState(() {
-                          _selectedValBat = val as String;
+                          _selectedValBat = value as String;
                         });
                       },
                     ),
@@ -340,8 +354,8 @@ class _HeaderState extends State<Header> {
                             OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Year.map((e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
+                            value: e['year'],
+                            child: Text(e['year']),
                           )).toList(),
                       onChanged: (val) {
                         setState(() {
@@ -401,8 +415,8 @@ class _HeaderState extends State<Header> {
                             OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Class.map((e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
+                            value: e['sessions'],
+                            child: Text(e['sessions']),
                           )).toList(),
                       onChanged: (val) {
                         setState(() {

@@ -4,15 +4,25 @@ import '../models/deptlist_model.dart';
 class API_Service {
   final API_Helper _helper = API_Helper();
 
-  Future<DeptListModel> deptList() async {
+  Future deptList() async {
     final response = await _helper.get("departmentlist");
+    // print(response['data']);
 
-    return deptListModelFromJson(response);
+    return response['data'];
   }
 
-  Future deptBatchList(detpCode) async {
+  Future deptBatchList(val) async {
     final response =
-        await _helper.get("departmentbatchlist?dept_code=$detpCode");
-    print(response);
+        await _helper.get("departmentbatchlist?dept_code=$val");
+    // print("Code123 $detpCode");
+    // print(response["data"]["batch_details"]);
+    return response['data'][0]["batch_details"];
+  }
+   Future deptStaffList(val) async {
+    final response =
+        await _helper.get("deptstafflist?dept_id=$val");
+    // print("Code123 $detpCode");
+    // print(response["data"]["batch_details"]);
+    return response['data'];
   }
 }
