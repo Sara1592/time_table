@@ -543,26 +543,46 @@ class _HeaderState extends State<Header> {
                       shrinkWrap: true,
                       itemCount: filterSub.length,
                       itemBuilder: (context, index) {
-                        return Center(
-                            child: Column(
-                          children: [
-                            // Text(filterSub[index]['staffid']),
-                            ListView.builder(
-                                // scrollDirection: Axis.horizontal,
+                        return Padding(
+                          padding: EdgeInsets.only(left: width * 0.07),
+                          child: SizedBox(
+                            height: height * 0.12,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
                                 shrinkWrap: true,
                                 itemCount: filterSub[index]['staffsub'].length,
                                 itemBuilder: (context, int subindex) {
-                                  return Text(filterSub[index]['staffsub']
-                                          [subindex]
-                                      .toString());
+                                  return Padding(
+                                    padding: EdgeInsets.only(
+                                        top: height * 0.01, left: width * 0.02),
+                                    child: Container(
+                                      height: height * 0.20,
+                                      width: width * 0.07,
+                                      color: Colors.blueAccent,
+                                      child: Padding(
+                                        padding: EdgeInsets.only(
+                                            top: height * 0.05,
+                                            left: width * 0.01),
+                                        child: Text(
+                                          filterSub[index]['staffsub'][subindex]
+                                              .toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
                                   // return Subject(
                                   //     subName: (filterSub[index]['staffsub']
                                   //             [subindex]
                                   //         .toString()),
                                   //     colors: arrColors[2]);
-                                })
-                          ],
-                        ));
+                                }),
+                          ),
+                        );
                       })
                 ],
               ),
