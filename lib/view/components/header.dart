@@ -555,21 +555,86 @@ class _HeaderState extends State<Header> {
                                   return Padding(
                                     padding: EdgeInsets.only(
                                         top: height * 0.01, left: width * 0.02),
-                                    child: Container(
-                                      height: height * 0.20,
-                                      width: width * 0.07,
-                                      color: Colors.blueAccent,
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: height * 0.05,
-                                            left: width * 0.01),
-                                        child: Text(
-                                          filterSub[index]['staffsub'][subindex]
-                                              .toString(),
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
+                                    child: Draggable(
+                                      data: Container(
+                                        height: height * 0.13,
+                                        width: width * 0.07,
+                                        color: Colors.blueAccent,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: height * 0.05,
+                                              left: width * 0.01),
+                                          child: Text(
+                                            filterSub[index]['staffsub']
+                                                    [subindex]
+                                                .toString(),
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      feedback: Material(
+                                        child: Container(
+                                          height: height * 0.15,
+                                          width: width * 0.07,
+                                          color: Colors.blueAccent,
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                top: height * 0.05,
+                                                left: width * 0.01),
+                                            child: Text(
+                                              filterSub[index]['staffsub']
+                                                      [subindex]
+                                                  .toString(),
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      childWhenDragging: Container(
+                                        height: height * 0.15,
+                                        width: width * 0.07,
+                                        color: Colors.blueAccent,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: height * 0.05,
+                                              left: width * 0.01),
+                                          child: Text(
+                                            filterSub[index]['staffsub']
+                                                    [subindex]
+                                                .toString(),
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      child: Container(
+                                        height: height * 0.15,
+                                        width: width * 0.07,
+                                        color: Colors.blueAccent,
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: height * 0.05,
+                                              left: width * 0.01),
+                                          child: Text(
+                                            filterSub[index]['staffsub']
+                                                    [subindex]
+                                                .toString(),
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
