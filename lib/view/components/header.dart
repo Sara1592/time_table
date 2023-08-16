@@ -67,27 +67,27 @@ class _HeaderState extends State<Header> {
   static List<dynamic> staffdata = [
     {
       "staffname": "Mansoor",
-      "staffid": "001",
+      "staffid": "Staff ID :001",
       "staffsub": ["Java", "Oops"]
     },
     {
       "staffname": "Ambrose",
-      "staffid": "002",
+      "staffid": "Staff ID :002",
       "staffsub": ["Java", "Python"]
     },
     {
       "staffname": "Sanjai Balaji",
-      "staffid": "003",
+      "staffid": "Staff ID :003",
       "staffsub": ["Python"]
     },
     {
       "staffname": "Vijay",
-      "staffid": "004",
+      "staffid": "Staff ID :004",
       "staffsub": ["Python", "Oops"]
     },
     {
       "staffname": "Priya",
-      "staffid": "005",
+      "staffid": "Staff ID :005",
       "staffsub": ["Python", "Java"]
     },
   ];
@@ -483,21 +483,23 @@ class _HeaderState extends State<Header> {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(top: height * 0.03, left: width * 0.09),
+                    EdgeInsets.only(top: height * 0.01, left: width * 0.09),
                 child: Text("Staff Details",
                     style: GoogleFonts.montserrat(
                       textStyle: const TextStyle(
                           fontSize: 9,
                           fontWeight: FontWeight.w500,
-                          color: Color.fromARGB(255, 54, 54, 54)),
+                          color: Color(0xFFAFAFAF)),
                     )),
               ),
 
               Column(
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: width * 0.01, top: height * 0.01),
+                    padding: EdgeInsets.only(
+                        left: width * 0.01,
+                        top: height * 0.01,
+                        right: width * 0.06),
                     child: SizedBox(
                       height: height * 0.12,
                       child: ListView.builder(
@@ -513,7 +515,7 @@ class _HeaderState extends State<Header> {
                                       staffdata[index]['staffid'].toString());
                                 },
                                 child: Container(
-                                  height: height * 0.10,
+                                  height: height * 0.09,
                                   width: width * 0.13,
                                   decoration: const BoxDecoration(
                                       borderRadius:
@@ -549,13 +551,22 @@ class _HeaderState extends State<Header> {
                                         child: Row(
                                           children: [
                                             Text(
-                                              '${staffdata[index]['staffid'].toString()}',
-                                            ),
+                                                '${staffdata[index]['staffsub'][0].toString()}',
+                                                style: GoogleFonts.montserrat(
+                                                  fontSize: 10.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Color(0xffAFAFAF),
+                                                )),
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                  left: width * 0.046),
+                                                  left: width * 0.045),
                                               child: Text(
-                                                  '${staffdata[index]['staffsub'][0].toString()}'),
+                                                  '${staffdata[index]['staffid'].toString()}',
+                                                  style: GoogleFonts.montserrat(
+                                                    fontSize: 10.0,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Color(0xffAFAFAF),
+                                                  )),
                                             ),
                                           ],
                                         ),
@@ -584,12 +595,14 @@ class _HeaderState extends State<Header> {
                                 itemBuilder: (context, int subindex) {
                                   return Padding(
                                     padding: EdgeInsets.only(
-                                        top: height * 0.01, left: width * 0.02),
+                                      top: height * 0.01,
+                                      left: width * 0.04,
+                                    ),
                                     child: Draggable(
                                       data: Container(
                                         height: height * 0.13,
                                         width: width * 0.07,
-                                        color: Colors.blueAccent,
+                                        color: Color(0xFF1C9889),
                                         child: Padding(
                                           padding: EdgeInsets.only(
                                               top: height * 0.05,
