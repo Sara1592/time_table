@@ -290,7 +290,7 @@ class _HeaderState extends State<Header> {
                             OutlineInputBorder(borderSide: BorderSide.none),
                       ),
                       items: _Batch.map((e) => DropdownMenuItem(
-                            value: Text(e['batch']),
+                            value: e['batch'],
                             child: Text(e['batch']),
                           )).toList(),
                       onChanged: (value) {
