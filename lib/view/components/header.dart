@@ -17,7 +17,23 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
-  List<String> _Department = ['Computer Science', 'IT', 'EEE', 'ECE', 'Mech'];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    
+
+    print("Hello $_Department");
+    fetch();
+  }
+
+  fetch() async{
+    await context.read<TimetableAdminCubit>().deptInitial();
+    _Department = context.read<TimetableAdminCubit>().deptList;
+    print("Hello $_Department");
+  }
+
+  List<String> _Department = [];
   String? _selectedVal = "";
 
   List<String> _Batch = ['2023', '2022', '2021', '2020', '2019'];

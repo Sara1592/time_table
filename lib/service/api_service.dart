@@ -4,24 +4,15 @@ import '../models/deptlist_model.dart';
 class API_Service {
   final API_Helper _helper = API_Helper();
 
-  Future deptList() async {
+  Future<DeptListModel> deptList() async {
     final response = await _helper.get("departmentlist");
-    // print(response);
-    var rolelist = response['data']
-        .map<DeptListModel>(
-            (e) => DeptListModel.fromJson(e as Map<String, dynamic>))
-        .toList();
-         print(rolelist);
-    // return response;
+
+    return deptListModelFromJson(response);
   }
-   Future deptBatchList() async {
-    final response = await _helper.get("departmentbatchlist");
-    // print(response);
-    var rolelist = response['data']
-        .map<DeptListModel>(
-            (e) => DeptListModel.fromJson(e as Map<String, dynamic>))
-        .toList();
-         print(rolelist);
-    // return response;
+
+  Future deptBatchList(detpCode) async {
+    final response =
+        await _helper.get("departmentbatchlist?dept_code=$detpCode");
+    print(response);
   }
 }
