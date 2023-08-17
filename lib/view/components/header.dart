@@ -67,6 +67,9 @@ class _HeaderState extends State<Header> {
   bool _isPythonShow = false;
   bool _isoopsShow1 = false;
 
+  final formKey = GlobalKey<FormState>();
+  String selectedVal = '';
+
   static List<dynamic> staffdata = [
     {
       "staffname": "Mansoor",
@@ -122,35 +125,77 @@ class _HeaderState extends State<Header> {
     var width = MediaQuery.of(context).size.width;
     return Column(
       children: <Widget>[
-        Row(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(bottom: height * 0.01),
-                  child: Text(""),
-                ),
-                SizedBox(
-                  width: width * 0.05,
-                  child: Padding(
-                      padding: EdgeInsets.only(
-                        left: width * 0.01,
-                      ),
-                      child: CustomAppbar()),
-                )
-              ],
-            ),
-            SizedBox(
-              child: Column(
+        Form(
+          key: formKey,
+          child: Row(
+            children: [
+              Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(left: width * 0.040),
+                    padding: EdgeInsets.only(bottom: height * 0.01),
+                    child: Text(""),
+                  ),
+                  SizedBox(
+                    width: width * 0.05,
+                    child: Padding(
+                        padding: EdgeInsets.only(
+                          left: width * 0.01,
+                        ),
+                        child: CustomAppbar()),
+                  )
+                ],
+              ),
+              SizedBox(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(left: width * 0.040),
+                      child: Text(
+                        "NO",
+                        style: GoogleFonts.montserrat(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w600,
+                          color: Color.fromARGB(255, 175, 175, 175),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.1,
+                      child: Padding(
+                        padding: EdgeInsets.only(left: width * 0.035),
+                        child: TextFormField(
+                            cursorColor: const Color.fromARGB(255, 26, 25, 25),
+                            decoration: const InputDecoration(
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide.none,
+                                ),
+                                hintText: "01",
+                                hintStyle: TextStyle(
+                                  fontWeight: FontWeight.w800,
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 54, 54, 54),
+                                ))),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: width * 0.00, bottom: height * 0.01),
                     child: Text(
-                      "NO",
+                      "Department Name",
                       style: GoogleFonts.montserrat(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w600,
@@ -159,330 +204,299 @@ class _HeaderState extends State<Header> {
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.1,
+                    width: width * 0.15,
                     child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.035),
-                      child: TextFormField(
-                          cursorColor: const Color.fromARGB(255, 26, 25, 25),
-                          decoration: const InputDecoration(
-                              focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide.none,
-                              ),
-                              hintText: "01",
-                              hintStyle: TextStyle(
-                                fontWeight: FontWeight.w800,
-                                fontSize: 20,
-                                color: Color.fromARGB(255, 54, 54, 54),
-                              ))),
+                      padding: EdgeInsets.only(left: width * 0.00),
+                      child: DropdownButtonFormField(
+                        validator: (value) => value == null
+                            ? 'Please choose/n you Department'
+                            : null,
+                        icon: const Visibility(
+                            visible: false, child: Icon(Icons.arrow_downward)),
+                        // iconEnabledColor:
+                        //     const Color.fromARGB(254, 223, 223, 223),
+                        decoration: const InputDecoration(
+                          errorStyle: TextStyle(fontSize: 16.0),
+                          suffixIcon: Material(
+                            color: Color.fromARGB(255, 9, 26, 47),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(6),
+                              bottomRight: Radius.circular(6),
+                            ),
+                            child: Icon(Icons.arrow_drop_down,
+                                color: Colors.white, size: 45.0),
+                          ),
+                          contentPadding:
+                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                          fillColor: Color.fromARGB(254, 223, 223, 223),
+                          filled: true,
+                          hintText: "Department",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 54, 54, 54),
+                              fontWeight: FontWeight.w700),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ),
+                        items: _Department.map((e) => DropdownMenuItem(
+                              value: e["dept_code"],
+                              child: Text(e["dept_name"]),
+                            )).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedVal = val as String;
+
+                            fetchDeptBatch(val);
+                          });
+                        },
+                      ),
                     ),
                   )
                 ],
               ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.00, bottom: height * 0.01),
-                  child: Text(
-                    "Department Name",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 175, 175, 175),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: width * 0.16,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.00),
-                    child: DropdownButtonFormField(
-                      iconEnabledColor:
-                          const Color.fromARGB(254, 223, 223, 223),
-                      decoration: const InputDecoration(
-                        suffixIcon: Material(
-                          color: Color.fromARGB(255, 9, 26, 47),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(6),
-                            bottomRight: Radius.circular(6),
-                          ),
-                          child: Icon(Icons.arrow_drop_down,
-                              color: Colors.white, size: 45.0),
-                        ),
-                        contentPadding:
-                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
-                        fillColor: Color.fromARGB(254, 223, 223, 223),
-                        filled: true,
-                        hintText: "Department",
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 54, 54, 54),
-                            fontWeight: FontWeight.w700),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: width * 0.02, bottom: height * 0.01),
+                    child: Text(
+                      "Batch",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 175, 175, 175),
                       ),
-                      items: _Department.map((e) => DropdownMenuItem(
-                            value: e["dept_code"],
-                            child: Text(e["dept_name"]),
-                          )).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          _selectedVal = val as String;
-                          dept_ID = val;
-
-                          fetchDeptBatch(dept_ID);
-                          // initState();
-                          
-                          // fetch();
-                        });
-                      },
                     ),
                   ),
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.02, bottom: height * 0.01),
-                  child: Text(
-                    "Batch",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 175, 175, 175),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: width * 0.13,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.02),
-                    child: DropdownButtonFormField(
-                      iconEnabledColor:
-                          const Color.fromARGB(254, 223, 223, 223),
-                      decoration: const InputDecoration(
-                        suffixIcon: Material(
-                          color: Color.fromARGB(255, 9, 26, 47),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(6),
-                            bottomRight: Radius.circular(6),
-                          ),
-                          child: Icon(Icons.arrow_drop_down,
-                              color: Colors.white, size: 45.0),
-                        ),
-                        contentPadding:
-                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
-                        fillColor: Color.fromARGB(254, 223, 223, 223),
-                        filled: true,
-                        hintText: "Batch",
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 54, 54, 54),
-                            fontWeight: FontWeight.w700),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                      ),
-                      items: _Batch.map((e) => DropdownMenuItem(
-                            value: e['batch'],
-                            child: Text(e['batch']),
-                          )).toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          _selectedValBat = value as String;
-                        });
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.02, bottom: height * 0.01),
-                  child: Text(
-                    "Year",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 175, 175, 175),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: width * 0.12,
-                  child: Padding(
-                    padding: EdgeInsets.only(left: width * 0.02),
-                    child: DropdownButtonFormField(
-                      validator: (value) =>
-                          value == null ? 'Fill the Section' : null,
-                      iconEnabledColor:
-                          const Color.fromARGB(254, 223, 223, 223),
-                      decoration: const InputDecoration(
-                        errorStyle: TextStyle(fontSize: 16.0),
-                        suffixIcon: Material(
-                          color: Color.fromARGB(255, 9, 26, 47),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(6),
-                            bottomRight: Radius.circular(6),
-                          ),
-                          child: Icon(Icons.arrow_drop_down,
-                              color: Colors.white, size: 45.0),
-                        ),
-                        contentPadding:
-                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
-                        fillColor: Color.fromARGB(254, 223, 223, 223),
-                        filled: true,
-                        hintText: "Year",
-                        hintStyle: TextStyle(
-                            color: Color.fromARGB(255, 54, 54, 54),
-                            fontWeight: FontWeight.w700),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                      ),
-                      items: _Year.map((e) => DropdownMenuItem(
-                            value: e['year'],
-                            child: Text(e['year']),
-                          )).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          _selectedValYear = val as String;
-                        });
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.03, bottom: height * 0.01),
-                  child: Text(
-                    "Class",
-                    style: GoogleFonts.montserrat(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w600,
-                      color: Color.fromARGB(255, 175, 175, 175),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: width * 0.19,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 40.0),
-                    child: DropdownButtonFormField(
-                      iconEnabledColor:
-                          const Color.fromARGB(254, 223, 223, 223),
-                      decoration: const InputDecoration(
-                        errorStyle: TextStyle(fontSize: 16.0),
-                        suffixIcon: Material(
-                          color: Color.fromARGB(255, 9, 26, 47),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(6),
-                            bottomRight: Radius.circular(6),
-                          ),
-                          child: Icon(Icons.arrow_drop_down,
-                              color: Colors.white, size: 45.0),
-                        ),
-                        contentPadding:
-                            EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
-                        fillColor: Color.fromARGB(254, 223, 223, 223),
-                        filled: true,
-                        hintText: "Section",
-                        hintStyle: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w700),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                        enabledBorder:
-                            OutlineInputBorder(borderSide: BorderSide.none),
-                      ),
-                      items: _Class.map((e) => DropdownMenuItem(
-                            value: e['sessions'],
-                            child: Text(e['sessions']),
-                          )).toList(),
-                      onChanged: (val) {
-                        setState(() {
-                          _selectedValClass = val as String;
-                        });
-                      },
-                    ),
-                  ),
-                )
-              ],
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding:
-                      EdgeInsets.only(left: width * 0.05, top: height * 0.01),
-                  child: SizedBox(
+                  SizedBox(
                     width: width * 0.13,
-                    height: height * 0.06,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        setState(
-                          () {
-                            _isShow = !_isShow;
-                            context
-                                .read<TimetableAdminCubit>()
-                                .getDeptStaffList(dept_ID);
-                          },
-                        );
-                      },
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(
-                            const Color.fromARGB(255, 9, 26, 47)),
-                        shape: MaterialStateProperty.all(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
+                    child: Padding(
+                      padding: EdgeInsets.only(left: width * 0.02),
+                      child: DropdownButtonFormField(
+                        validator: (value) =>
+                            value == null ? 'Please choose/n you Batch' : null,
+                        icon: const Visibility(
+                            visible: false, child: Icon(Icons.arrow_downward)),
+                        // iconEnabledColor: Color.fromRGBO(223, 223, 223, 0.996),
+                        decoration: const InputDecoration(
+                          errorStyle: TextStyle(fontSize: 16.0),
+                          suffixIcon: Material(
+                            color: Color.fromARGB(255, 9, 26, 47),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(6),
+                              bottomRight: Radius.circular(6),
+                            ),
+                            child: Icon(Icons.arrow_drop_down,
+                                color: Colors.white, size: 45.0),
                           ),
+                          contentPadding:
+                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                          fillColor: Color.fromARGB(254, 223, 223, 223),
+                          filled: true,
+                          hintText: "Batch",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 54, 54, 54),
+                              fontWeight: FontWeight.w700),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: BorderSide.none),
                         ),
+                        items: _Batch.map((e) => DropdownMenuItem(
+                              value: e['batch'],
+                              child: Text(e['batch']),
+                            )).toList(),
+                        onChanged: (value) {
+                          setState(() {
+                            _selectedValBat = value as String;
+                          });
+                        },
                       ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Search',
-                            style: GoogleFonts.montserrat(
-                                fontSize: 15,
-                                color: const Color.fromARGB(255, 255, 255, 255),
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ],
+                    ),
+                  )
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: width * 0.02, bottom: height * 0.01),
+                    child: Text(
+                      "Year",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 175, 175, 175),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(
+                    width: width * 0.15,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: width * 0.02),
+                      child: DropdownButtonFormField(
+                        validator: (value) =>
+                            value == null ? 'Fill the Section' : null,
+                        icon: const Visibility(
+                            visible: false, child: Icon(Icons.arrow_downward)),
+                        // iconEnabledColor:
+                        //     const Color.fromARGB(254, 223, 223, 223),
+                        decoration: const InputDecoration(
+                          errorStyle: TextStyle(fontSize: 16.0),
+                          suffixIcon: Material(
+                            color: Color.fromARGB(255, 9, 26, 47),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(6),
+                              bottomRight: Radius.circular(6),
+                            ),
+                            child: Icon(Icons.arrow_drop_down,
+                                color: Colors.white, size: 45.0),
+                          ),
+                          contentPadding:
+                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                          fillColor: Color.fromARGB(254, 223, 223, 223),
+                          filled: true,
+                          hintText: "Year",
+                          hintStyle: TextStyle(
+                              color: Color.fromARGB(255, 54, 54, 54),
+                              fontWeight: FontWeight.w700),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ),
+                        items: _Year.map((e) => DropdownMenuItem(
+                              value: e['year'],
+                              child: Text(e['year']),
+                            )).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValYear = val as String;
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        left: width * 0.03, bottom: height * 0.01),
+                    child: Text(
+                      "Class",
+                      style: GoogleFonts.montserrat(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w600,
+                        color: Color.fromARGB(255, 175, 175, 175),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: width * 0.19,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 40.0),
+                      child: DropdownButtonFormField(
+                        icon: const Visibility(
+                            visible: false, child: Icon(Icons.arrow_downward)),
+                        // iconEnabledColor:
+                        //     const Color.fromARGB(254, 223, 223, 223),
+                        decoration: const InputDecoration(
+                          errorStyle: TextStyle(fontSize: 16.0),
+                          suffixIcon: Material(
+                            color: Color.fromARGB(255, 9, 26, 47),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(6),
+                              bottomRight: Radius.circular(6),
+                            ),
+                            child: Icon(Icons.arrow_drop_down,
+                                color: Colors.white, size: 45.0),
+                          ),
+                          contentPadding:
+                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                          fillColor: Color.fromARGB(254, 223, 223, 223),
+                          filled: true,
+                          hintText: "Section",
+                          hintStyle: TextStyle(
+                              color: Colors.black, fontWeight: FontWeight.w700),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder:
+                              OutlineInputBorder(borderSide: BorderSide.none),
+                        ),
+                        items: _Class.map((e) => DropdownMenuItem(
+                              value: e['sessions'],
+                              child: Text(e['sessions']),
+                            )).toList(),
+                        onChanged: (val) {
+                          setState(() {
+                            _selectedValClass = val as String;
+                          });
+                        },
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: width * 0.05, top: height * 0.01),
+                    child: SizedBox(
+                      width: width * 0.13,
+                      height: height * 0.06,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          setState(
+                            () {
+                              _isShow = !_isShow;
+                            },
+                          );
+                        },
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all(
+                              const Color.fromARGB(255, 9, 26, 47)),
+                          shape: MaterialStateProperty.all(
+                            RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(25),
+                            ),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              'Search',
+                              style: GoogleFonts.montserrat(
+                                  fontSize: 15,
+                                  color:
+                                      const Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
         SizedBox(
             child: Visibility(
@@ -502,7 +516,6 @@ class _HeaderState extends State<Header> {
                           color: Color(0xFFAFAFAF)),
                     )),
               ),
-
               Column(
                 children: [
                   Padding(
@@ -569,7 +582,7 @@ class _HeaderState extends State<Header> {
                                                 )),
                                             Padding(
                                               padding: EdgeInsets.only(
-                                                  left: width * 0.045),
+                                                  left: width * 0.039),
                                               child: Text(
                                                   '${staffdata[index]['staffid'].toString()}',
                                                   style: GoogleFonts.montserrat(
@@ -693,137 +706,12 @@ class _HeaderState extends State<Header> {
                                       ),
                                     ),
                                   );
-                                  // return Subject(
-                                  //     subName: (filterSub[index]['staffsub']
-                                  //             [subindex]
-                                  //         .toString()),
-                                  //     colors: arrColors[2]);
                                 }),
                           ),
                         );
                       })
                 ],
               ),
-
-              // Padding(
-              //   padding: EdgeInsets.only(left: width * 0.00),
-              //   child: const Row(
-              //     children: [
-              //       SizedBox(child: StaffAllocation()),
-              //     ],
-              //   ),
-              // ),
-              // // Column(
-              // //   children: [
-              // //     Row(
-              // //       children: [
-              // //         // SubjectAlocated(),
-              // //         SizedBox(
-              // //             child: Visibility(
-              // //           visible: _isoopsShow,
-              // //           child: Padding(
-              // //             padding: EdgeInsets.only(
-              // //                 top: height * 0.02, left: width * 0.10),
-              // //             child: Draggable(
-              // //               data:
-              // //                   Subject(colors: arrColors[0], subName: 'Oops'),
-              // //               feedback: Material(
-              // //                   child: Subject(
-              // //                       subName: 'Oops', colors: arrColors[0])),
-              // //               childWhenDragging:
-              // //                   Subject(subName: 'Oops', colors: arrColors[0]),
-              // //               child:
-              // //                   Subject(colors: arrColors[0], subName: 'Oops'),
-              // //             ),
-              // //           ),
-              // //         )),
-              // //         SizedBox(
-              // //           child: Visibility(
-              // //             visible: _isJavaShow,
-              // //             child: Padding(
-              // //               padding: EdgeInsets.only(
-              // //                   top: height * 0.02, left: width * 0.07),
-              // //               child: Draggable(
-              // //                 data: Container(
-              // //                   child: Subject(
-              // //                       colors: arrColors[1], subName: 'Java'),
-              // //                 ),
-              // //                 feedback: Material(
-              // //                     child: Subject(
-              // //                         subName: 'Java', colors: arrColors[1])),
-              // //                 childWhenDragging: Subject(
-              // //                     subName: 'Java', colors: arrColors[1]),
-              // //                 child: Subject(
-              // //                     colors: arrColors[1], subName: 'Java'),
-              // //               ),
-              // //             ),
-              // //           ),
-              // //         ),
-              // //         SizedBox(
-              // //             child: Visibility(
-              // //           visible: _isPythonShow,
-              // //           child: Padding(
-              // //             padding: EdgeInsets.only(
-              // //                 top: height * 0.02, left: width * 0.07),
-              // //             child: Draggable(
-              // //               data: Subject(
-              // //                   colors: arrColors[4], subName: 'Python'),
-              // //               child: Subject(
-              // //                   colors: arrColors[4], subName: 'Python'),
-              // //               feedback: Material(
-              // //                   child: Subject(
-              // //                       subName: 'Python', colors: arrColors[4])),
-              // //               childWhenDragging: Subject(
-              // //                   subName: 'Python', colors: arrColors[4]),
-              // //             ),
-              // //           ),
-              // //         )),
-              // //         SizedBox(
-              // //             child: Visibility(
-              // //           visible: _isoopsShow1,
-              // //           child: Padding(
-              // //             padding: EdgeInsets.only(
-              // //                 top: height * 0.02, left: width * 0.07),
-              // //             child: Draggable(
-              // //               data: Container(
-              // //                 child: Subject(
-              // //                     colors: arrColors[0], subName: 'Oops'),
-              // //               ),
-              // //               child:
-              // //                   Subject(colors: arrColors[0], subName: 'Oops'),
-              // //               feedback: Material(
-              // //                   child: Subject(
-              // //                       subName: 'Oops', colors: arrColors[0])),
-              // //               childWhenDragging:
-              // //                   Subject(subName: 'Oops', colors: arrColors[0]),
-              // //             ),
-              // //           ),
-              // //         )),
-              // //         SizedBox(
-              // //             child: Visibility(
-              // //           visible: _isJavaShow1,
-              // //           child: Padding(
-              // //             padding: EdgeInsets.only(
-              // //                 top: height * 0.02, left: width * 0.07),
-              // //             child: Draggable(
-              // //               data: Container(
-              // //                 child: Subject(
-              // //                     colors: arrColors[1], subName: 'Java'),
-              // //               ),
-              // //               child:
-              // //                   Subject(colors: arrColors[1], subName: 'Java'),
-              // //               feedback: Material(
-              // //                   child: Subject(
-              // //                       subName: 'Java', colors: arrColors[1])),
-              // //               childWhenDragging:
-              // //                   Subject(subName: 'Java', colors: arrColors[1]),
-              // //             ),
-              // //           ),
-              // //         )),
-              // //       ],
-              // //     ),
-              // //   ],
-              // // )
             ],
           ),
         )),
