@@ -39,12 +39,15 @@ class _HeaderState extends State<Header> {
   }
 
   fetchDeptBatch(val) async {
+    // fetch();
     await context.read<TimetableAdminCubit>().fetchDeptBatchList(val);
     _Batch = context.read<TimetableAdminCubit>().deptBatchList;
     _Year = _Batch;
     _Class = _Batch;
     print("Hello $_Batch");
   }
+
+  var dept_ID = '';
 
   List _Department = [];
   String? _selectedVal;
@@ -233,8 +236,12 @@ class _HeaderState extends State<Header> {
                       onChanged: (val) {
                         setState(() {
                           _selectedVal = val as String;
+                          dept_ID = val;
 
-                          fetchDeptBatch(val);
+                          fetchDeptBatch(dept_ID);
+                          // initState();
+                          
+                          // fetch();
                         });
                       },
                     ),
@@ -443,6 +450,9 @@ class _HeaderState extends State<Header> {
                         setState(
                           () {
                             _isShow = !_isShow;
+                            context
+                                .read<TimetableAdminCubit>()
+                                .getDeptStaffList(dept_ID);
                           },
                         );
                       },
