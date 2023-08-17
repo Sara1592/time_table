@@ -463,12 +463,13 @@ class _HeaderState extends State<Header> {
                       height: height * 0.06,
                       child: ElevatedButton(
                         onPressed: () async {
-                          if (formKey.currentState!.validate()) {}
-                          setState(
-                            () {
-                              _isShow = !_isShow;
-                            },
-                          );
+                          if (formKey.currentState!.validate()) {
+                            setState(
+                              () {
+                                _isShow = !_isShow;
+                              },
+                            );
+                          }
                         },
                         style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
