@@ -208,9 +208,8 @@ class _HeaderState extends State<Header> {
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.00),
                       child: DropdownButtonFormField(
-                        validator: (value) => value == null
-                            ? 'Please choose/n you Department'
-                            : null,
+                        validator: (value) =>
+                            value == null ? 'Enter your Department' : null,
                         icon: const Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
                         // iconEnabledColor:
@@ -278,7 +277,7 @@ class _HeaderState extends State<Header> {
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: DropdownButtonFormField(
                         validator: (value) =>
-                            value == null ? 'Please choose/n you Batch' : null,
+                            value == null ? 'Enter your Batch' : null,
                         icon: const Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
                         // iconEnabledColor: Color.fromRGBO(223, 223, 223, 0.996),
@@ -343,7 +342,7 @@ class _HeaderState extends State<Header> {
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: DropdownButtonFormField(
                         validator: (value) =>
-                            value == null ? 'Fill the Section' : null,
+                            value == null ? 'Enter your Year' : null,
                         icon: const Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
                         // iconEnabledColor:
@@ -408,6 +407,8 @@ class _HeaderState extends State<Header> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 40.0),
                       child: DropdownButtonFormField(
+                        validator: (value) =>
+                            value == null ? 'Enter your Section' : null,
                         icon: const Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
                         // iconEnabledColor:
@@ -461,7 +462,8 @@ class _HeaderState extends State<Header> {
                       width: width * 0.13,
                       height: height * 0.06,
                       child: ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
+                          if (formKey.currentState!.validate()) {}
                           setState(
                             () {
                               _isShow = !_isShow;
