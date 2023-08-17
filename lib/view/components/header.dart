@@ -50,10 +50,21 @@ class _HeaderState extends State<Header> {
     print("Hello $_Batch");
   }
 
+  fetchDeptStaffList(val) async {
+    await context.read<TimetableAdminCubit>().getDeptStaffList(val);
+    var staffdata1 = context.read<TimetableAdminCubit>().deptStaffList;
+    staffdata = staffdata1[0]['users'];
+    staffSub = staffdata1[0]['subDetails'];
+
+
+    print(staffdata);
+    print("Le ${staffdata.length}");
+  }
+
   var dept_ID = '';
 
   List _Department = [];
-  String? _selectedVal= "";
+  String? _selectedVal = "";
 
   List _Batch = [];
   String? _selectedValBat = "";
@@ -73,33 +84,8 @@ class _HeaderState extends State<Header> {
   final formKey = GlobalKey<FormState>();
   String selectedVal = '';
 
-  static List<dynamic> staffdata = [
-    {
-      "staffname": "Mansoor",
-      "staffid": "Staff ID :001",
-      "staffsub": ["Java", "Oops"]
-    },
-    {
-      "staffname": "Ambrose",
-      "staffid": "Staff ID :002",
-      "staffsub": ["Java", "Python"]
-    },
-    {
-      "staffname": "Sanjai Balaji",
-      "staffid": "Staff ID :003",
-      "staffsub": ["Python"]
-    },
-    {
-      "staffname": "Vijay",
-      "staffid": "Staff ID :004",
-      "staffsub": ["Python", "Oops"]
-    },
-    {
-      "staffname": "Priya",
-      "staffid": "Staff ID :005",
-      "staffsub": ["Python", "Java"]
-    },
-  ];
+  static List staffdata = [];
+  List staffSub = [];
 
   final List<dynamic> staffsubdata =
       List.generate(staffdata.length, (index) => ('${staffdata.length}'));
@@ -251,7 +237,10 @@ class _HeaderState extends State<Header> {
                           setState(() {
                             _selectedVal = val as String;
 
+                            _isShow = false;
+
                             fetchDeptBatch(val);
+                            dept_ID = val;
                           });
                         },
                       ),
@@ -318,6 +307,7 @@ class _HeaderState extends State<Header> {
                         onChanged: (value) {
                           setState(() {
                             _selectedValBat = value as String;
+                            print("Dept_id $dept_ID");
                           });
                         },
                       ),
@@ -469,11 +459,15 @@ class _HeaderState extends State<Header> {
                       width: width * 0.13,
                       height: height * 0.06,
                       child: ElevatedButton(
-                        onPressed: () async {
+                        onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(
                               () {
+                                fetchDeptStaffList(dept_ID);
                                 _isShow = !_isShow;
+                                // context
+                                //     .read<TimetableAdminCubit>()
+                                //     .getDeptStaffList(dept_ID);
                               },
                             );
                           }
@@ -544,8 +538,8 @@ class _HeaderState extends State<Header> {
                               padding: EdgeInsets.only(right: width * 0.02),
                               child: GestureDetector(
                                 onTap: () {
-                                  filterFunc(
-                                      staffdata[index]['staffid'].toString());
+                                  // filterFunc(
+                                  //     staffdata[index]['staffid'].toString());
                                 },
                                 child: Container(
                                   height: height * 0.09,
@@ -568,7 +562,7 @@ class _HeaderState extends State<Header> {
                                             right: width * 0.05,
                                             top: height * 0.015),
                                         child: Text(
-                                            '${staffdata[index]['staffname'].toString()}',
+                                            '${staffdata[index]['register']['firstName'].toString()}',
                                             style: GoogleFonts.montserrat(
                                               textStyle: const TextStyle(
                                                   fontSize: 16,
@@ -584,7 +578,7 @@ class _HeaderState extends State<Header> {
                                         child: Row(
                                           children: [
                                             Text(
-                                                '${staffdata[index]['staffsub'][0].toString()}',
+                                                '${staffSub[index]['subject_detail']['sub_name'].toString()}',
                                                 style: GoogleFonts.montserrat(
                                                   fontSize: 10.0,
                                                   fontWeight: FontWeight.w500,
@@ -594,7 +588,7 @@ class _HeaderState extends State<Header> {
                                               padding: EdgeInsets.only(
                                                   left: width * 0.039),
                                               child: Text(
-                                                  '${staffdata[index]['staffid'].toString()}',
+                                                  '${staffdata[index]['register']['user_id'].toString()}',
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 10.0,
                                                     fontWeight: FontWeight.w500,

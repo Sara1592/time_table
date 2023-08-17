@@ -12,17 +12,14 @@ class API_Service {
   }
 
   Future deptBatchList(val) async {
-    final response =
-        await _helper.get("departmentbatchlist?dept_code=$val");
+    final response = await _helper.get("departmentbatchlist?dept_code=$val");
     // print("Code123 $detpCode");
     // print(response["data"]["batch_details"]);
     return response['data'][0]["batch_details"];
   }
-   Future deptStaffList(val) async {
-    final response =
-        await _helper.get("deptstafflist?dept_id=$val");
-    // print("Code123 $detpCode");
-    // print(response["data"]["batch_details"]);
-    return response['data'];
+
+  Future deptStaffList(val) async {
+    final response = await _helper.get("deptstafflist?dept_id=$val");
+    return response["data"];
   }
 }
