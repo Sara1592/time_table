@@ -32,6 +32,7 @@ class _HeaderState extends State<Header> {
   }
 
   fetch() async {
+    _selectedVal = null;
     await context.read<TimetableAdminCubit>().deptInitial();
     _Department = context.read<TimetableAdminCubit>().deptList;
 
@@ -39,7 +40,9 @@ class _HeaderState extends State<Header> {
   }
 
   fetchDeptBatch(val) async {
-    // fetch();
+    _selectedValBat = null;
+    _selectedValYear = null;
+    _selectedValClass = null;
     await context.read<TimetableAdminCubit>().fetchDeptBatchList(val);
     _Batch = context.read<TimetableAdminCubit>().deptBatchList;
     _Year = _Batch;
@@ -50,7 +53,7 @@ class _HeaderState extends State<Header> {
   var dept_ID = '';
 
   List _Department = [];
-  String? _selectedVal;
+  String? _selectedVal= "";
 
   List _Batch = [];
   String? _selectedValBat = "";
@@ -208,6 +211,7 @@ class _HeaderState extends State<Header> {
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.00),
                       child: DropdownButtonFormField(
+                        value: _selectedVal,
                         validator: (value) =>
                             value == null ? 'Enter your Department' : null,
                         icon: const Visibility(
@@ -276,6 +280,7 @@ class _HeaderState extends State<Header> {
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: DropdownButtonFormField(
+                        value: _selectedValBat,
                         validator: (value) =>
                             value == null ? 'Enter your Batch' : null,
                         icon: const Visibility(
@@ -376,6 +381,7 @@ class _HeaderState extends State<Header> {
                               value: e['year'],
                               child: Text(e['year']),
                             )).toList(),
+                        value: _selectedValYear,
                         onChanged: (val) {
                           setState(() {
                             _selectedValYear = val as String;
@@ -441,6 +447,7 @@ class _HeaderState extends State<Header> {
                               value: e['sessions'],
                               child: Text(e['sessions']),
                             )).toList(),
+                        value: _selectedValClass,
                         onChanged: (val) {
                           setState(() {
                             _selectedValClass = val as String;
