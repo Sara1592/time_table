@@ -22,4 +22,10 @@ class API_Service {
     final response = await _helper.get("deptstafflist?dept_id=$val");
     return response["data"];
   }
+
+  Future deptStaffSubjectList(val) async {
+    final response = await _helper.get("staffsubjectlist?user_id=$val");
+    // print(response);
+    return response["data"];
+  }
 }
