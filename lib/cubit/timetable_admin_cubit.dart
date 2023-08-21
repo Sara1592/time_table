@@ -15,6 +15,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   List deptBatchList = [];
   List deptStaffList = [];
   List deptStaffSubList = [];
+  List deptClassTimeTable = [];
 
   deptInitial() async {
     emit(state.copyWith(status: "loading"));
@@ -41,6 +42,19 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "loaded"));
     } catch (e) {
       print("FetchDeptBatchList $e");
+      emit(state.copyWith(status: "error"));
+    }
+  }
+
+  fetchDeptClassTimeTableList() async {
+    emit(state.copyWith(status: "loading"));
+    try {
+      var deptClassTimeTable = await _api_service.deptClassTimeTableList();
+      deptClassTimeTable = deptClassTimeTable;
+      print(deptClassTimeTable);
+      emit(state.copyWith(status: "loaded"));
+    } catch (e) {
+      print("FetchDeptClassTimeTableList $e");
       emit(state.copyWith(status: "error"));
     }
   }

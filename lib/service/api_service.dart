@@ -17,6 +17,10 @@ class API_Service {
     // print(response["data"]["batch_details"]);
     return response['data'][0]["batch_details"];
   }
+  Future deptClassTimeTableList() async {
+    final response = await _helper.get("timetablelist?dept_id=1&class_code=1&batch_id=1");
+    return response["data"];
+  }
 
   Future deptStaffList(val) async {
     final response = await _helper.get("deptstafflist?dept_id=$val");

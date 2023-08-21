@@ -93,276 +93,559 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             width: 20,
           ),
         ),
-        SizedBox(
-          width: width * 0.009,
+         SizedBox(
+          width: width * 0.02,
         ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.01,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DragTarget<Widget>(
-              // onAccept: (data) => setState(() => arrColor = data),
-              builder: (context, accepted, rejected) {
-                return Container(
-                  height: height * 0.13,
-                  width: width * 0.07,
-                  color: arrColors[5],
-                  child: Column(
-                    children:
-                        oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-                  ),
-                );
-              },
-              onWillAccept: (Widget? data) {
-                return true;
-              },
-              onAccept: (Widget data) {
-                setState(() {
-                  oopsdropitem.add(data);
-                });
-              },
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
+        
+        Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return Container(
+                            height: height * 0.13,
+                            width: width * 0.07,
+                            color: arrColors[5],
+                            child: Column(
+                              children: oopsdropitem.isEmpty
+                                  ? [const Text('')]
+                                  : oopsdropitem,
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            oopsdropitem.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
         ),
-        SizedBox(
-          width: width * 0.010,
+         SizedBox(
+          width: width * 0.008,
         ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.01,
-              width: width * 0.0,
-            ),
-            Subject(colors: arrColors[1], subName: 'Java'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DragTarget<Widget>(
-              // onAccept: (data) => setState(() => arrColor = data),
-              builder: (context, accepted, rejected) {
-                return Container(
-                  height: height * 0.13,
-                  width: width * 0.07,
-                  color: arrColors[5],
-                  child: Column(
-                    children:
-                        javadropitem.isEmpty ? [const Text('')] : javadropitem,
-                  ),
-                );
-              },
-              onWillAccept: (Widget? data) {
-                return true;
-              },
-              onAccept: (data) {
-                setState(() {
-                  javadropitem.add(data);
-                });
-              },
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[1], subName: 'Java'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[1], subName: 'Java'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[1], subName: 'Java'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.010,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.01,
-              width: width * 0.0,
-            ),
-            Subject(colors: arrColors[2], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[2], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[2], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[2], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[2], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.010,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.01,
-              width: width * 0.0,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DragTarget<Widget>(
-              // onAccept: (data) => setState(() => arrColor = data),
-              builder: (context, accepted, rejected) {
-                return Container(
-                  height: height * 0.13,
-                  width: width * 0.07,
-                  color: arrColors[5],
-                  child: Column(
-                    children: oopsdropitem1.isEmpty
-                        ? [const Text('')]
-                        : oopsdropitem1,
-                  ),
-                );
-              },
-              onWillAccept: (Widget? data) {
-                return true;
-              },
-              onAccept: (Widget data) {
-                setState(() {
-                  oopsdropitem1.add(data);
-                });
-              },
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[0], subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.010,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.01,
-              width: width * 0.0,
-            ),
-            DataScienceSubject(colors: arrColors[3], subName: 'Data Science'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DataScienceSubject(colors: arrColors[3], subName: 'Data Science'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DataScienceSubject(colors: arrColors[3], subName: 'Data Science'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DataScienceSubject(colors: arrColors[3], subName: 'Data Science'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DataScienceSubject(colors: arrColors[3], subName: 'Data Science'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
+       
+         Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return Container(
+                            height: height * 0.13,
+                            width: width * 0.07,
+                            color: arrColors[5],
+                            child: Column(
+                              children: oopsdropitem.isEmpty
+                                  ? [const Text('')]
+                                  : oopsdropitem,
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            oopsdropitem.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
         ),
         SizedBox(
-          width: width * 0.010,
+          width: width * 0.008,
         ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.01,
-              width: width * 0.0,
-            ),
-            Subject(colors: arrColors[4], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            DragTarget<Widget>(
-              // onAccept: (data) => setState(() => arrColor = data),
-              builder: (context, accepted, rejected) {
-                return Container(
-                  height: height * 0.13,
-                  width: width * 0.07,
-                  color: arrColors[5],
-                  child: Column(
-                    children: pythondropitem.isEmpty
-                        ? [const Text('')]
-                        : pythondropitem,
-                  ),
-                );
-              },
-              onWillAccept: (Widget? data) {
-                return true;
-              },
-              onAccept: (Widget data) {
-                setState(() {
-                  pythondropitem.add(data);
-                });
-              },
-            ),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[4], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[4], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            Subject(colors: arrColors[4], subName: 'Python'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
+         Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return Container(
+                            height: height * 0.13,
+                            width: width * 0.07,
+                            color: arrColors[5],
+                            child: Column(
+                              children: oopsdropitem.isEmpty
+                                  ? [const Text('')]
+                                  : oopsdropitem,
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            oopsdropitem.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: width * 0.008,
+        ),
+         Container(
+         width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return Container(
+                            height: height * 0.13,
+                            width: width * 0.07,
+                            color: arrColors[5],
+                            child: Column(
+                              children: oopsdropitem.isEmpty
+                                  ? [const Text('')]
+                                  : oopsdropitem,
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            oopsdropitem.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+       SizedBox(
+          width: width * 0.008,
+        ),
+        Container(
+         width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return Container(
+                            height: height * 0.13,
+                            width: width * 0.07,
+                            color: arrColors[5],
+                            child: Column(
+                              children: oopsdropitem.isEmpty
+                                  ? [const Text('')]
+                                  : oopsdropitem,
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            oopsdropitem.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: width * 0.008,
+        ),
+        Container(
+         width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return Container(
+                            height: height * 0.13,
+                            width: width * 0.07,
+                            color: arrColors[5],
+                            child: Column(
+                              children: oopsdropitem.isEmpty
+                                  ? [const Text('')]
+                                  : oopsdropitem,
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            oopsdropitem.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
         ),
       ],
     );
