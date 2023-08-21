@@ -531,12 +531,15 @@ class _HeaderState extends State<Header> {
                     )),
               ),
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.01,
-                        top: height * 0.01,
-                        right: width * 0.06),
+                      left: width * 0.09,
+                      top: height * 0.01,
+                      // right: width * 0.06
+                    ),
                     child: SizedBox(
                       height: height * 0.12,
                       child: ListView.builder(
@@ -590,7 +593,8 @@ class _HeaderState extends State<Header> {
                                             top: height * 0.01),
                                         child: Row(
                                           children: [
-                                            Text('${staffdata[index]['register']['sub_name'][0].toString()}',
+                                            Text(
+                                                '${staffdata[index]['register']['sub_name'][0].toString()}',
                                                 // overflow: TextOverflow.ellipsis,
                                                 style: GoogleFonts.montserrat(
                                                   fontSize: 10.0,
@@ -623,46 +627,71 @@ class _HeaderState extends State<Header> {
                     shrinkWrap: true,
                     itemCount: 1,
                     itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: height * 0.12,
-                        child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemCount: deptStaffSub.length,
-                            itemBuilder: (context, int subindex) {
-                              // cCode.add(deptStaffSub[subindex]['color_code']);
-                              // print(cCode.runtimeType);
-                              return InkWell(
-                                onTap: () {},
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                    top: height * 0.01,
-                                    left: width * 0.04,
-                                  ),
-                                  child: Draggable(
-                                    data: Container(
-                                      height: height * 0.13,
-                                      width: width * 0.07,
-                                      color: Color(int.parse(
-                                          deptStaffSub[subindex]
-                                              ['color_code'])),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: height * 0.05,
-                                            left: width * 0.01),
-                                        child: Text(
-                                          deptStaffSub[subindex]['sub_name']
-                                              .toString(),
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
+                      return Padding(
+                        padding: EdgeInsets.only(
+                            left: width * 0.06, top: height * 0.03),
+                        child: SizedBox(
+                          height: height * 0.12,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount: deptStaffSub.length,
+                              itemBuilder: (context, int subindex) {
+                                // cCode.add(deptStaffSub[subindex]['color_code']);
+                                // print(cCode.runtimeType);
+                                return InkWell(
+                                  onTap: () {},
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      top: height * 0.01,
+                                      left: width * 0.04,
+                                    ),
+                                    child: Draggable(
+                                      data: Container(
+                                        height: height * 0.13,
+                                        width: width * 0.07,
+                                        color: Color(int.parse(
+                                            deptStaffSub[subindex]
+                                                ['color_code'])),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: height * 0.05,
+                                              left: width * 0.01),
+                                          child: Text(
+                                            deptStaffSub[subindex]['sub_name']
+                                                .toString(),
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    feedback: Material(
-                                      child: Container(
+                                      feedback: Material(
+                                        child: Container(
+                                          height: height * 0.15,
+                                          width: width * 0.07,
+                                          color: Color(int.parse(
+                                              deptStaffSub[subindex]
+                                                  ['color_code'])),
+                                          child: Padding(
+                                            padding: EdgeInsets.only(
+                                                top: height * 0.05,
+                                                left: width * 0.01),
+                                            child: Text(
+                                              deptStaffSub[subindex]['sub_name']
+                                                  .toString(),
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      childWhenDragging: Container(
                                         height: height * 0.15,
                                         width: width * 0.07,
                                         color: Color(int.parse(
@@ -683,53 +712,32 @@ class _HeaderState extends State<Header> {
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    childWhenDragging: Container(
-                                      height: height * 0.15,
-                                      width: width * 0.07,
-                                      color: Color(int.parse(
-                                          deptStaffSub[subindex]
-                                              ['color_code'])),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: height * 0.05,
-                                            left: width * 0.01),
-                                        child: Text(
-                                          deptStaffSub[subindex]['sub_name']
-                                              .toString(),
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    child: Container(
-                                      height: height * 0.15,
-                                      width: width * 0.07,
-                                      color: Color(int.parse(
-                                          deptStaffSub[subindex]
-                                              ['color_code'])),
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                            top: height * 0.05,
-                                            left: width * 0.01),
-                                        child: Text(
-                                          deptStaffSub[subindex]['sub_name']
-                                              .toString(),
-                                          style: GoogleFonts.montserrat(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
+                                      child: Container(
+                                        height: height * 0.15,
+                                        width: width * 0.07,
+                                        color: Color(int.parse(
+                                            deptStaffSub[subindex]
+                                                ['color_code'])),
+                                        child: Padding(
+                                          padding: EdgeInsets.only(
+                                              top: height * 0.04,
+                                              left: width * 0.013),
+                                          child: Text(
+                                            deptStaffSub[subindex]['sub_name']
+                                                .toString(),
+                                            style: GoogleFonts.montserrat(
+                                              fontSize: 18.0,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              );
-                            }),
+                                );
+                              }),
+                        ),
                       );
                     },
                   )
