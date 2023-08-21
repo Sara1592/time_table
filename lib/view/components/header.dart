@@ -720,15 +720,18 @@ class _HeaderState extends State<Header> {
                                                 ['color_code'])),
                                         child: Padding(
                                           padding: EdgeInsets.only(
-                                              top: height * 0.04,
-                                              left: width * 0.013),
-                                          child: Text(
-                                            deptStaffSub[subindex]['sub_name']
-                                                .toString(),
-                                            style: GoogleFonts.montserrat(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white,
+                                              // top: height * 0.010,
+                                              // left: width * 0.013
+                                              ),
+                                          child: Center(
+                                            child: Text(
+                                              deptStaffSub[subindex]['sub_name']
+                                                  .toString(),
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
                                         ),

@@ -15,11 +15,12 @@ class PeriodAllocation extends StatefulWidget {
 
 class _PeriodAllocationState extends State<PeriodAllocation> {
   // Color arrColor = const Color.fromARGB(255, 9, 26, 47);
-  List<Widget> oopsdropitem1 = [];
-  List<Widget> oopsdropitem = [];
-  List<Widget> javadropitem = [];
-  List<Widget> pythondropitem = [];
-  List<Widget> datasciencedropitem = [];
+  List<Widget> dayoderone = [];
+  List<Widget> dayodertwo = [];
+  List<Widget> dayoderthree = [];
+  List<Widget> dayoderfour = [];
+  List<Widget> dayoderfive = [];
+  List<Widget> dayodersix = [];
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +94,9 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             width: 20,
           ),
         ),
-         SizedBox(
+        SizedBox(
           width: width * 0.02,
         ),
-        
         Container(
           width: width * .07,
           height: height * .8,
@@ -112,392 +112,28 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                       DragTarget<Widget>(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
-                          return Container(
-                            height: height * 0.13,
-                            width: width * 0.07,
-                            color: arrColors[5],
-                            child: Column(
-                              children: oopsdropitem.isEmpty
-                                  ? [const Text('')]
-                                  : oopsdropitem,
+                          return InkWell(
+                            onTap: () {
+                              print(index);
+                            },
+                            child: Container(
+                              height: height * 0.13,
+                              width: width * 0.07,
+                              color: arrColors[5],
+                              child: Column(
+                                children: dayoderone.isEmpty
+                                    ? [const Text('')]
+                                    : dayoderone,
+                              ),
                             ),
                           );
                         },
-                        onWillAccept: (Widget? data) {
+                        onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: (Widget data) {
+                        onAccept: (data) {
                           setState(() {
-                            oopsdropitem.add(data);
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                    ],
-                  );
-                },
-              ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-            ],
-          ),
-        ),
-         SizedBox(
-          width: width * 0.008,
-        ),
-       
-         Container(
-          width: width * .07,
-          height: height * .8,
-          // color: Colors.amber,
-          child: Column(
-            children: [
-              Expanded(
-                  child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      DragTarget<Widget>(
-                        // onAccept: (data) => setState(() => arrColor = data),
-                        builder: (context, accepted, rejected) {
-                          return Container(
-                            height: height * 0.13,
-                            width: width * 0.07,
-                            color: arrColors[5],
-                            child: Column(
-                              children: oopsdropitem.isEmpty
-                                  ? [const Text('')]
-                                  : oopsdropitem,
-                            ),
-                          );
-                        },
-                        onWillAccept: (Widget? data) {
-                          return true;
-                        },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            oopsdropitem.add(data);
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                    ],
-                  );
-                },
-              ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-            ],
-          ),
-        ),
-        SizedBox(
-          width: width * 0.008,
-        ),
-         Container(
-          width: width * .07,
-          height: height * .8,
-          // color: Colors.amber,
-          child: Column(
-            children: [
-              Expanded(
-                  child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      DragTarget<Widget>(
-                        // onAccept: (data) => setState(() => arrColor = data),
-                        builder: (context, accepted, rejected) {
-                          return Container(
-                            height: height * 0.13,
-                            width: width * 0.07,
-                            color: arrColors[5],
-                            child: Column(
-                              children: oopsdropitem.isEmpty
-                                  ? [const Text('')]
-                                  : oopsdropitem,
-                            ),
-                          );
-                        },
-                        onWillAccept: (Widget? data) {
-                          return true;
-                        },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            oopsdropitem.add(data);
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                    ],
-                  );
-                },
-              ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-            ],
-          ),
-        ),
-        SizedBox(
-          width: width * 0.008,
-        ),
-         Container(
-         width: width * .07,
-          height: height * .8,
-          // color: Colors.amber,
-          child: Column(
-            children: [
-              Expanded(
-                  child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      DragTarget<Widget>(
-                        // onAccept: (data) => setState(() => arrColor = data),
-                        builder: (context, accepted, rejected) {
-                          return Container(
-                            height: height * 0.13,
-                            width: width * 0.07,
-                            color: arrColors[5],
-                            child: Column(
-                              children: oopsdropitem.isEmpty
-                                  ? [const Text('')]
-                                  : oopsdropitem,
-                            ),
-                          );
-                        },
-                        onWillAccept: (Widget? data) {
-                          return true;
-                        },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            oopsdropitem.add(data);
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        height: height * 0.03,
-                      ),
-                    ],
-                  );
-                },
-              ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-            ],
-          ),
-        ),
-       SizedBox(
-          width: width * 0.008,
-        ),
-        Container(
-         width: width * .07,
-          height: height * .8,
-          // color: Colors.amber,
-          child: Column(
-            children: [
-              Expanded(
-                  child: ListView.builder(
-                itemCount: 5,
-                itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      DragTarget<Widget>(
-                        // onAccept: (data) => setState(() => arrColor = data),
-                        builder: (context, accepted, rejected) {
-                          return Container(
-                            height: height * 0.13,
-                            width: width * 0.07,
-                            color: arrColors[5],
-                            child: Column(
-                              children: oopsdropitem.isEmpty
-                                  ? [const Text('')]
-                                  : oopsdropitem,
-                            ),
-                          );
-                        },
-                        onWillAccept: (Widget? data) {
-                          return true;
-                        },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            oopsdropitem.add(data);
+                            dayoderone.add(data);
                           });
                         },
                       ),
@@ -559,7 +195,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
           width: width * 0.008,
         ),
         Container(
-         width: width * .07,
+          width: width * .07,
           height: height * .8,
           // color: Colors.amber,
           child: Column(
@@ -573,14 +209,19 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                       DragTarget<Widget>(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
-                          return Container(
-                            height: height * 0.13,
-                            width: width * 0.07,
-                            color: arrColors[5],
-                            child: Column(
-                              children: oopsdropitem.isEmpty
-                                  ? [const Text('')]
-                                  : oopsdropitem,
+                          return InkWell(
+                            onTap: () {
+                              print(index);
+                            },
+                            child: Container(
+                              height: height * 0.13,
+                              width: width * 0.07,
+                              color: arrColors[5],
+                              child: Column(
+                                children: dayodertwo.isEmpty
+                                    ? [const Text('')]
+                                    : dayodertwo,
+                              ),
                             ),
                           );
                         },
@@ -589,7 +230,398 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                         },
                         onAccept: (Widget data) {
                           setState(() {
-                            oopsdropitem.add(data);
+                            dayodertwo.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: width * 0.008,
+        ),
+        Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return InkWell(
+                            onTap: () {
+                              print(index);
+                            },
+                            child: Container(
+                              height: height * 0.13,
+                              width: width * 0.07,
+                              color: arrColors[5],
+                              child: Column(
+                                children: dayoderthree.isEmpty
+                                    ? [const Text('')]
+                                    : dayoderthree,
+                              ),
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            dayoderthree.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: width * 0.008,
+        ),
+        Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return InkWell(
+                            onTap: () {
+                              print(index);
+                            },
+                            child: Container(
+                              height: height * 0.13,
+                              width: width * 0.07,
+                              color: arrColors[5],
+                              child: Column(
+                                children: dayoderfour.isEmpty
+                                    ? [const Text('')]
+                                    : dayoderfour,
+                              ),
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            dayoderfour.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: width * 0.008,
+        ),
+        Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return InkWell(
+                            onTap: () {
+                              print(index);
+                            },
+                            child: Container(
+                              height: height * 0.13,
+                              width: width * 0.07,
+                              color: arrColors[5],
+                              child: Column(
+                                children: dayoderfive.isEmpty
+                                    ? [const Text('')]
+                                    : dayoderfive,
+                              ),
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            dayoderfive.add(data);
+                          });
+                        },
+                      ),
+                      SizedBox(
+                        height: height * 0.03,
+                      ),
+                    ],
+                  );
+                },
+              ))
+              // SizedBox(
+              //   height: height * 0.01,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // DragTarget<Widget>(
+              //   // onAccept: (data) => setState(() => arrColor = data),
+              //   builder: (context, accepted, rejected) {
+              //     return Container(
+              //       height: height * 0.13,
+              //       width: width * 0.07,
+              //       color: arrColors[5],
+              //       child: Column(
+              //         children:
+              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
+              //       ),
+              //     );
+              //   },
+              //   onWillAccept: (Widget? data) {
+              //     return true;
+              //   },
+              //   onAccept: (Widget data) {
+              //     setState(() {
+              //       oopsdropitem.add(data);
+              //     });
+              //   },
+              // ),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+              // Subject(colors: arrColors[0], subName: 'Oops'),
+              // SizedBox(
+              //   height: height * 0.02,
+              // ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: width * 0.008,
+        ),
+        Container(
+          width: width * .07,
+          height: height * .8,
+          // color: Colors.amber,
+          child: Column(
+            children: [
+              Expanded(
+                  child: ListView.builder(
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return Column(
+                    children: [
+                      DragTarget<Widget>(
+                        // onAccept: (data) => setState(() => arrColor = data),
+                        builder: (context, accepted, rejected) {
+                          return InkWell(
+                            onTap: () {
+                              dayodersix.isEmpty
+                                  ? [const Text('')]
+                                  : dayodersix;
+                              print(index);
+                            },
+                            child: Container(
+                              height: height * 0.13,
+                              width: width * 0.07,
+                              color: arrColors[5],
+                              child: Column(
+                                children: dayodersix.isEmpty
+                                    ? [const Text('')]
+                                    : dayodersix,
+                              ),
+                            ),
+                          );
+                        },
+                        onWillAccept: (Widget? data) {
+                          return true;
+                        },
+                        onAccept: (Widget data) {
+                          setState(() {
+                            dayodersix.add(data);
                           });
                         },
                       ),
