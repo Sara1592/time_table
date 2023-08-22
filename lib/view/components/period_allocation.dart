@@ -1,3 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,7 +11,11 @@ import '../../widgets/period_no.dart';
 import '../../widgets/subject.dart';
 
 class PeriodAllocation extends StatefulWidget {
-  const PeriodAllocation({super.key});
+  List? timeTable;
+  PeriodAllocation({
+    Key? key,
+    required this.timeTable,
+  }) : super(key: key);
 
   @override
   State<PeriodAllocation> createState() => _PeriodAllocationState();
@@ -21,10 +29,36 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
   List<Widget> dayoderfour = [];
   List<Widget> dayoderfive = [];
   List<Widget> dayodersix = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("Hello ${widget.timeTable}");
+  }
+
+  final defaultItem = {
+    "sub_name": "",
+    "color_code": "0xFF000000",
+    "color_name": "Black",
+  };
 
   @override
   Widget build(BuildContext context) {
-    // final showDraggable = arrColor == const Color.fromARGB(255, 9, 26, 47);
+    // print("TimeTble123 ${widget.timeTable}");
+    var dayOrder_1 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]['dayorder_1']
+            .map((e) => e["subject_detail"])
+            .toList();
+    ;
+    print("TimeTble123 ${dayOrder_1}");
+
+    for (int i = 0; i < dayOrder_1.length; i++) {
+      if (dayOrder_1[i] == null) {
+        dayOrder_1[i] = defaultItem;
+      }
+    }
+    print("TimeTble123 ${dayOrder_1}");
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -107,6 +141,14 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (context, index) {
+                  // List kList = ["Tamil", "English", "Maths", null, 'Social'];
+                  // final item = dayOrder_1[index];
+                  // final mockData = {
+                  //   "sub_name": "",
+                  //   "color_code": "0x000000",
+                  //   "color_name": "Black"
+                  // };
+                  // final lList = item ?? mockData;
                   return Column(
                     children: [
                       DragTarget<Widget>(
@@ -117,15 +159,20 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                               print(index);
                             },
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayoderone.isEmpty
-                                    ? [const Text('')]
-                                    : dayoderone,
-                              ),
-                            ),
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color:(widget.timeTable.isUndefinedOrNull) ? Color(0xFF000000) :Color(int.parse(dayOrder_1[index]['color_code'])),
+                                child: (widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_1[index]['sub_name']
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )),
                           );
                         },
                         onWillAccept: (data) {

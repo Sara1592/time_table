@@ -475,9 +475,9 @@ class _HeaderState extends State<Header> {
                               () {
                                 fetchDeptStaffList(dept_ID);
                                 _isShow = !_isShow;
-                                // context
-                                //     .read<TimetableAdminCubit>()
-                                //     .getDeptStaffList(dept_ID);
+                                context
+                                    .read<TimetableAdminCubit>()
+                                    .fetchDeptClassTimeTableList();
                               },
                             );
                           }
