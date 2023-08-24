@@ -68,13 +68,13 @@ class _HeaderState extends State<Header> {
         .getDeptStaffSubList(staffdata[val]['user_id']);
     var list = context.read<TimetableAdminCubit>().deptStaffSubList;
     deptStaffSub = list.map((e) => e['subject_detail']).toList();
-    print(deptStaffSub);
+    // print(deptStaffSub);
   }
 
-  var dept_ID = '';
+  var dept_ID;
 
   List _Department = [];
-  String? _selectedVal = "";
+  int? _selectedVal;
 
   List _Batch = [];
   String? _selectedValBat = "";
@@ -245,7 +245,7 @@ class _HeaderState extends State<Header> {
                             )).toList(),
                         onChanged: (val) {
                           setState(() {
-                            _selectedVal = val as String;
+                            _selectedVal = val as int;
 
                             _isShow = false;
 
@@ -553,7 +553,7 @@ class _HeaderState extends State<Header> {
                                 onTap: () {
                                   fetchDeptStaffSubList(index);
                                   isTrue = !isTrue;
-                                  print(staffdata[index]['user_id'].toString());
+                                  // print(staffdata[index]['user_id'].toString());
                                   // filterFunc(
                                   //     staffdata[index]['staffid'].toString());
                                 },
@@ -640,34 +640,16 @@ class _HeaderState extends State<Header> {
                                 // cCode.add(deptStaffSub[subindex]['color_code']);
                                 // print(cCode.runtimeType);
                                 return InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    print("Tile ${deptStaffSub[subindex]}");
+                                  },
                                   child: Padding(
                                     padding: EdgeInsets.only(
                                       top: height * 0.01,
                                       left: width * 0.04,
                                     ),
                                     child: Draggable(
-                                      data: Container(
-                                        height: height * 0.13,
-                                        width: width * 0.07,
-                                        color: Color(int.parse(
-                                            deptStaffSub[subindex]
-                                                ['color_code'])),
-                                        child: Padding(
-                                          padding: EdgeInsets.only(
-                                              top: height * 0.05,
-                                              left: width * 0.01),
-                                          child: Text(
-                                            deptStaffSub[subindex]['sub_name']
-                                                .toString(),
-                                            style: GoogleFonts.montserrat(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                      data: deptStaffSub[subindex],
                                       feedback: Material(
                                         child: Container(
                                           height: height * 0.15,

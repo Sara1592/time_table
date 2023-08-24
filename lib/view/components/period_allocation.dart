@@ -33,32 +33,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print("Hello ${widget.timeTable}");
   }
-
-  final defaultItem = {
-    "sub_name": "",
-    "color_code": "0xFF000000",
-    "color_name": "Black",
-  };
 
   @override
   Widget build(BuildContext context) {
-    // print("TimeTble123 ${widget.timeTable}");
-    var dayOrder_1 = widget.timeTable.isNull
-        ? []
-        : widget.timeTable![0]['dayorder_1']
-            .map((e) => e["subject_detail"])
-            .toList();
-    ;
-    print("TimeTble123 ${dayOrder_1}");
-
-    for (int i = 0; i < dayOrder_1.length; i++) {
-      if (dayOrder_1[i] == null) {
-        dayOrder_1[i] = defaultItem;
-      }
-    }
-    print("TimeTble123 ${dayOrder_1}");
+    var dayOrder_1 = widget.timeTable.isNull ? [] : widget.timeTable!;
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -141,27 +120,23 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   child: ListView.builder(
                 itemCount: 5,
                 itemBuilder: (context, index) {
-                  // List kList = ["Tamil", "English", "Maths", null, 'Social'];
-                  // final item = dayOrder_1[index];
-                  // final mockData = {
-                  //   "sub_name": "",
-                  //   "color_code": "0x000000",
-                  //   "color_name": "Black"
-                  // };
-                  // final lList = item ?? mockData;
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              print(index);
+                              print(
+                                  "Drop ${widget.timeTable.isUndefinedOrNull ? "Data" : dayOrder_1[index]}");
                             },
                             child: Container(
                                 height: height * 0.13,
                                 width: width * 0.07,
-                                color:(widget.timeTable.isUndefinedOrNull) ? Color(0xFF000000) :Color(int.parse(dayOrder_1[index]['color_code'])),
+                                color: (widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_1[index]['color_code'])),
                                 child: (widget.timeTable.isUndefinedOrNull)
                                     ? Text('')
                                     : Center(
@@ -176,12 +151,21 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                           );
                         },
                         onWillAccept: (data) {
+                          // print("On will ${data}");
                           return true;
                         },
                         onAccept: (data) {
-                          setState(() {
-                            dayoderone.add(data);
-                          });
+                          print("Before ${dayOrder_1}");
+                          int indexToReplace = index;
+                          var dat = data;
+                          // setState(() {
+                          //   dayOrder_1[index] == data;
+
+                          //   dayOrder_1[indexToReplace] = dat;
+                          //   print("After1 ${dayOrder_1[2]}");
+                          // });
+                          dayOrder_1[indexToReplace] = dat;
+                          print("After ${dayOrder_1}");
                         },
                       ),
                       SizedBox(

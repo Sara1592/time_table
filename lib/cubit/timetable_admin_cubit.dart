@@ -50,9 +50,23 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     emit(state.copyWith(status: "loading"));
     try {
       var deptClassTimetable = await _api_service.deptClassTimeTableList();
-      deptClassTimeTableList.add(deptClassTimetable);
+      List list_1 = await deptClassTimetable['dayorder_1'];
+      list_1.sort((a, b) => a['period_no'].compareTo(b['period_no']));
+      var list_2 = await list_1.map((e) => e["subject_detail"]).toList();
+      for (int i = 0; i < list_2.length; i++) {
+        if (list_2[i] == null) {
+          list_2[i] = {
+            "sub_code": 0,
+            "sub_name": "",
+            "color_code": "0xFF000000",
+            "color_name": "Black",
+          };
+        }
+      }
+      // print(list_2);
+      // deptClassTimeTableList.add(deptClassTimetable);
       // print(deptClassTimeTable);
-      emit(state.copyWith(status: "loaded1", list: deptClassTimeTableList));
+      emit(state.copyWith(status: "loaded1", list: list_2));
     } catch (e) {
       print("FetchDeptClassTimeTableList $e");
       emit(state.copyWith(status: "error"));
