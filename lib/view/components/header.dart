@@ -50,13 +50,18 @@ class _HeaderState extends State<Header> {
     // print("Hello $_Batch");
   }
 
+// List list123 = [];
+  static List staffdata = [];
+  List staffSub = [];
   fetchDeptStaffList(val) async {
     await context.read<TimetableAdminCubit>().getDeptStaffList(val);
     var staffdata1 = context.read<TimetableAdminCubit>().deptStaffList;
-    staffdata = staffdata1[0]['users'];
-    staffSub = staffdata1[0]['users'];
+    staffdata = staffdata1;
+    print(staffdata);
+    // staffdata = staffdata1[0];
+    // staffSub = staffdata1[0];
 
-    // print(staffdata);
+    print(staffdata1);
     // print("Le ${staffdata.length}");
   }
 
@@ -93,9 +98,6 @@ class _HeaderState extends State<Header> {
 
   final formKey = GlobalKey<FormState>();
   String selectedVal = '';
-
-  static List staffdata = [];
-  List staffSub = [];
 
   final List<dynamic> staffsubdata =
       List.generate(staffdata.length, (index) => ('${staffdata.length}'));
@@ -317,6 +319,10 @@ class _HeaderState extends State<Header> {
                         onChanged: (value) {
                           setState(() {
                             _selectedValBat = value as String;
+                            context
+                                .read<TimetableAdminCubit>()
+                                .deptStaffList
+                                .clear();
                             print("Dept_id $dept_ID");
                           });
                         },
@@ -472,10 +478,11 @@ class _HeaderState extends State<Header> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(
-                              () {
-                                fetchDeptStaffList(dept_ID);
+                              () async {
+                                await fetchDeptStaffList(dept_ID);
                                 _isShow = !_isShow;
-                                context
+
+                                await context
                                     .read<TimetableAdminCubit>()
                                     .fetchDeptClassTimeTableList();
                               },

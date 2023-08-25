@@ -77,7 +77,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     emit(state.copyWith(status: "loading"));
     try {
       var deptStaff = await _api_service.deptStaffList(val);
-      deptStaffList.add(deptStaff);
+      deptStaffList = deptStaff;
       // print("Satff List ${deptStaffList}");
       emit(state.copyWith(status: "loaded"));
     } catch (e) {
