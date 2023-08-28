@@ -15,7 +15,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   List deptBatchList = [];
   List deptStaffList = [];
   List deptStaffSubList = [];
-  List deptClassTimeTable = [];
+  List deptClassTimeTableList = [];
 
   deptInitial() async {
     emit(state.copyWith(status: "loading"));
@@ -49,10 +49,24 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   fetchDeptClassTimeTableList() async {
     emit(state.copyWith(status: "loading"));
     try {
-      var deptClassTimeTable = await _api_service.deptClassTimeTableList();
-      deptClassTimeTable = deptClassTimeTable;
-      print(deptClassTimeTable);
-      emit(state.copyWith(status: "loaded"));
+      var deptClassTimetable = await _api_service.deptClassTimeTableList();
+      List list_1 = await deptClassTimetable['dayorder_1'];
+      list_1.sort((a, b) => a['period_no'].compareTo(b['period_no']));
+      var list_2 = await list_1.map((e) => e["subject_detail"]).toList();
+      for (int i = 0; i < list_2.length; i++) {
+        if (list_2[i] == null) {
+          list_2[i] = {
+            "sub_code": 0,
+            "sub_name": "",
+            "color_code": "0xFF000000",
+            "color_name": "Black",
+          };
+        }
+      }
+      // print(list_2);
+      // deptClassTimeTableList.add(deptClassTimetable);
+      // print(deptClassTimeTable);
+      emit(state.copyWith(status: "loaded1", list: list_2));
     } catch (e) {
       print("FetchDeptClassTimeTableList $e");
       emit(state.copyWith(status: "error"));
@@ -63,7 +77,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     emit(state.copyWith(status: "loading"));
     try {
       var deptStaff = await _api_service.deptStaffList(val);
-      deptStaffList.add(deptStaff);
+      deptStaffList = deptStaff;
       // print("Satff List ${deptStaffList}");
       emit(state.copyWith(status: "loaded"));
     } catch (e) {

@@ -1,3 +1,7 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+import 'dart:js_interop';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,7 +11,11 @@ import '../../widgets/period_no.dart';
 import '../../widgets/subject.dart';
 
 class PeriodAllocation extends StatefulWidget {
-  const PeriodAllocation({super.key});
+  List? timeTable;
+  PeriodAllocation({
+    Key? key,
+    required this.timeTable,
+  }) : super(key: key);
 
   @override
   State<PeriodAllocation> createState() => _PeriodAllocationState();
@@ -21,10 +29,15 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
   List<Widget> dayoderfour = [];
   List<Widget> dayoderfive = [];
   List<Widget> dayodersix = [];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // final showDraggable = arrColor == const Color.fromARGB(255, 9, 26, 47);
+    var dayOrder_1 = widget.timeTable.isNull ? [] : widget.timeTable!;
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -109,32 +122,50 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              print(index);
+                              print(
+                                  "Drop ${widget.timeTable.isUndefinedOrNull ? "Data" : dayOrder_1[index]}");
                             },
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayoderone.isEmpty
-                                    ? [const Text('')]
-                                    : dayoderone,
-                              ),
-                            ),
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color: (widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_1[index]['color_code'])),
+                                child: (widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_1[index]['sub_name']
+                                              .toString(),
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      )),
                           );
                         },
                         onWillAccept: (data) {
+                          // print("On will ${data}");
                           return true;
                         },
                         onAccept: (data) {
-                          setState(() {
-                            dayoderone.add(data);
-                          });
+                          print("Before ${dayOrder_1}");
+                          int indexToReplace = index;
+                          var dat = data;
+                          // setState(() {
+                          //   dayOrder_1[index] == data;
+
+                          //   dayOrder_1[indexToReplace] = dat;
+                          //   print("After1 ${dayOrder_1[2]}");
+                          // });
+                          dayOrder_1[indexToReplace] = dat;
+                          print("After ${dayOrder_1}");
                         },
                       ),
                       SizedBox(

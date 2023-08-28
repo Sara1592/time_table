@@ -24,7 +24,7 @@ class API_Service {
 
   Future deptStaffList(val) async {
     final response = await _helper.get("deptstafflist?dept_id=$val");
-    return response["data"];
+    return response["data"]["users"];
   }
 
   Future deptStaffSubjectList(val) async {

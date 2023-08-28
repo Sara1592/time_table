@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
 import 'package:student_management_web/view/components/period_allocation.dart';
 import 'package:student_management_web/view/components/staff_day_allocation.dart';
 import 'package:student_management_web/view/components/staff_period_allocation.dart';
@@ -12,7 +14,11 @@ import 'day_orderallocation.dart';
 import 'header.dart';
 
 class TimeTableDashboard extends StatefulWidget {
-  const TimeTableDashboard({super.key});
+  List? timeTable;
+   TimeTableDashboard({
+    Key? key,
+    required this.timeTable,
+  }) : super(key: key);
 
   @override
   State<TimeTableDashboard> createState() => _TimeTableDashboardState();
@@ -23,21 +29,13 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // context.read<TimetableAdminCubit>().deptInitial();
   }
 
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    var arrColors = [
-      Color.fromARGB(255, 0, 108, 158),
-      Color.fromARGB(255, 255, 92, 92),
-      Color.fromARGB(255, 79, 140, 0),
-      Color.fromARGB(255, 28, 152, 138),
-      Color.fromARGB(255, 186, 117, 220),
-      Color.fromARGB(255, 9, 26, 47),
-    ];
+
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(
@@ -66,14 +64,14 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                     color: Color.fromARGB(255, 240, 240, 240),
                     height: height * 1.1,
                     width: width * 0.6,
-                    child: const Column(
+                    child:  Column(
                       children: [
                         DayOrderAllocation(),
                         Column(
                           children: [
                             Row(
                               children: [
-                                PeriodAllocation(),
+                                PeriodAllocation(timeTable: widget.timeTable),
                               ],
                             ),
                           ],
