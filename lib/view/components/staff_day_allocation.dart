@@ -22,7 +22,7 @@ class _StaffDayOrderState extends State<StaffDayOrder> {
             Padding(
               padding: EdgeInsets.only(
                 left: width * 0.02,
-                top: height * 0.03,
+                top: height * 0.10,
               ),
               child: Text("Day Order",
                   style: GoogleFonts.montserrat(

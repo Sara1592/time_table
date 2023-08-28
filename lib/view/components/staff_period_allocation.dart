@@ -22,12 +22,13 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
     return Row(
       children: [
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.only(
-                  left: width * 0.01,
-                  top: height * 0.03,
-                  bottom: height * 0.03),
+                left: width * 0.02,
+              ),
               child: Text("Period No",
                   style: GoogleFonts.montserrat(
                     fontSize: 10.0,
@@ -35,25 +36,28 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                     color: Color.fromARGB(255, 255, 255, 255),
                   )),
             ),
+            Column(
+              children: [
+                StaffPeriod(
+                  staffPer: '01',
+                ),
+                StaffPeriod(
+                  staffPer: '02',
+                ),
+                StaffPeriod(
+                  staffPer: '03',
+                ),
+                StaffPeriod(
+                  staffPer: '04',
+                ),
+                StaffPeriod(
+                  staffPer: '05',
+                ),
+              ],
+            )
             // DayNum(
             //   dayNum: 'Period No',
             // ),
-            StaffPeriod(
-              staffPer: '01',
-            ),
-            StaffPeriod(
-              staffPer: '02',
-            ),
-
-            StaffPeriod(
-              staffPer: '03',
-            ),
-            StaffPeriod(
-              staffPer: '04',
-            ),
-            StaffPeriod(
-              staffPer: '05',
-            ),
           ],
         ),
         SizedBox(width: width * 0.004),
@@ -62,113 +66,98 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            StaffSubjectFree(subName: 'FREE'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\n Department   : Computer Science \n\n Year                : 1st year ',
+              height: height * 0.17,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 8,
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
             ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.012,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.012,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-          ],
-        ),
-        SizedBox(
-          width: width * 0.012,
-        ),
-        Column(
-          children: [
-            SizedBox(
-              height: height * 0.05,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
-            SizedBox(
-              height: height * 0.02,
-            ),
-            StaffSubject(subName: 'Oops'),
             SizedBox(
               height: height * 0.02,
             ),
@@ -182,23 +171,99 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            StaffSubjectFree(subName: 'FREE'),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
@@ -212,23 +277,436 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
             SizedBox(
               height: height * 0.05,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
             SizedBox(
               height: height * 0.02,
             ),
-            StaffSubject(subName: 'Oops'),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+          ],
+        ),
+        SizedBox(
+          width: width * 0.012,
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: height * 0.05,
+            ),
+            StaffSubjectFree(subName: 'FREE'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+          ],
+        ),
+        SizedBox(
+          width: width * 0.012,
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: height * 0.05,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+          ],
+        ),
+        SizedBox(
+          width: width * 0.012,
+        ),
+        Column(
+          children: [
+            SizedBox(
+              height: height * 0.05,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubjectFree(subName: 'FREE'),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            Tooltip(
+              message:
+                  'Subject            : Oops \n\nDepartment   : Computer Science \n\nYear                  : 1st year ',
+              height: height * 0.14,
+              preferBelow: false,
+              verticalOffset: 55,
+              decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(9.0)),
+              textStyle: GoogleFonts.montserrat(
+                fontSize: 10.0,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF262626),
+              ),
+              child: StaffSubject(
+                subName: 'Oops',
+                subName1: 'CS',
+                year: '2023',
+              ),
+            ),
+            SizedBox(
+              height: height * 0.02,
+            ),
+            StaffSubjectFree(subName: 'FREE'),
             SizedBox(
               height: height * 0.02,
             ),

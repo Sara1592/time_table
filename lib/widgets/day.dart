@@ -12,7 +12,7 @@ class Day extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.only(
-          top: height * 0.03, right: width * 0.021, left: width * 0.022),
+          top: height * 0.09, right: width * 0.021, left: width * 0.022),
       child: Column(
         children: [
           Text(

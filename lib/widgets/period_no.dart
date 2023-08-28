@@ -28,6 +28,5 @@ class PeriodNo extends StatelessWidget {
         ],
       ),
     );
-  
   }
 }

@@ -25,6 +25,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
     super.initState();
     // context.read<TimetableAdminCubit>().deptInitial();
   }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -63,7 +64,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                 children: [
                   Container(
                     color: Color.fromARGB(255, 240, 240, 240),
-                    height: height,
+                    height: height * 1.1,
                     width: width * 0.6,
                     child: const Column(
                       children: [
@@ -84,7 +85,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                     children: [
                       Container(
                         color: Color.fromARGB(255, 255, 187, 0),
-                        height: height,
+                        height: height * 1.1,
                         width: width * 0.4,
                         child: const Column(
                           children: [
