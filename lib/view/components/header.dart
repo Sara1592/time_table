@@ -20,15 +20,35 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
+  late List<Color> _containerColor;
+  late List<Color> _textColor;
+  int _lastClickedIndex = -1;
+
+  void _changeColorOnTap(int index) {
+    setState(() {
+      if (_lastClickedIndex != -1) {
+        _containerColor[_lastClickedIndex] = Colors.white;
+        _textColor[_lastClickedIndex] = Color(0xFF363636);
+      }
+
+      _containerColor[index] = Color(0xFF006C9E);
+      _textColor[index] = Colors.white;
+      _lastClickedIndex = index;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+
     // context.read<TimetableAdminCubit>().deptInitial();
     // context.read<TimetableAdminCubit>().fetchDeptBatchList('2');
 
     // print("Hello $_Department");
     fetch();
+    _containerColor = List.generate(5, (index) => Colors.white);
+    _textColor = List.generate(5, (index) => Colors.black);
   }
 
   fetch() async {
@@ -469,20 +489,20 @@ class _HeaderState extends State<Header> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding:
-                        EdgeInsets.only(left: width * 0.05, top: height * 0.01),
+                    padding: EdgeInsets.only(
+                        left: width * 0.05, top: height * 0.030),
                     child: SizedBox(
-                      width: width * 0.13,
-                      height: height * 0.06,
+                      width: width * 0.15,
+                      height: height * 0.07,
                       child: ElevatedButton(
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(
-                              () async {
-                                await fetchDeptStaffList(dept_ID);
+                              () {
+                                fetchDeptStaffList(dept_ID);
                                 _isShow = !_isShow;
 
-                                await context
+                                context
                                     .read<TimetableAdminCubit>()
                                     .fetchDeptClassTimeTableList();
                               },
@@ -504,7 +524,7 @@ class _HeaderState extends State<Header> {
                             Text(
                               'Search',
                               style: GoogleFonts.montserrat(
-                                  fontSize: 15,
+                                  fontSize: 19,
                                   color:
                                       const Color.fromARGB(255, 255, 255, 255),
                                   fontWeight: FontWeight.w700),
@@ -548,7 +568,7 @@ class _HeaderState extends State<Header> {
                       // right: width * 0.06
                     ),
                     child: SizedBox(
-                      height: height * 0.12,
+                      height: height * 0.08,
                       child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
@@ -557,7 +577,11 @@ class _HeaderState extends State<Header> {
                             return Padding(
                               padding: EdgeInsets.only(right: width * 0.02),
                               child: GestureDetector(
+                                // onTap: _changeColorOnTap,
+
                                 onTap: () {
+                                  _changeColorOnTap(index);
+
                                   fetchDeptStaffSubList(index);
                                   isTrue = !isTrue;
                                   // print(staffdata[index]['user_id'].toString());
@@ -567,10 +591,11 @@ class _HeaderState extends State<Header> {
                                 child: Container(
                                   height: height * 0.09,
                                   width: width * 0.13,
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(9)),
-                                      color: Color.fromARGB(255, 255, 255, 255),
+                                      // color: Color.fromARGB(255, 255, 255, 255),
+                                      color: _containerColor[index],
                                       boxShadow: [
                                         BoxShadow(
                                           color: Color.fromARGB(
@@ -587,17 +612,18 @@ class _HeaderState extends State<Header> {
                                         child: Text(
                                             '${staffdata[index]['register']['firstName'].toString()}',
                                             style: GoogleFonts.montserrat(
-                                              textStyle: const TextStyle(
+                                              textStyle: TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.bold,
-                                                  color: Color.fromARGB(
-                                                      255, 54, 54, 54)),
+                                                  // color: Color.fromARGB(
+                                                  //     255, 54, 54, 54)
+                                                  color: _textColor[index]),
                                             )),
                                       ),
                                       Padding(
                                         padding: EdgeInsets.only(
-                                            left: width * 0.01,
-                                            top: height * 0.01),
+                                          left: width * 0.01,
+                                        ),
                                         child: Row(
                                           children: [
                                             Text(
@@ -606,7 +632,8 @@ class _HeaderState extends State<Header> {
                                                 style: GoogleFonts.montserrat(
                                                   fontSize: 10.0,
                                                   fontWeight: FontWeight.w500,
-                                                  color: Color(0xffAFAFAF),
+                                                  // color: Color(0xffAFAFAF),
+                                                  color: _textColor[index],
                                                 )),
                                             Padding(
                                               padding: EdgeInsets.only(
@@ -616,7 +643,8 @@ class _HeaderState extends State<Header> {
                                                   style: GoogleFonts.montserrat(
                                                     fontSize: 10.0,
                                                     fontWeight: FontWeight.w500,
-                                                    color: Color(0xffAFAFAF),
+                                                    // color: Color(0xffAFAFAF),
+                                                    color: _textColor[index],
                                                   )),
                                             ),
                                           ],
@@ -743,10 +771,10 @@ class _HeaderState extends State<Header> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
-              padding: EdgeInsets.only(left: width * 0.73, top: height * 0.02),
+              padding: EdgeInsets.only(left: width * 0.79, top: height * 0.02),
               child: SizedBox(
-                width: width * 0.13,
-                height: height * 0.06,
+                width: width * 0.15,
+                height: height * 0.07,
                 child: ElevatedButton(
                   onPressed: () {},
                   style: ButtonStyle(
@@ -764,7 +792,7 @@ class _HeaderState extends State<Header> {
                       Text(
                         'Save Details',
                         style: GoogleFonts.montserrat(
-                            fontSize: 15,
+                            fontSize: 17,
                             color: const Color.fromARGB(255, 255, 255, 255),
                             fontWeight: FontWeight.w700),
                       ),
