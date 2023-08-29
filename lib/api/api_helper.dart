@@ -18,7 +18,11 @@ class API_Helper {
   Future get(String endpoint) async {
     final url = uri(endpoint);
     var client = http.Client();
-    final response = await client.get(url, ).timeout(
+    final response = await client
+        .get(
+      url,
+    )
+        .timeout(
       const Duration(seconds: 10),
       onTimeout: () {
         throw TimeoutException('API cannot be fetched');
@@ -32,9 +36,8 @@ class API_Helper {
       case 200:
         final body = jsonDecode(response.body);
         return body;
-      // case 404:
-      //   throw BadRequestException(
-      //       jsonDecode(response.body.toString())['error']);
+      case 404:
+        throw "404 Error";
 
       default:
         throw ('Error occured while Communication with Server with StatusCode : ${response.statusCode}');

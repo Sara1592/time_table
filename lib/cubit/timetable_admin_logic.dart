@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:quickalert/quickalert.dart';
 
 import '../view/time_table_screen.dart';
 import 'timetable_admin_cubit.dart';
@@ -24,11 +25,15 @@ class TimetableAdminLogic extends StatelessWidget {
                 status: "Loading", maskType: EasyLoadingMaskType.black);
           } else if (state.status == 'error') {
             EasyLoading.dismiss();
-          }
-          else if (state.status == 'loaded1') {
+            QuickAlert.show(
+              context: context,
+              type: QuickAlertType.error,
+              title: 'Oops...',
+              text: state.errorMessage,
+            );
+          } else if (state.status == 'loaded1') {
             // print(state.list);
             EasyLoading.dismiss();
-
           } else if (state.status == 'loaded') {
             // print(state.list);
             EasyLoading.dismiss();
