@@ -118,7 +118,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount:widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_1.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
