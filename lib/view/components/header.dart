@@ -37,6 +37,17 @@ class _HeaderState extends State<Header> {
     });
   }
 
+  bool _isSearchButtonEnabled = false;
+
+  void _updateSearchButtonState() {
+    setState(() {
+      _isSearchButtonEnabled = _selectedVal != null &&
+          _selectedValBat != null &&
+          _selectedValYear != null &&
+          _selectedValClass != null;
+    });
+  }
+
   @override
   void initState() {
     // TODO: implement initState
@@ -273,6 +284,7 @@ class _HeaderState extends State<Header> {
 
                             fetchDeptBatch(val);
                             dept_ID = val;
+                            _updateSearchButtonState();
                           });
                         },
                       ),
@@ -344,6 +356,7 @@ class _HeaderState extends State<Header> {
                                 .deptStaffList
                                 .clear();
                             print("Dept_id $dept_ID");
+                            _updateSearchButtonState();
                           });
                         },
                       ),
@@ -411,6 +424,7 @@ class _HeaderState extends State<Header> {
                         onChanged: (val) {
                           setState(() {
                             _selectedValYear = val as String;
+                            _updateSearchButtonState();
                           });
                         },
                       ),
@@ -477,6 +491,7 @@ class _HeaderState extends State<Header> {
                         onChanged: (val) {
                           setState(() {
                             _selectedValClass = val as String;
+                            _updateSearchButtonState();
                           });
                         },
                       ),
@@ -495,29 +510,51 @@ class _HeaderState extends State<Header> {
                       width: width * 0.15,
                       height: height * 0.07,
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (formKey.currentState!.validate()) {
-                            setState(
-                              () {
-                                fetchDeptStaffList(dept_ID);
-                                _isShow = !_isShow;
+                        onPressed: _isSearchButtonEnabled
+                            ? () {
+                                setState(
+                                  () {
+                                    fetchDeptStaffList(dept_ID);
+                                    _isShow = !_isShow;
 
-                                context
-                                    .read<TimetableAdminCubit>()
-                                    .fetchDeptClassTimeTableList();
-                              },
-                            );
-                          }
-                        },
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(
-                              const Color.fromARGB(255, 9, 26, 47)),
-                          shape: MaterialStateProperty.all(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25),
-                            ),
+                                    context
+                                        .read<TimetableAdminCubit>()
+                                        .fetchDeptClassTimeTableList();
+                                  },
+                                );
+                              }
+                            : null,
+                        // onPressed: () {
+                        //   if (formKey.currentState!.validate()) {
+                        //     setState(
+                        //       () {
+                        //         fetchDeptStaffList(dept_ID);
+                        //         _isShow = !_isShow;
+
+                        //         context
+                        //             .read<TimetableAdminCubit>()
+                        //             .fetchDeptClassTimeTableList();
+                        //       },
+                        //     );
+                        //   }
+                        // },
+                        style: ElevatedButton.styleFrom(
+                          primary: _isSearchButtonEnabled
+                              ? Color.fromARGB(255, 9, 26, 47)
+                              : Colors.grey,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
                           ),
                         ),
+                        // style: ButtonStyle(
+                        //   backgroundColor: MaterialStateProperty.all(
+                        //       const Color.fromARGB(255, 9, 26, 47)),
+                        //   shape: MaterialStateProperty.all(
+                        //     RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(25),
+                        //     ),
+                        //   ),
+                        // ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -525,9 +562,12 @@ class _HeaderState extends State<Header> {
                               'Search',
                               style: GoogleFonts.montserrat(
                                   fontSize: 19,
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  fontWeight: FontWeight.w700),
+                                  // color:
+                                  //     const Color.fromARGB(255, 255, 255, 255),
+                                  fontWeight: FontWeight.w700,
+                                  color: _isSearchButtonEnabled
+                                      ? Colors.white
+                                      : Colors.black),
                             ),
                           ],
                         ),
@@ -687,7 +727,7 @@ class _HeaderState extends State<Header> {
                                       data: deptStaffSub[subindex],
                                       feedback: Material(
                                         child: Container(
-                                          height: height * 0.15,
+                                          height: height * 0.13,
                                           width: width * 0.07,
                                           color: Color(int.parse(
                                               deptStaffSub[subindex]
