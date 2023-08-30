@@ -143,9 +143,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                         child: Text(
                                           dayOrder_1[index]['sub_name']
                                               .toString(),
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.bold),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
                                         ),
                                       )),
                           );
