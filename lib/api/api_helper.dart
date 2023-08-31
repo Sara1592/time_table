@@ -37,7 +37,9 @@ class API_Helper {
         final body = jsonDecode(response.body);
         return body;
       case 404:
-        throw "404 Error";
+        throw "Bad request try again";
+      case 400:
+        throw "Something went wrong try again";
 
       default:
         throw ('Error occured while Communication with Server with StatusCode : ${response.statusCode}');
