@@ -8,19 +8,23 @@ import 'components/timetable_content.dart';
 
 class TimeTableScreen extends StatelessWidget {
   List? timeTable;
+  List? staffTimeTable;
   TimeTableScreen({
     Key? key,
     required this.timeTable,
+    required this.staffTimeTable,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-   
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       drawer: DrawerMenu(),
       key: context.read<Controller>().scaffoldKey,
-      body: TimeTableDashboard(timeTable: timeTable),
+      body: TimeTableDashboard(
+        timeTable: timeTable,
+        staffTimeTable: staffTimeTable,
+      ),
     );
   }
 }

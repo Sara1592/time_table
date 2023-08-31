@@ -38,7 +38,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "loaded"));
     } catch (e) {
       print("FetchDeptBatchList $e");
-      emit(state.copyWith(status: "error",errorMessage: e.toString()));
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 
@@ -65,7 +65,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "loaded1", list: list_2));
     } catch (e) {
       print("FetchDeptClassTimeTableList $e");
-      emit(state.copyWith(status: "error",errorMessage: e.toString()));
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 
@@ -74,10 +74,11 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     emit(state.copyWith(status: "loading"));
     try {
       var deptStaffTimetable = await _api_service.deptStaffTimeTableList(val);
-      emit(state.copyWith(status: "loaded"));
+      print("StaffTimeTable $deptStaffTimetable");
+      emit(state.copyWith(status: "loaded2", list1: deptStaffTimetable));
     } catch (e) {
       print("GetDeptStaffTimeTableList $e");
-      emit(state.copyWith(status: "error",errorMessage: e.toString()));
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 
@@ -90,7 +91,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "loaded"));
     } catch (e) {
       print("GetDeptStaffList $e");
-      emit(state.copyWith(status: "error",errorMessage: e.toString()));
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 
@@ -104,7 +105,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "loaded"));
     } catch (e) {
       print("GetDeptStaffSubjectList $e");
-      emit(state.copyWith(status: "error",errorMessage: e.toString()));
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 }

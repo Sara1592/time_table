@@ -14,9 +14,11 @@ class TimetableAdminLogic extends StatelessWidget {
     return Scaffold(
       body: BlocConsumer<TimetableAdminCubit, TimetableAdminState>(
         builder: (context, state) {
-          // print(state.list);
+          // print("List1 ${state.list}");
+          print("List2 ${state.list1}");
           return TimeTableScreen(
             timeTable: state.list,
+            staffTimeTable: state.list1,
           );
         },
         listener: (context, state) {
@@ -32,6 +34,9 @@ class TimetableAdminLogic extends StatelessWidget {
               text: state.errorMessage,
             );
           } else if (state.status == 'loaded1') {
+            // print(state.list);
+            EasyLoading.dismiss();
+          } else if (state.status == 'loaded2') {
             // print(state.list);
             EasyLoading.dismiss();
           } else if (state.status == 'loaded') {

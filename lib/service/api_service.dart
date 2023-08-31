@@ -29,8 +29,8 @@ class API_Service {
 
 //For Dept Staff TimeTable List
   Future deptStaffTimeTableList(val) async {
-    final response = await _helper.get("");
-    return response["data"];
+    final response = await _helper.get("stafftimetable?user_id=351 ");
+    return response["data"]["details"]["dayorder:1"];
   }
 
   Future deptStaffSubjectList(val) async {

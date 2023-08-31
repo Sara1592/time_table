@@ -15,9 +15,11 @@ import 'header.dart';
 
 class TimeTableDashboard extends StatefulWidget {
   List? timeTable;
-   TimeTableDashboard({
+  List? staffTimeTable;
+  TimeTableDashboard({
     Key? key,
     required this.timeTable,
+    required this.staffTimeTable,
   }) : super(key: key);
 
   @override
@@ -64,7 +66,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                     color: Color.fromARGB(255, 240, 240, 240),
                     height: height * 1.1,
                     width: width * 0.6,
-                    child:  Column(
+                    child: Column(
                       children: [
                         DayOrderAllocation(),
                         Column(
@@ -85,13 +87,17 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                         color: Color.fromARGB(255, 255, 187, 0),
                         height: height * 1.1,
                         width: width * 0.4,
-                        child: const Column(
+                        child: Column(
                           children: [
                             StaffDayOrder(),
                             Column(
                               children: [
                                 Row(
-                                  children: [StaffPeroidAllocation()],
+                                  children: [
+                                    StaffPeroidAllocation(
+                                      staffTimeTable: widget.staffTimeTable,
+                                    )
+                                  ],
                                 ),
                               ],
                             ),

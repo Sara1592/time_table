@@ -624,6 +624,11 @@ class _HeaderState extends State<Header> {
 
                                   fetchDeptStaffSubList(index);
                                   isTrue = !isTrue;
+                                  context
+                                      .read<TimetableAdminCubit>()
+                                      .deptStaffTimeTable(staffdata[index]
+                                              ['register']['user_id']
+                                          .toString());
                                   // print(staffdata[index]['user_id'].toString());
                                   // filterFunc(
                                   //     staffdata[index]['staffid'].toString());
