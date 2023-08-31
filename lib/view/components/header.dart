@@ -754,22 +754,25 @@ class _HeaderState extends State<Header> {
                                         ),
                                       ),
                                       childWhenDragging: Container(
-                                        height: height * 0.15,
+                                        height: height * 0.13,
                                         width: width * 0.07,
                                         color: Color(int.parse(
                                             deptStaffSub[subindex]
                                                 ['color_code'])),
                                         child: Padding(
                                           padding: EdgeInsets.only(
-                                              top: height * 0.05,
-                                              left: width * 0.01),
-                                          child: Text(
-                                            deptStaffSub[subindex]['sub_name']
-                                                .toString(),
-                                            style: GoogleFonts.montserrat(
-                                              fontSize: 18.0,
-                                              fontWeight: FontWeight.w700,
-                                              color: Colors.white,
+                                              // top: height * 0.05,
+                                              // left: width * 0.01
+                                              ),
+                                          child: Center(
+                                            child: Text(
+                                              deptStaffSub[subindex]['sub_name']
+                                                  .toString(),
+                                              style: GoogleFonts.montserrat(
+                                                fontSize: 18.0,
+                                                fontWeight: FontWeight.w700,
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           ),
                                         ),
