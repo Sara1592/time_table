@@ -14,6 +14,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   List deptList = [];
   List deptBatchList = [];
   List deptStaffList = [];
+  List deptStaffWeekTimetableList = [];
   List deptStaffSubList = [];
   List deptClassTimeTableList = [];
 
@@ -69,19 +70,6 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     }
   }
 
-//deptStaffTimetable
-  deptStaffTimeTable(val) async {
-    emit(state.copyWith(status: "loading"));
-    try {
-      var deptStaffTimetable = await _api_service.deptStaffTimeTableList(val);
-      print("StaffTimeTable $deptStaffTimetable");
-      emit(state.copyWith(status: "loaded2", list1: deptStaffTimetable));
-    } catch (e) {
-      print("GetDeptStaffTimeTableList $e");
-      emit(state.copyWith(status: "error", errorMessage: e.toString()));
-    }
-  }
-
   getDeptStaffList(val) async {
     emit(state.copyWith(status: "loading"));
     try {
@@ -91,6 +79,32 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "loaded"));
     } catch (e) {
       print("GetDeptStaffList $e");
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
+    }
+  }
+
+  getDeptStaffWeekTimetable() async {
+    emit(state.copyWith(status: "loading"));
+    try {
+      List deptStaffWeekTimetable = [];
+
+      var list = await _api_service.deptStaffWeekTimetable();
+      list['data']['details'].forEach((key, value) {
+        if (value is List) {
+          value.sort((a, b) {
+            final periodA = int.tryParse(a['period_no']);
+            final periodB = int.tryParse(b['period_no']);
+            return periodA != null && periodB != null ? periodA - periodB : 0;
+          });
+        }
+      });
+      deptStaffWeekTimetable.add(list);
+      // print("Staff Timetable $deptStaffWeekTimetable");
+      // print("Staff Timetable $deptStaffWeekTimetable");
+      emit(state.copyWith(status: "loaded2", list1: deptStaffWeekTimetable));
+      // print(deptStaffWeekTimetable);
+    } catch (e) {
+      print("GetDeptStaffWeekTimeTable $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }

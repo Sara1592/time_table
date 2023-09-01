@@ -88,11 +88,11 @@ class _HeaderState extends State<Header> {
     await context.read<TimetableAdminCubit>().getDeptStaffList(val);
     var staffdata1 = context.read<TimetableAdminCubit>().deptStaffList;
     staffdata = staffdata1;
-    print(staffdata);
+    // print(staffdata);
     // staffdata = staffdata1[0];
     // staffSub = staffdata1[0];
 
-    print(staffdata1);
+    // print(staffdata1);
     // print("Le ${staffdata.length}");
   }
 
@@ -626,9 +626,7 @@ class _HeaderState extends State<Header> {
                                   isTrue = !isTrue;
                                   context
                                       .read<TimetableAdminCubit>()
-                                      .deptStaffTimeTable(staffdata[index]
-                                              ['register']['user_id']
-                                          .toString());
+                                      .getDeptStaffWeekTimetable();
                                   // print(staffdata[index]['user_id'].toString());
                                   // filterFunc(
                                   //     staffdata[index]['staffid'].toString());

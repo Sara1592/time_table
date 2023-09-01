@@ -6,6 +6,7 @@ class API_Service {
 
   Future deptList() async {
     final response = await _helper.get("departmentlist");
+    // print(response.runtimeType);
     return response['data'];
   }
 
@@ -27,10 +28,9 @@ class API_Service {
     return response["data"]["users"];
   }
 
-//For Dept Staff TimeTable List
-  Future deptStaffTimeTableList(val) async {
-    final response = await _helper.get("stafftimetable?user_id=351 ");
-    return response["data"]["details"]["dayorder:1"];
+  Future deptStaffWeekTimetable() async {
+    final response = await _helper.get("stafftimetable?user_id=351");
+    return response;
   }
 
   Future deptStaffSubjectList(val) async {
