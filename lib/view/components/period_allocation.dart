@@ -37,7 +37,36 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
 
   @override
   Widget build(BuildContext context) {
-    var dayOrder_1 = widget.timeTable.isNull ? [] : widget.timeTable!;
+    var dayOrder_1 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]["data"]["dayorder_1"]
+            .map((e) => e["subject_detail"])
+            .toList();
+    var dayOrder_2 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]["data"]["dayorder_2"]
+            .map((e) => e["subject_detail"])
+            .toList();
+    var dayOrder_3 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]["data"]["dayorder_3"]
+            .map((e) => e["subject_detail"])
+            .toList();
+    var dayOrder_4 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]["data"]["dayorder_4"]
+            .map((e) => e["subject_detail"])
+            .toList();
+    var dayOrder_5 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]["data"]["dayorder_5"]
+            .map((e) => e["subject_detail"])
+            .toList();
+    var dayOrder_6 = widget.timeTable.isNull
+        ? []
+        : widget.timeTable![0]["data"]["dayorder_6"]
+            .map((e) => e["subject_detail"])
+            .toList();
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -178,50 +207,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   );
                 },
               ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
             ],
           ),
         ),
@@ -236,36 +221,47 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount:
+                    widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_2.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              print(index);
+                              // print(index);
                             },
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayodertwo.isEmpty
-                                    ? [const Text('')]
-                                    : dayodertwo,
-                              ),
-                            ),
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color: (widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_2[index]['color_code'])),
+                                child: (widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_2[index]['sub_name']
+                                              .toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )),
                           );
                         },
-                        onWillAccept: (Widget? data) {
+                        onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            dayodertwo.add(data);
-                          });
+                        onAccept: (data) {
+                          int indexToReplace = index;
+                          var dat = data;
+                          dayOrder_2[indexToReplace] = dat;
                         },
                       ),
                       SizedBox(
@@ -275,50 +271,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   );
                 },
               ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
             ],
           ),
         ),
@@ -333,36 +285,47 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount:
+                    widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_3.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              print(index);
+                              // print(index);
                             },
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayoderthree.isEmpty
-                                    ? [const Text('')]
-                                    : dayoderthree,
-                              ),
-                            ),
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color: (widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_3[index]['color_code'])),
+                                child: (widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_3[index]['sub_name']
+                                              .toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )),
                           );
                         },
-                        onWillAccept: (Widget? data) {
+                        onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            dayoderthree.add(data);
-                          });
+                        onAccept: (data) {
+                          int indexToReplace = index;
+                          var dat = data;
+                          dayOrder_3[indexToReplace] = dat;
                         },
                       ),
                       SizedBox(
@@ -372,50 +335,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   );
                 },
               ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
             ],
           ),
         ),
@@ -430,36 +349,47 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount:
+                    widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_4.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              print(index);
+                              // print(index);
                             },
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayoderfour.isEmpty
-                                    ? [const Text('')]
-                                    : dayoderfour,
-                              ),
-                            ),
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color: (widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_4[index]['color_code'])),
+                                child: (widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_4[index]['sub_name']
+                                              .toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )),
                           );
                         },
-                        onWillAccept: (Widget? data) {
+                        onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            dayoderfour.add(data);
-                          });
+                        onAccept: (data) {
+                          int indexToReplace = index;
+                          var dat = data;
+                          dayOrder_4[indexToReplace] = dat;
                         },
                       ),
                       SizedBox(
@@ -469,50 +399,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   );
                 },
               ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
             ],
           ),
         ),
@@ -527,36 +413,47 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount:
+                    widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_5.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              print(index);
+                              // print(index);
                             },
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayoderfive.isEmpty
-                                    ? [const Text('')]
-                                    : dayoderfive,
-                              ),
-                            ),
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color: (widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_5[index]['color_code'])),
+                                child: (widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_5[index]['sub_name']
+                                              .toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )),
                           );
                         },
-                        onWillAccept: (Widget? data) {
+                        onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            dayoderfive.add(data);
-                          });
+                        onAccept: (data) {
+                          int indexToReplace = index;
+                          var dat = data;
+                          dayOrder_5[indexToReplace] = dat;
                         },
                       ),
                       SizedBox(
@@ -566,50 +463,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   );
                 },
               ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
             ],
           ),
         ),
@@ -624,39 +477,47 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_6.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
-                      DragTarget<Widget>(
+                      DragTarget(
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
                             onTap: () {
-                              dayodersix.isEmpty
-                                  ? [const Text('')]
-                                  : dayodersix;
-                              print(index);
+                             
                             },
                             child: Container(
                               height: height * 0.13,
                               width: width * 0.07,
-                              color: arrColors[5],
-                              child: Column(
-                                children: dayodersix.isEmpty
-                                    ? [const Text('')]
-                                    : dayodersix,
-                              ),
+                              color:(widget.timeTable.isUndefinedOrNull)
+                                    ? Color(0xFF000000)
+                                    : Color(int.parse(
+                                        dayOrder_6[index]['color_code'])),
+                              child:(widget.timeTable.isUndefinedOrNull)
+                                    ? Text('')
+                                    : Center(
+                                        child: Text(
+                                          dayOrder_6[index]['sub_name']
+                                              .toString(),
+                                          style: GoogleFonts.montserrat(
+                                            fontSize: 18.0,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      )
                             ),
                           );
                         },
-                        onWillAccept: (Widget? data) {
+                        onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: (Widget data) {
-                          setState(() {
-                            dayodersix.add(data);
-                          });
+                        onAccept: ( data) {
+                          int indexToReplace = index;
+                          var dat = data;
+                          dayOrder_6[indexToReplace] = dat;
                         },
                       ),
                       SizedBox(
@@ -666,50 +527,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                   );
                 },
               ))
-              // SizedBox(
-              //   height: height * 0.01,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // DragTarget<Widget>(
-              //   // onAccept: (data) => setState(() => arrColor = data),
-              //   builder: (context, accepted, rejected) {
-              //     return Container(
-              //       height: height * 0.13,
-              //       width: width * 0.07,
-              //       color: arrColors[5],
-              //       child: Column(
-              //         children:
-              //             oopsdropitem.isEmpty ? [const Text('')] : oopsdropitem,
-              //       ),
-              //     );
-              //   },
-              //   onWillAccept: (Widget? data) {
-              //     return true;
-              //   },
-              //   onAccept: (Widget data) {
-              //     setState(() {
-              //       oopsdropitem.add(data);
-              //     });
-              //   },
-              // ),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
-              // Subject(colors: arrColors[0], subName: 'Oops'),
-              // SizedBox(
-              //   height: height * 0.02,
-              // ),
             ],
           ),
         ),

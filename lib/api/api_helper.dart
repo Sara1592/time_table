@@ -15,12 +15,10 @@ class API_Helper {
     };
   }
 
-  Future post(String endpoint) async {
+  Future post(String endpoint, Object body) async {
     final url = uri(endpoint);
     var client = http.Client();
-    final response = await client.post(
-      url,
-    );
+    final response = await client.post(url, body: body);
   }
 
   Future get(String endpoint) async {

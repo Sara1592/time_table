@@ -53,22 +53,27 @@ class _HeaderState extends State<Header> {
     // TODO: implement initState
     super.initState();
 
-    // context.read<TimetableAdminCubit>().deptInitial();
-    // context.read<TimetableAdminCubit>().fetchDeptBatchList('2');
-
-    // print("Hello $_Department");
     fetch();
     _containerColor = List.generate(5, (index) => Colors.white);
     _textColor = List.generate(5, (index) => Colors.black);
   }
 
+  List _Department = [];
+  int? _selectedVal;
   fetch() async {
     _selectedVal = null;
     await context.read<TimetableAdminCubit>().deptInitial();
     _Department = context.read<TimetableAdminCubit>().deptList;
-
-    // print("Hello $_Batch");
   }
+
+  List _Batch = [];
+  String? _selectedValBat = "";
+
+  List _Year = [];
+  String? _selectedValYear = "";
+
+  List _Class = [];
+  String? _selectedValClass = "";
 
   fetchDeptBatch(val) async {
     _selectedValBat = null;
@@ -78,10 +83,8 @@ class _HeaderState extends State<Header> {
     _Batch = context.read<TimetableAdminCubit>().deptBatchList;
     _Year = _Batch;
     _Class = _Batch;
-    // print("Hello $_Batch");
   }
 
-// List list123 = [];
   static List staffdata = [];
   List staffSub = [];
   fetchDeptStaffList(val) async {
@@ -108,18 +111,9 @@ class _HeaderState extends State<Header> {
   }
 
   var dept_ID;
+  var class_ID;
+  var batch_ID;
 
-  List _Department = [];
-  int? _selectedVal;
-
-  List _Batch = [];
-  String? _selectedValBat = "";
-
-  List _Year = [];
-  String? _selectedValYear = "";
-
-  List _Class = [];
-  String? _selectedValClass = "";
   bool _isShow = false;
   bool _isoopsShow = false;
   bool _isJavaShow = false;
@@ -285,6 +279,7 @@ class _HeaderState extends State<Header> {
                             fetchDeptBatch(val);
                             dept_ID = val;
                             _updateSearchButtonState();
+                            print("Dept ID $val");
                           });
                         },
                       ),
@@ -355,7 +350,7 @@ class _HeaderState extends State<Header> {
                                 .read<TimetableAdminCubit>()
                                 .deptStaffList
                                 .clear();
-                            print("Dept_id $dept_ID");
+                            print("Batch ID $value");
                             _updateSearchButtonState();
                           });
                         },
@@ -425,6 +420,7 @@ class _HeaderState extends State<Header> {
                           setState(() {
                             _selectedValYear = val as String;
                             _updateSearchButtonState();
+                            print("Year ID $val");
                           });
                         },
                       ),
@@ -492,6 +488,7 @@ class _HeaderState extends State<Header> {
                           setState(() {
                             _selectedValClass = val as String;
                             _updateSearchButtonState();
+                            print("Session ID $val");
                           });
                         },
                       ),
@@ -822,7 +819,11 @@ class _HeaderState extends State<Header> {
                 width: width * 0.15,
                 height: height * 0.07,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    context
+                        .read<TimetableAdminCubit>()
+                        .updateDeptClassTimetable(1, 1, 1, 351, 1, 1, 1);
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
                         Color.fromARGB(255, 79, 140, 0)),

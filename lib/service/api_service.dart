@@ -20,7 +20,7 @@ class API_Service {
   Future deptClassTimeTableList() async {
     final response =
         await _helper.get("timetablelist?dept_id=1&class_code=1&batch_id=1");
-    return response["data"];
+    return response;
   }
 
   Future deptStaffList(val) async {
@@ -37,5 +37,30 @@ class API_Service {
     final response = await _helper.get("staffsubjectlist?user_id=$val");
     // print(response);
     return response["data"];
+  }
+
+  Future updateDeptClassTimeTable(
+    deptId,
+    classId,
+    batchId,
+    userId,
+    dayOrder,
+    periodNo,
+    subCode,
+  ) async {
+    final response = await _helper.post(
+      "updatetimetable",
+      {
+        "dept_id": deptId,
+        "class_code": classId,
+        "batch_id": batchId,
+        "user_id": userId,
+        "dayorder": dayOrder,
+        "period_no": periodNo,
+        "sub_code": subCode
+      },
+    );
+    // print(response);
+    // return response["data"];
   }
 }
