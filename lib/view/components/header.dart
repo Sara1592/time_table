@@ -67,13 +67,13 @@ class _HeaderState extends State<Header> {
   }
 
   List _Batch = [];
-  String? _selectedValBat = "";
+  int? _selectedValBat;
 
   List _Year = [];
   String? _selectedValYear = "";
 
   List _Class = [];
-  String? _selectedValClass = "";
+  int? _selectedValClass;
 
   fetchDeptBatch(val) async {
     _selectedValBat = null;
@@ -279,7 +279,7 @@ class _HeaderState extends State<Header> {
                             fetchDeptBatch(val);
                             dept_ID = val;
                             _updateSearchButtonState();
-                            print("Dept ID $val");
+                            // print("Dept ID $val");
                           });
                         },
                       ),
@@ -340,17 +340,18 @@ class _HeaderState extends State<Header> {
                               OutlineInputBorder(borderSide: BorderSide.none),
                         ),
                         items: _Batch.map((e) => DropdownMenuItem(
-                              value: e['batch'],
+                              value: e['id'],
                               child: Text(e['batch']),
                             )).toList(),
                         onChanged: (value) {
                           setState(() {
-                            _selectedValBat = value as String;
+                            _selectedValBat = value as int;
                             context
                                 .read<TimetableAdminCubit>()
                                 .deptStaffList
                                 .clear();
-                            print("Batch ID $value");
+                            batch_ID = value;
+                            // print("Batch ID $value");
                             _updateSearchButtonState();
                           });
                         },
@@ -480,15 +481,15 @@ class _HeaderState extends State<Header> {
                               OutlineInputBorder(borderSide: BorderSide.none),
                         ),
                         items: _Class.map((e) => DropdownMenuItem(
-                              value: e['sessions'],
+                              value: e['id'],
                               child: Text(e['sessions']),
                             )).toList(),
                         value: _selectedValClass,
                         onChanged: (val) {
                           setState(() {
-                            _selectedValClass = val as String;
+                            _selectedValClass = val as int;
                             _updateSearchButtonState();
-                            print("Session ID $val");
+                            class_ID = val;
                           });
                         },
                       ),
@@ -510,11 +511,16 @@ class _HeaderState extends State<Header> {
                         onPressed: _isSearchButtonEnabled
                             ? () {
                                 setState(
-                                  () {
-                                    fetchDeptStaffList(dept_ID);
+                                  ()  {
+                                     fetchDeptStaffList(dept_ID);
                                     _isShow = !_isShow;
 
-                                    context
+                                    print("Dept $dept_ID");
+                                    print("cls $class_ID");
+                                    print("batch $batch_ID");
+                                 
+
+                                     context
                                         .read<TimetableAdminCubit>()
                                         .fetchDeptClassTimeTableList();
                                   },

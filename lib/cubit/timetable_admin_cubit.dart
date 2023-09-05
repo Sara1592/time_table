@@ -46,7 +46,8 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   fetchDeptClassTimeTableList() async {
     emit(state.copyWith(status: "loading"));
     try {
-      var deptClassTimetable = await _api_service.deptClassTimeTableList();
+      var deptClassTimetable =
+          await _api_service.deptClassTimeTableList();
       deptClassTimetable['data'].forEach((key, value) {
         if (value is List) {
           value.sort((a, b) {

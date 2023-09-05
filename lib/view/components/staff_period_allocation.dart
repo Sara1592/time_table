@@ -4,6 +4,7 @@ import 'dart:js_interop';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../widgets/empty_container.dart';
 import '../../widgets/period_no.dart';
 import '../../widgets/staff_period.dart';
 import '../../widgets/staff_subject.dart';
@@ -29,7 +30,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
 
   @override
   Widget build(BuildContext context) {
-    var staffTimeTableList = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_1 = widget.staffTimeTable.isUndefinedOrNull
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:1"]
             .map((e) => e["subjectDetails"])
@@ -37,6 +38,26 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
     var dayOrder_2 = widget.staffTimeTable.isUndefinedOrNull
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:2"]
+            .map((e) => e["subjectDetails"])
+            .toList();
+    var dayOrder_3 = widget.staffTimeTable.isUndefinedOrNull
+        ? []
+        : widget.staffTimeTable![0]["data"]["details"]["dayorder:3"]
+            .map((e) => e["subjectDetails"])
+            .toList();
+    var dayOrder_4 = widget.staffTimeTable.isUndefinedOrNull
+        ? []
+        : widget.staffTimeTable![0]["data"]["details"]["dayorder:4"]
+            .map((e) => e["subjectDetails"])
+            .toList();
+    var dayOrder_5 = widget.staffTimeTable.isUndefinedOrNull
+        ? []
+        : widget.staffTimeTable![0]["data"]["details"]["dayorder:5"]
+            .map((e) => e["subjectDetails"])
+            .toList();
+    var dayOrder_6 = widget.staffTimeTable.isUndefinedOrNull
+        ? []
+        : widget.staffTimeTable![0]["data"]["details"]["dayorder:6"]
             .map((e) => e["subjectDetails"])
             .toList();
 
@@ -98,14 +119,18 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                    ? 5
+                    : dayOrder_1.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
                         message: widget.staffTimeTable.isUndefinedOrNull
                             ? ""
-                            : 'Subject            : ${staffTimeTableList[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
+                            : ((dayOrder_1[index]["sub_name"] == "null"))
+                                ? ""
+                                : 'Subject            : ${dayOrder_1[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
                         height: height * 0.14,
                         preferBelow: false,
                         verticalOffset: 55,
@@ -117,17 +142,17 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: StaffSubject(
-                          subName: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${staffTimeTableList[index]["sub_name"]}',
-                          subName1: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]}',
-                          year: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]}',
-                        ),
+                        child: widget.staffTimeTable.isUndefinedOrNull
+                            ? Empty_Container()
+                            : (dayOrder_1[index]["sub_name"] == "null")
+                                ? StaffSubjectFree(subName: 'FREE')
+                                : StaffSubject(
+                                    subName: '${dayOrder_1[index]["sub_name"]}',
+                                    subName1:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]}',
+                                    year:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]}',
+                                  ),
                       ),
                       SizedBox(
                         height: height * 0.015,
@@ -251,14 +276,18 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                    ? 5
+                    : dayOrder_2.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
                         message: widget.staffTimeTable.isUndefinedOrNull
                             ? ""
-                            : 'Subject            : ${staffTimeTableList[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
+                            : ((dayOrder_2[index]["sub_name"] == "null"))
+                                ? ""
+                                :'Subject            : ${dayOrder_2[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
                         height: height * 0.14,
                         preferBelow: false,
                         verticalOffset: 55,
@@ -270,17 +299,17 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: StaffSubject(
-                          subName: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${dayOrder_2[index]["sub_name"]}',
-                          subName1: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:2"][0]["year"]}',
-                          year: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:2"][0]["department"]}',
-                        ),
+                        child: widget.staffTimeTable.isUndefinedOrNull
+                            ? Empty_Container()
+                            : (dayOrder_2[index]["sub_name"] == "null")
+                                ? StaffSubjectFree(subName: 'FREE')
+                                : StaffSubject(
+                                    subName: '${dayOrder_2[index]["sub_name"]}',
+                                    subName1:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:2"][0]["year"]}',
+                                    year:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:2"][0]["department"]}',
+                                  ),
                       ),
                       SizedBox(
                         height: height * 0.015,
@@ -404,14 +433,18 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                    ? 5
+                    : dayOrder_3.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
                         message: widget.staffTimeTable.isUndefinedOrNull
                             ? ""
-                            : 'Subject            : ${staffTimeTableList[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
+                            : ((dayOrder_3[index]["sub_name"] == "null"))
+                                ? ""
+                                :'Subject            : ${dayOrder_3[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:3"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:3"][0]["year"]} ',
                         height: height * 0.14,
                         preferBelow: false,
                         verticalOffset: 55,
@@ -423,17 +456,17 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: StaffSubject(
-                          subName: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${staffTimeTableList[index]["sub_name"]}',
-                          subName1: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]}',
-                          year: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]}',
-                        ),
+                        child: widget.staffTimeTable.isUndefinedOrNull
+                            ? Empty_Container()
+                            : (dayOrder_3[index]["sub_name"] == "null")
+                                ? StaffSubjectFree(subName: 'FREE')
+                                : StaffSubject(
+                                    subName: '${dayOrder_3[index]["sub_name"]}',
+                                    subName1:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:3"][0]["year"]}',
+                                    year:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:3"][0]["department"]}',
+                                  ),
                       ),
                       SizedBox(
                         height: height * 0.015,
@@ -557,14 +590,18 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                    ? 5
+                    : dayOrder_4.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
                         message: widget.staffTimeTable.isUndefinedOrNull
                             ? ""
-                            : 'Subject            : ${staffTimeTableList[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
+                            : ((dayOrder_4[index]["sub_name"] == "null"))
+                                ? ""
+                                :'Subject            : ${dayOrder_4[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:4"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:4"][0]["year"]} ',
                         height: height * 0.14,
                         preferBelow: false,
                         verticalOffset: 55,
@@ -576,17 +613,17 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: StaffSubject(
-                          subName: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${staffTimeTableList[index]["sub_name"]}',
-                          subName1: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]}',
-                          year: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]}',
-                        ),
+                        child: widget.staffTimeTable.isUndefinedOrNull
+                            ? Empty_Container()
+                            : (dayOrder_4[index]["sub_name"] == "null")
+                                ? StaffSubjectFree(subName: 'FREE')
+                                : StaffSubject(
+                                    subName: '${dayOrder_4[index]["sub_name"]}',
+                                    subName1:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:4"][0]["year"]}',
+                                    year:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:4"][0]["department"]}',
+                                  ),
                       ),
                       SizedBox(
                         height: height * 0.015,
@@ -710,14 +747,18 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                    ? 5
+                    : dayOrder_5.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
                         message: widget.staffTimeTable.isUndefinedOrNull
                             ? ""
-                            : 'Subject            : ${staffTimeTableList[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
+                            : ((dayOrder_5[index]["sub_name"] == "null"))
+                                ? ""
+                                :'Subject            : ${dayOrder_5[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:5"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:5"][0]["year"]} ',
                         height: height * 0.14,
                         preferBelow: false,
                         verticalOffset: 55,
@@ -729,17 +770,17 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: StaffSubject(
-                          subName: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${staffTimeTableList[index]["sub_name"]}',
-                          subName1: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]}',
-                          year: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]}',
-                        ),
+                        child: widget.staffTimeTable.isUndefinedOrNull
+                            ? Empty_Container()
+                            : (dayOrder_5[index]["sub_name"] == "null")
+                                ? StaffSubjectFree(subName: 'FREE')
+                                : StaffSubject(
+                                    subName: '${dayOrder_5[index]["sub_name"]}',
+                                    subName1:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:5"][0]["year"]}',
+                                    year:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:5"][0]["department"]}',
+                                  ),
                       ),
                       SizedBox(
                         height: height * 0.015,
@@ -863,14 +904,18 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: 5,
+                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                    ? 5
+                    : dayOrder_6.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
                         message: widget.staffTimeTable.isUndefinedOrNull
                             ? ""
-                            : 'Subject            : ${staffTimeTableList[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]} ',
+                            : ((dayOrder_6[index]["sub_name"] == "null"))
+                                ? ""
+                                :'Subject            : ${dayOrder_6[index]["sub_name"]} \n\nDepartment   : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:6"][0]["department"]} \n\nYear                  : ${widget.staffTimeTable![0]["data"]["details"]["dayorder:6"][0]["year"]} ',
                         height: height * 0.14,
                         preferBelow: false,
                         verticalOffset: 55,
@@ -882,17 +927,17 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: StaffSubject(
-                          subName: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${staffTimeTableList[index]["sub_name"]}',
-                          subName1: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["year"]}',
-                          year: widget.staffTimeTable.isUndefinedOrNull
-                              ? ""
-                              : '${widget.staffTimeTable![0]["data"]["details"]["dayorder:1"][0]["department"]}',
-                        ),
+                        child: widget.staffTimeTable.isUndefinedOrNull
+                            ? Empty_Container()
+                            : (dayOrder_6[index]["sub_name"] == "null")
+                                ? StaffSubjectFree(subName: 'FREE')
+                                : StaffSubject(
+                                    subName: '${dayOrder_6[index]["sub_name"]}',
+                                    subName1:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:6"][0]["year"]}',
+                                    year:
+                                        '${widget.staffTimeTable![0]["data"]["details"]["dayorder:6"][0]["department"]}',
+                                  ),
                       ),
                       SizedBox(
                         height: height * 0.015,
