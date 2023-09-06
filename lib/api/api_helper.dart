@@ -15,10 +15,15 @@ class API_Helper {
     };
   }
 
-  Future post(String endpoint, Object body) async {
+  Future post(
+    String endpoint,
+    Object body
+  ) async {
     final url = uri(endpoint);
-    var client = http.Client();
-    final response = await client.post(url, body: body);
+    // var client = http.Client();
+    final response = await http.post(url, body: jsonEncode(body), headers: {
+      'Content-Type': 'application/json'
+    });
   }
 
   Future get(String endpoint) async {

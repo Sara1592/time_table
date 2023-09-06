@@ -15,10 +15,12 @@ class TimetableAdminLogic extends StatelessWidget {
       body: BlocConsumer<TimetableAdminCubit, TimetableAdminState>(
         builder: (context, state) {
           // print("List1 ${state.list}");
-          // print("List2 ${state.list1}");
+          // print("List2 ${state.updateDetails}");
+
           return TimeTableScreen(
             timeTable: state.list,
             staffTimeTable: state.list1,
+            toUpdate: state.updateDetails,
           );
         },
         listener: (context, state) {

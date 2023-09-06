@@ -3,8 +3,10 @@ import 'dart:convert';
 import 'dart:js_interop';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../cubit/timetable_admin_cubit.dart';
 import '../../widgets/datascience.dart';
 import '../../widgets/day_order.dart';
 import '../../widgets/period_no.dart';
@@ -156,10 +158,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
-                            onTap: () {
-                              print(
-                                  "Drop ${widget.timeTable.isUndefinedOrNull ? "Data" : dayOrder_1[index]}");
-                            },
+                            onTap: () {},
                             child: Container(
                                 height: height * 0.13,
                                 width: width * 0.07,
@@ -186,18 +185,34 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                           // print("On will ${data}");
                           return true;
                         },
-                        onAccept: (data) {
-                          print("Before ${dayOrder_1}");
+                        onAccept: (data) async {
+                          // print(
+                          //     "Drop ${widget.timeTable.isUndefinedOrNull ? "Data" : "${widget.timeTable![0]["data"]["dayorder_1"][index]["period_no"]}${widget.timeTable![0]["data"]["dayorder_1"][index]["dayorder"]}"}");
+
+                          // print("Before ${dayOrder_1}");
                           int indexToReplace = index;
                           var dat = data;
-                          // setState(() {
-                          //   dayOrder_1[index] == data;
-
-                          //   dayOrder_1[indexToReplace] = dat;
-                          //   print("After1 ${dayOrder_1[2]}");
+                          // setState(() async {
+                          //   dayOrder_1[indexToReplace] = await dat;
                           // });
-                          dayOrder_1[indexToReplace] = dat;
-                          print("After ${dayOrder_1}");
+                          dayOrder_1[indexToReplace] = await dat;
+
+                          var obj = {
+                            "dayorder": widget.timeTable![0]["data"]
+                                ["dayorder_1"][index]["dayorder"],
+                            "period_no": widget.timeTable![0]["data"]
+                                ["dayorder_1"][index]["period_no"],
+                            "sub_code": dayOrder_1[index]['sub_code']
+                          };
+                          // Future.delayed(
+                          //   Duration(seconds: 2),
+                          //   () => ,
+                          // );
+                          context
+                                .read<TimetableAdminCubit>()
+                                .getDayorderPeriodNoSbuCode(obj);
+
+                          // print("After ${obj.runtimeType}");
                         },
                       ),
                       SizedBox(
@@ -477,7 +492,8 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
             children: [
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_6.length,
+                itemCount:
+                    widget.timeTable.isUndefinedOrNull ? 5 : dayOrder_6.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
@@ -485,17 +501,15 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                         // onAccept: (data) => setState(() => arrColor = data),
                         builder: (context, accepted, rejected) {
                           return InkWell(
-                            onTap: () {
-                             
-                            },
+                            onTap: () {},
                             child: Container(
-                              height: height * 0.13,
-                              width: width * 0.07,
-                              color:(widget.timeTable.isUndefinedOrNull)
+                                height: height * 0.13,
+                                width: width * 0.07,
+                                color: (widget.timeTable.isUndefinedOrNull)
                                     ? Color(0xFF000000)
                                     : Color(int.parse(
                                         dayOrder_6[index]['color_code'])),
-                              child:(widget.timeTable.isUndefinedOrNull)
+                                child: (widget.timeTable.isUndefinedOrNull)
                                     ? Text('')
                                     : Center(
                                         child: Text(
@@ -507,17 +521,17 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                             color: Colors.white,
                                           ),
                                         ),
-                                      )
-                            ),
+                                      )),
                           );
                         },
                         onWillAccept: (data) {
                           return true;
                         },
-                        onAccept: ( data) {
+                        onAccept: (data) {
                           int indexToReplace = index;
                           var dat = data;
                           dayOrder_6[indexToReplace] = dat;
+                          print(data);
                         },
                       ),
                       SizedBox(

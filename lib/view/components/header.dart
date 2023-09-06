@@ -11,7 +11,10 @@ import '../../widgets/subject.dart';
 import 'custom_appbar.dart';
 
 class Header extends StatefulWidget {
+  Map<String, dynamic>? toUpdate;
+
   Header({
+    required this.toUpdate,
     super.key,
   });
 
@@ -70,7 +73,7 @@ class _HeaderState extends State<Header> {
   int? _selectedValBat;
 
   List _Year = [];
-  String? _selectedValYear = "";
+  int? _selectedValYear;
 
   List _Class = [];
   int? _selectedValClass;
@@ -139,6 +142,9 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
+    var toUpdateDetails =
+        widget.toUpdate.isUndefinedOrNull ? "" : widget.toUpdate;
+    // print("ToUpdate ${widget.toUpdate.isUndefinedOrNull ? "" : toUpdateDetails![""]}");
     var arrColors = [
       Color.fromARGB(255, 0, 108, 158),
       Color.fromARGB(255, 255, 92, 92),
@@ -413,15 +419,15 @@ class _HeaderState extends State<Header> {
                               OutlineInputBorder(borderSide: BorderSide.none),
                         ),
                         items: _Year.map((e) => DropdownMenuItem(
-                              value: e['year'],
+                              value: e['id'],
                               child: Text(e['year']),
                             )).toList(),
                         value: _selectedValYear,
                         onChanged: (val) {
                           setState(() {
-                            _selectedValYear = val as String;
+                            _selectedValYear = val as int;
                             _updateSearchButtonState();
-                            print("Year ID $val");
+                            // print("Year ID $val");
                           });
                         },
                       ),
@@ -511,18 +517,13 @@ class _HeaderState extends State<Header> {
                         onPressed: _isSearchButtonEnabled
                             ? () {
                                 setState(
-                                  ()  {
-                                     fetchDeptStaffList(dept_ID);
+                                  () {
+                                    fetchDeptStaffList(dept_ID);
                                     _isShow = !_isShow;
 
-                                    print("Dept $dept_ID");
-                                    print("cls $class_ID");
-                                    print("batch $batch_ID");
-                                 
-
-                                     context
+                                    context
                                         .read<TimetableAdminCubit>()
-                                        .fetchDeptClassTimeTableList();
+                                        .fetchDeptClassTimeTableList(1,1,1);
                                   },
                                 );
                               }
@@ -722,7 +723,7 @@ class _HeaderState extends State<Header> {
                                 // print(cCode.runtimeType);
                                 return InkWell(
                                   onTap: () {
-                                    print("Tile ${deptStaffSub[subindex]}");
+                                    // print("Tile ${deptStaffSub[subindex]}");
                                   },
                                   child: Padding(
                                     padding: EdgeInsets.only(
@@ -825,10 +826,32 @@ class _HeaderState extends State<Header> {
                 width: width * 0.15,
                 height: height * 0.07,
                 child: ElevatedButton(
-                  onPressed: () {
-                    context
+                  onPressed: () async {
+                    await context
                         .read<TimetableAdminCubit>()
-                        .updateDeptClassTimetable(1, 1, 1, 351, 1, 1, 1);
+                        .updateDeptClassTimetable(
+                            1,
+                            1,
+                            1,
+                            351,
+                            widget.toUpdate.isUndefinedOrNull
+                                ? 1
+                                : widget.toUpdate!["dayorder"],
+                            widget.toUpdate.isUndefinedOrNull
+                                ? 1
+                                : widget.toUpdate!["period_no"],
+                            widget.toUpdate.isUndefinedOrNull
+                                ? 1
+                                : widget.toUpdate!["sub_code"]);
+                  // await  context
+                  //       .read<TimetableAdminCubit>()
+                  //       .fetchDeptClassTimeTableList(1,1,1);
+                    // print("DeptID  ${dept_ID}");
+                    // print("BatchID  ${batch_ID}");
+                    // print("ClassID  ${class_ID}");
+                    // print("DayOrder  ${widget.toUpdate!["dayorder"]}");
+                    // print("PeriodNO  ${widget.toUpdate!["period_no"]}");
+                    // print("SubCode  ${widget.toUpdate!["sub_code"]}");
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(

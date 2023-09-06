@@ -43,16 +43,17 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     }
   }
 
-  fetchDeptClassTimeTableList() async {
+  fetchDeptClassTimeTableList(deptID, classID, batchID) async {
     emit(state.copyWith(status: "loading"));
     try {
       var deptClassTimetable =
-          await _api_service.deptClassTimeTableList();
+          await _api_service.deptClassTimeTableList(deptID, classID, batchID);
       deptClassTimetable['data'].forEach((key, value) {
         if (value is List) {
           value.sort((a, b) {
-            final periodA = int.tryParse(a['period_no']);
-            final periodB = int.tryParse(b['period_no']);
+            final periodA = a['period_no'];
+            final periodB = b['period_no'];
+            // final periodB = int.tryParse(b['period_no']);
             return periodA != null && periodB != null ? periodA - periodB : 0;
           });
         }
@@ -118,8 +119,8 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       list['data']['details'].forEach((key, value) {
         if (value is List) {
           value.sort((a, b) {
-            final periodA = int.tryParse(a['period_no']);
-            final periodB = int.tryParse(b['period_no']);
+            final periodA = a['period_no'];
+            final periodB = b['period_no'];
             return periodA != null && periodB != null ? periodA - periodB : 0;
           });
         }
@@ -149,12 +150,28 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     }
   }
 
+  getDayorderPeriodNoSbuCode(update) async {
+    // emit(state.copyWith(status: "loading"));
+    try {
+      // print("Cubit update $update");
+      emit(state.copyWith(updateDetails: update, status: "loaded3"));
+    } catch (e) {
+      print("GetDayorderPeriodNoSbuCode $e");
+    }
+  }
+
   updateDeptClassTimetable(
-      deptId, classId, batchId, userId, dayOrder, periodNo, subCode) async {
-    emit(state.copyWith(status: "loading"));
-    var updateDeptClassTimetable = await _api_service.updateDeptClassTimeTable(
-        deptId, classId, batchId, userId, dayOrder, periodNo, subCode);
-    try {} catch (e) {
+      deptID, classID, batchID, userID, dayID, periodID, subID) async {
+    // emit(state.copyWith(status: "loading"));
+
+    try {
+      var updateDeptClassTimetable =
+          await _api_service.updateDeptClassTimeTable(
+              deptID, classID, batchID, userID, dayID, periodID, subID);
+      // await fetchDeptClassTimeTableList(deptID, classID, batchID);
+
+      // emit(state.copyWith(status: "loaded"));
+    } catch (e) {
       print("UpdateDeptClassTimetable $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }

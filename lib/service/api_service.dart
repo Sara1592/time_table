@@ -17,9 +17,9 @@ class API_Service {
     return response['data'][0]["batch_details"];
   }
 
-  Future deptClassTimeTableList() async {
-    final response =
-        await _helper.get("timetablelist?dept_id=1&class_code=1&batch_id=1");
+  Future deptClassTimeTableList(deptID, classID, batchID) async {
+    final response = await _helper.get(
+        "timetablelist?dept_id=$deptID&class_code=$classID&batch_id=$batchID");
     return response;
   }
 
@@ -40,26 +40,16 @@ class API_Service {
   }
 
   Future updateDeptClassTimeTable(
-    deptId,
-    classId,
-    batchId,
-    userId,
-    dayOrder,
-    periodNo,
-    subCode,
-  ) async {
-    final response = await _helper.post(
-      "updatetimetable",
-      {
-        "dept_id": deptId,
-        "class_code": classId,
-        "batch_id": batchId,
-        "user_id": userId,
-        "dayorder": dayOrder,
-        "period_no": periodNo,
-        "sub_code": subCode
-      },
-    );
+      deptID, classID, batchID, userID, dayID, periodID, subID) async {
+    final response = await _helper.post("updatetimetable", {
+      "dept_id": deptID,
+      "class_code": classID,
+      "batch_id": batchID,
+      "user_id": userID,
+      "dayorder": dayID,
+      "period_no": periodID,
+      "sub_code": subID
+    });
     // print(response);
     // return response["data"];
   }

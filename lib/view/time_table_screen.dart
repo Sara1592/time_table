@@ -9,10 +9,12 @@ import 'components/timetable_content.dart';
 class TimeTableScreen extends StatelessWidget {
   List? timeTable;
   List? staffTimeTable;
+  Map<String, dynamic>? toUpdate;
   TimeTableScreen({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
+    required this.toUpdate,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class TimeTableScreen extends StatelessWidget {
       body: TimeTableDashboard(
         timeTable: timeTable,
         staffTimeTable: staffTimeTable,
+        toUpdate: toUpdate,
       ),
     );
   }

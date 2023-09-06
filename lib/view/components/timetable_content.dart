@@ -16,10 +16,12 @@ import 'header.dart';
 class TimeTableDashboard extends StatefulWidget {
   List? timeTable;
   List? staffTimeTable;
+  Map<String, dynamic>? toUpdate;
   TimeTableDashboard({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
+    required this.toUpdate,
   }) : super(key: key);
 
   @override
@@ -53,7 +55,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(top: height * 0.03),
-                    child: Header(),
+                    child: Header(toUpdate: widget.toUpdate),
                   ),
                   // StaffHorizontList(),
                 ],
