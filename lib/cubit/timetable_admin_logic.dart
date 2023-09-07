@@ -17,13 +17,11 @@ class TimetableAdminLogic extends StatelessWidget {
           // print("List1 ${state.list}");
           // print("List2 ${state.list}");
           // print("ListMessage ${state.dayorder_1}");
-          // if (state.status == "dataList") {
+          // if (state.status == "success") {
           //   return TimeTableScreen(
-          //     timeTable: state.list,
-          //     staffTimeTable: state.list1,
-          //     toUpdate: state.updateDetails,
-          //     newList: state.dayorder_1,
-
+          //     timeTable: null,
+          //     staffTimeTable: null,
+          //     toUpdate: null,
           //   );
           // }
 
@@ -31,7 +29,6 @@ class TimetableAdminLogic extends StatelessWidget {
             timeTable: state.list,
             staffTimeTable: state.list1,
             toUpdate: state.updateDetails,
-            newList: state.dayorder_1,
           );
         },
         listener: (context, state) {
@@ -46,6 +43,14 @@ class TimetableAdminLogic extends StatelessWidget {
               title: 'Oops...',
               text: state.errorMessage,
             );
+          } else if (state.status == 'success') {
+            EasyLoading.dismiss();
+            QuickAlert.show(
+              context: context,
+              type: QuickAlertType.success,
+              title: 'Success...',
+              text: "Uploaded Successfully",
+            );
           } else if (state.status == 'loaded1') {
             // print(state.list);
             EasyLoading.dismiss();
@@ -55,7 +60,7 @@ class TimetableAdminLogic extends StatelessWidget {
           } else if (state.status == 'loaded') {
             // print(state.list);
             EasyLoading.dismiss();
-          } else if (state.status == 'dataList') {
+          } else if (state.status == 'success') {
             // print(state.list);
             EasyLoading.dismiss();
           }

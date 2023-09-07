@@ -17,13 +17,13 @@ class TimeTableDashboard extends StatefulWidget {
   List? timeTable;
   List? staffTimeTable;
   Map<String, dynamic>? toUpdate;
-  List? newList;
+  
   TimeTableDashboard({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
     required this.toUpdate,
-    required this.newList,
+   
   }) : super(key: key);
 
   @override

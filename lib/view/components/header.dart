@@ -630,7 +630,7 @@ class _HeaderState extends State<Header> {
                                   isTrue = !isTrue;
                                   context
                                       .read<TimetableAdminCubit>()
-                                      .getDeptStaffWeekTimetable();
+                                      .getDeptStaffWeekTimetable(351);
                                   // print(staffdata[index]['user_id'].toString());
                                   // filterFunc(
                                   //     staffdata[index]['staffid'].toString());

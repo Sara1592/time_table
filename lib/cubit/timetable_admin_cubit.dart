@@ -111,19 +111,19 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       var deptStaff = await _api_service.deptStaffList(val);
       deptStaffList = deptStaff;
       // print("Satff List ${deptStaffList}");
-      emit(state.copyWith(status: "loaded"));
+      emit(state.copyWith(status: "loaded2"));
     } catch (e) {
       print("GetDeptStaffList $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 
-  getDeptStaffWeekTimetable() async {
+  getDeptStaffWeekTimetable(userID) async {
     emit(state.copyWith(status: "loading"));
     try {
       List deptStaffWeekTimetable = [];
 
-      var list = await _api_service.deptStaffWeekTimetable();
+      var list = await _api_service.deptStaffWeekTimetable(userID);
       list['data']['details'].forEach((key, value) {
         if (value is List) {
           value.sort((a, b) {
@@ -151,38 +151,38 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       // print(deptStaffSub.runtimeType);
       deptStaffSubList = deptStaffSub;
       // print(deptStaffSubList);
-      emit(state.copyWith(status: "loaded"));
+      emit(state.copyWith(status: "loaded3"));
     } catch (e) {
       print("GetDeptStaffSubjectList $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
 
-  getDayorderPeriodNoSbuCode(dayOrderList, dayOrder, periodNo, subCode) async {
-    // emit(state.copyWith(status: "loading"));
-    try {
-      // print("Cubit update $update");
-      var obj = {
-        "dayorder": dayOrder,
-        "period_no": periodNo,
-        "sub_code": subCode
-      };
-      emit(state.copyWith(
-          updateDetails: obj, status: "dataList", dayorder_1: dayOrderList));
-    } catch (e) {
-      print("GetDayorderPeriodNoSbuCode $e");
-    }
-  }
+  // getDayorderPeriodNoSbuCode(dayOrderList, dayOrder, periodNo, subCode) async {
+  //   // emit(state.copyWith(status: "loading"));
+  //   try {
+  //     // print("Cubit update $update");
+  //     var obj = {
+  //       "dayorder": dayOrder,
+  //       "period_no": periodNo,
+  //       "sub_code": subCode
+  //     };
+  //     emit(state.copyWith(
+  //         updateDetails: obj, status: "dataList", dayorder_1: dayOrderList));
+  //   } catch (e) {
+  //     print("GetDayorderPeriodNoSbuCode $e");
+  //   }
+  // }
 
   updateDeptClassTimetable(finalList) async {
-    // emit(state.copyWith(status: "loading"));
+    emit(state.copyWith(status: "loading"));
 
     try {
       var updateDeptClassTimetable =
           await _api_service.updateDeptClassTimeTable(finalList);
       // await fetchDeptClassTimeTableList(deptID, classID, batchID);
 
-      // emit(state.copyWith(status: "loaded"));
+      emit(state.copyWith(status: "success"));
     } catch (e) {
       print("UpdateDeptClassTimetable $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));

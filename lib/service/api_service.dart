@@ -28,8 +28,8 @@ class API_Service {
     return response["data"]["users"];
   }
 
-  Future deptStaffWeekTimetable() async {
-    final response = await _helper.get("stafftimetable?user_id=351");
+  Future deptStaffWeekTimetable(userID) async {
+    final response = await _helper.get("stafftimetable?user_id=$userID");
     return response;
   }
 
