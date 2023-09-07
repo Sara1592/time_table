@@ -10,11 +10,13 @@ class TimeTableScreen extends StatelessWidget {
   List? timeTable;
   List? staffTimeTable;
   Map<String, dynamic>? toUpdate;
+  List? newList;
   TimeTableScreen({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
     required this.toUpdate,
+    required this.newList
   }) : super(key: key);
 
   @override
@@ -27,6 +29,7 @@ class TimeTableScreen extends StatelessWidget {
         timeTable: timeTable,
         staffTimeTable: staffTimeTable,
         toUpdate: toUpdate,
+        newList: newList,
       ),
     );
   }

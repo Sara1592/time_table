@@ -90,7 +90,15 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       // print(deptClassTimeTableList);
       // deptClassTimeTableList.add(deptClassTimetable);
       // print(deptClassTimeTable);
-      emit(state.copyWith(status: "loaded1", list: deptClassTimeTableList));
+      var datails = {
+        "dept_id": deptID,
+        "batch_id": batchID,
+        "class_code": classID,
+      };
+      emit(state.copyWith(
+          status: "loaded1",
+          list: deptClassTimeTableList,
+          updateDetails: datails));
     } catch (e) {
       print("FetchDeptClassTimeTableList $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
@@ -150,24 +158,28 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
     }
   }
 
-  getDayorderPeriodNoSbuCode(update) async {
+  getDayorderPeriodNoSbuCode(dayOrderList, dayOrder, periodNo, subCode) async {
     // emit(state.copyWith(status: "loading"));
     try {
       // print("Cubit update $update");
-      emit(state.copyWith(updateDetails: update, status: "loaded3"));
+      var obj = {
+        "dayorder": dayOrder,
+        "period_no": periodNo,
+        "sub_code": subCode
+      };
+      emit(state.copyWith(
+          updateDetails: obj, status: "dataList", dayorder_1: dayOrderList));
     } catch (e) {
       print("GetDayorderPeriodNoSbuCode $e");
     }
   }
 
-  updateDeptClassTimetable(
-      deptID, classID, batchID, userID, dayID, periodID, subID) async {
+  updateDeptClassTimetable(finalList) async {
     // emit(state.copyWith(status: "loading"));
 
     try {
       var updateDeptClassTimetable =
-          await _api_service.updateDeptClassTimeTable(
-              deptID, classID, batchID, userID, dayID, periodID, subID);
+          await _api_service.updateDeptClassTimeTable(finalList);
       // await fetchDeptClassTimeTableList(deptID, classID, batchID);
 
       // emit(state.copyWith(status: "loaded"));

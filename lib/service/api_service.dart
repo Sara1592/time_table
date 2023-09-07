@@ -40,16 +40,8 @@ class API_Service {
   }
 
   Future updateDeptClassTimeTable(
-      deptID, classID, batchID, userID, dayID, periodID, subID) async {
-    final response = await _helper.post("updatetimetable", {
-      "dept_id": deptID,
-      "class_code": classID,
-      "batch_id": batchID,
-      "user_id": userID,
-      "dayorder": dayID,
-      "period_no": periodID,
-      "sub_code": subID
-    });
+      finalList) async {
+    final response = await _helper.post("updatetimetable", finalList);
     // print(response);
     // return response["data"];
   }

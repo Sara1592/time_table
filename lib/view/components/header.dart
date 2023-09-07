@@ -816,69 +816,69 @@ class _HeaderState extends State<Header> {
             ],
           ),
         )),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: width * 0.79, top: height * 0.02),
-              child: SizedBox(
-                width: width * 0.15,
-                height: height * 0.07,
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await context
-                        .read<TimetableAdminCubit>()
-                        .updateDeptClassTimetable(
-                            1,
-                            1,
-                            1,
-                            351,
-                            widget.toUpdate.isUndefinedOrNull
-                                ? 1
-                                : widget.toUpdate!["dayorder"],
-                            widget.toUpdate.isUndefinedOrNull
-                                ? 1
-                                : widget.toUpdate!["period_no"],
-                            widget.toUpdate.isUndefinedOrNull
-                                ? 1
-                                : widget.toUpdate!["sub_code"]);
-                  // await  context
-                  //       .read<TimetableAdminCubit>()
-                  //       .fetchDeptClassTimeTableList(1,1,1);
-                    // print("DeptID  ${dept_ID}");
-                    // print("BatchID  ${batch_ID}");
-                    // print("ClassID  ${class_ID}");
-                    // print("DayOrder  ${widget.toUpdate!["dayorder"]}");
-                    // print("PeriodNO  ${widget.toUpdate!["period_no"]}");
-                    // print("SubCode  ${widget.toUpdate!["sub_code"]}");
-                  },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 79, 140, 0)),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Save Details',
-                        style: GoogleFonts.montserrat(
-                            fontSize: 17,
-                            color: const Color.fromARGB(255, 255, 255, 255),
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
+        // Column(
+        //   mainAxisAlignment: MainAxisAlignment.end,
+        //   crossAxisAlignment: CrossAxisAlignment.end,
+        //   children: [
+        //     Padding(
+        //       padding: EdgeInsets.only(left: width * 0.79, top: height * 0.02),
+        //       child: SizedBox(
+        //         width: width * 0.15,
+        //         height: height * 0.07,
+        //         child: ElevatedButton(
+        //           onPressed: () async {
+        //             // await context
+        //             //     .read<TimetableAdminCubit>()
+        //             //     .updateDeptClassTimetable(
+        //             //         1,
+        //             //         1,
+        //             //         1,
+        //             //         351,
+        //             //         widget.toUpdate.isUndefinedOrNull
+        //             //             ? 1
+        //             //             : widget.toUpdate!["dayorder"],
+        //             //         widget.toUpdate.isUndefinedOrNull
+        //             //             ? 1
+        //             //             : widget.toUpdate!["period_no"],
+        //             //         widget.toUpdate.isUndefinedOrNull
+        //             //             ? 1
+        //             //             : widget.toUpdate!["sub_code"]);
+        //           // await  context
+        //           //       .read<TimetableAdminCubit>()
+        //           //       .fetchDeptClassTimeTableList(1,1,1);
+        //             // print("DeptID  ${dept_ID}");
+        //             // print("BatchID  ${batch_ID}");
+        //             // print("ClassID  ${class_ID}");
+        //             // print("DayOrder  ${widget.toUpdate!["dayorder"]}");
+        //             // print("PeriodNO  ${widget.toUpdate!["period_no"]}");
+        //             // print("SubCode  ${widget.toUpdate!["sub_code"]}");
+        //           },
+        //           style: ButtonStyle(
+        //             backgroundColor: MaterialStateProperty.all(
+        //                 Color.fromARGB(255, 79, 140, 0)),
+        //             shape: MaterialStateProperty.all(
+        //               RoundedRectangleBorder(
+        //                 borderRadius: BorderRadius.circular(25),
+        //               ),
+        //             ),
+        //           ),
+        //           child: Row(
+        //             mainAxisAlignment: MainAxisAlignment.center,
+        //             children: [
+        //               Text(
+        //                 'Save Details',
+        //                 style: GoogleFonts.montserrat(
+        //                     fontSize: 17,
+        //                     color: const Color.fromARGB(255, 255, 255, 255),
+        //                     fontWeight: FontWeight.w700),
+        //               ),
+        //             ],
+        //           ),
+        //         ),
+        //       ),
+        //     ),
+        //   ],
+        // ),
       ],
     );
   }

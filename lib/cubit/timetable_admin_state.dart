@@ -5,6 +5,7 @@ class TimetableAdminState extends Equatable {
   final String? errorMessage;
   final List? list;
   final List? list1;
+  final List? dayorder_1;
   final Map<String, dynamic>? updateDetails;
   final String? message;
   const TimetableAdminState(
@@ -12,6 +13,7 @@ class TimetableAdminState extends Equatable {
       this.errorMessage,
       this.list,
       this.list1,
+      this.dayorder_1,
       this.updateDetails,
       this.message});
   @override
@@ -21,6 +23,7 @@ class TimetableAdminState extends Equatable {
     String? errorMessage,
     List? list,
     List? list1,
+    List? dayorder_1,
     Map<String, dynamic>? updateDetails,
     final String? message,
   }) {
@@ -29,6 +32,7 @@ class TimetableAdminState extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
       list: list ?? this.list,
       list1: list1 ?? this.list1,
+      dayorder_1: dayorder_1 ?? this.dayorder_1,
       updateDetails: updateDetails ?? this.updateDetails,
       message: message ?? this.message,
     );

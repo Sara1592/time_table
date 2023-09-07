@@ -17,11 +17,13 @@ class TimeTableDashboard extends StatefulWidget {
   List? timeTable;
   List? staffTimeTable;
   Map<String, dynamic>? toUpdate;
+  List? newList;
   TimeTableDashboard({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
     required this.toUpdate,
+    required this.newList,
   }) : super(key: key);
 
   @override
@@ -75,7 +77,7 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                           children: [
                             Row(
                               children: [
-                                PeriodAllocation(timeTable: widget.timeTable),
+                                PeriodAllocation(timeTable: widget.timeTable, deptDetails: widget.toUpdate),
                               ],
                             ),
                           ],
@@ -98,7 +100,8 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                                   children: [
                                     StaffPeroidAllocation(
                                       staffTimeTable: widget.staffTimeTable,
-                                    )
+                                    ),
+                                    
                                   ],
                                 ),
                               ],

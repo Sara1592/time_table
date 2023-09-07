@@ -15,12 +15,23 @@ class TimetableAdminLogic extends StatelessWidget {
       body: BlocConsumer<TimetableAdminCubit, TimetableAdminState>(
         builder: (context, state) {
           // print("List1 ${state.list}");
-          // print("List2 ${state.updateDetails}");
+          // print("List2 ${state.list}");
+          // print("ListMessage ${state.dayorder_1}");
+          // if (state.status == "dataList") {
+          //   return TimeTableScreen(
+          //     timeTable: state.list,
+          //     staffTimeTable: state.list1,
+          //     toUpdate: state.updateDetails,
+          //     newList: state.dayorder_1,
+
+          //   );
+          // }
 
           return TimeTableScreen(
             timeTable: state.list,
             staffTimeTable: state.list1,
             toUpdate: state.updateDetails,
+            newList: state.dayorder_1,
           );
         },
         listener: (context, state) {
@@ -42,6 +53,9 @@ class TimetableAdminLogic extends StatelessWidget {
             // print(state.list);
             EasyLoading.dismiss();
           } else if (state.status == 'loaded') {
+            // print(state.list);
+            EasyLoading.dismiss();
+          } else if (state.status == 'dataList') {
             // print(state.list);
             EasyLoading.dismiss();
           }
