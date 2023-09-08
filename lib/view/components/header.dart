@@ -82,6 +82,7 @@ class _HeaderState extends State<Header> {
     _selectedValBat = null;
     _selectedValYear = null;
     _selectedValClass = null;
+    // context.read<TimetableAdminCubit>().deptClassTimeTableList = [];
     await context.read<TimetableAdminCubit>().fetchDeptBatchList(val);
     _Batch = context.read<TimetableAdminCubit>().deptBatchList;
     _Year = _Batch;
@@ -143,7 +144,7 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     var toUpdateDetails =
-        widget.toUpdate.isUndefinedOrNull ? "" : widget.toUpdate;
+        widget.toUpdate == null ? "" : widget.toUpdate;
     // print("ToUpdate ${widget.toUpdate.isUndefinedOrNull ? "" : toUpdateDetails![""]}");
     var arrColors = [
       Color.fromARGB(255, 0, 108, 158),

@@ -30,32 +30,32 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
 
   @override
   Widget build(BuildContext context) {
-    var dayOrder_1 = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_1 = widget.staffTimeTable== null
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:1"]
             .map((e) => e["subjectDetails"])
             .toList();
-    var dayOrder_2 = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_2 = widget.staffTimeTable== null
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:2"]
             .map((e) => e["subjectDetails"])
             .toList();
-    var dayOrder_3 = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_3 = widget.staffTimeTable== null
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:3"]
             .map((e) => e["subjectDetails"])
             .toList();
-    var dayOrder_4 = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_4 = widget.staffTimeTable== null
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:4"]
             .map((e) => e["subjectDetails"])
             .toList();
-    var dayOrder_5 = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_5 = widget.staffTimeTable== null
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:5"]
             .map((e) => e["subjectDetails"])
             .toList();
-    var dayOrder_6 = widget.staffTimeTable.isUndefinedOrNull
+    var dayOrder_6 = widget.staffTimeTable== null
         ? []
         : widget.staffTimeTable![0]["data"]["details"]["dayorder:6"]
             .map((e) => e["subjectDetails"])
@@ -121,14 +121,14 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                itemCount: widget.staffTimeTable== null
                     ? 5
                     : dayOrder_1.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
-                        message: widget.staffTimeTable.isUndefinedOrNull
+                        message: widget.staffTimeTable== null
                             ? ""
                             : ((dayOrder_1[index]["sub_name"] == "null"))
                                 ? ""
@@ -144,7 +144,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: widget.staffTimeTable.isUndefinedOrNull
+                        child: widget.staffTimeTable== null
                             ? Empty_Container()
                             : (dayOrder_1[index]["sub_name"] == "null")
                                 ? StaffSubjectFree(subName: 'FREE')
@@ -278,14 +278,14 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                itemCount: widget.staffTimeTable== null
                     ? 5
                     : dayOrder_2.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
-                        message: widget.staffTimeTable.isUndefinedOrNull
+                        message: widget.staffTimeTable== null
                             ? ""
                             : ((dayOrder_2[index]["sub_name"] == "null"))
                                 ? ""
@@ -301,7 +301,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: widget.staffTimeTable.isUndefinedOrNull
+                        child: widget.staffTimeTable== null
                             ? Empty_Container()
                             : (dayOrder_2[index]["sub_name"] == "null")
                                 ? StaffSubjectFree(subName: 'FREE')
@@ -435,14 +435,14 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                itemCount: widget.staffTimeTable== null
                     ? 5
                     : dayOrder_3.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
-                        message: widget.staffTimeTable.isUndefinedOrNull
+                        message: widget.staffTimeTable== null
                             ? ""
                             : ((dayOrder_3[index]["sub_name"] == "null"))
                                 ? ""
@@ -458,7 +458,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: widget.staffTimeTable.isUndefinedOrNull
+                        child: widget.staffTimeTable== null
                             ? Empty_Container()
                             : (dayOrder_3[index]["sub_name"] == "null")
                                 ? StaffSubjectFree(subName: 'FREE')
@@ -592,14 +592,14 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                itemCount: widget.staffTimeTable== null
                     ? 5
                     : dayOrder_4.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
-                        message: widget.staffTimeTable.isUndefinedOrNull
+                        message: widget.staffTimeTable== null
                             ? ""
                             : ((dayOrder_4[index]["sub_name"] == "null"))
                                 ? ""
@@ -615,7 +615,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: widget.staffTimeTable.isUndefinedOrNull
+                        child: widget.staffTimeTable== null
                             ? Empty_Container()
                             : (dayOrder_4[index]["sub_name"] == "null")
                                 ? StaffSubjectFree(subName: 'FREE')
@@ -749,14 +749,14 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                itemCount: widget.staffTimeTable== null
                     ? 5
                     : dayOrder_5.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
-                        message: widget.staffTimeTable.isUndefinedOrNull
+                        message: widget.staffTimeTable== null
                             ? ""
                             : ((dayOrder_5[index]["sub_name"] == "null"))
                                 ? ""
@@ -772,7 +772,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: widget.staffTimeTable.isUndefinedOrNull
+                        child: widget.staffTimeTable== null
                             ? Empty_Container()
                             : (dayOrder_5[index]["sub_name"] == "null")
                                 ? StaffSubjectFree(subName: 'FREE')
@@ -906,14 +906,14 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ),
               Expanded(
                   child: ListView.builder(
-                itemCount: widget.staffTimeTable.isUndefinedOrNull
+                itemCount: widget.staffTimeTable== null
                     ? 5
                     : dayOrder_6.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       Tooltip(
-                        message: widget.staffTimeTable.isUndefinedOrNull
+                        message: widget.staffTimeTable== null
                             ? ""
                             : ((dayOrder_6[index]["sub_name"] == "null"))
                                 ? ""
@@ -929,7 +929,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF262626),
                         ),
-                        child: widget.staffTimeTable.isUndefinedOrNull
+                        child: widget.staffTimeTable== null
                             ? Empty_Container()
                             : (dayOrder_6[index]["sub_name"] == "null")
                                 ? StaffSubjectFree(subName: 'FREE')

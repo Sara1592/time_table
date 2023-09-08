@@ -47,33 +47,33 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
   Widget build(BuildContext context) {
     // print(widget.deptDetails.isUndefinedOrNull ? "empty" : widget.deptDetails);
     var deptDetails =
-        widget.deptDetails.isUndefinedOrNull ? "empty" : widget.deptDetails;
-    var dayOrder_1 = widget.timeTable.isNull
+        widget.deptDetails== null ? "empty" : widget.deptDetails;
+    var dayOrder_1 = widget.timeTable== null
         ? []
         : widget.timeTable![0]["data"]["dayorder_1"]
             .map((e) => e["subject_detail"])
             .toList();
-    var dayOrder_2 = widget.timeTable.isNull
+    var dayOrder_2 = widget.timeTable== null
         ? []
         : widget.timeTable![0]["data"]["dayorder_2"]
             .map((e) => e["subject_detail"])
             .toList();
-    var dayOrder_3 = widget.timeTable.isNull
+    var dayOrder_3 = widget.timeTable== null
         ? []
         : widget.timeTable![0]["data"]["dayorder_3"]
             .map((e) => e["subject_detail"])
             .toList();
-    var dayOrder_4 = widget.timeTable.isNull
+    var dayOrder_4 = widget.timeTable== null
         ? []
         : widget.timeTable![0]["data"]["dayorder_4"]
             .map((e) => e["subject_detail"])
             .toList();
-    var dayOrder_5 = widget.timeTable.isNull
+    var dayOrder_5 = widget.timeTable== null
         ? []
         : widget.timeTable![0]["data"]["dayorder_5"]
             .map((e) => e["subject_detail"])
             .toList();
-    var dayOrder_6 = widget.timeTable.isNull
+    var dayOrder_6 = widget.timeTable== null
         ? []
         : widget.timeTable![0]["data"]["dayorder_6"]
             .map((e) => e["subject_detail"])
@@ -160,7 +160,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable.isUndefinedOrNull
+                    itemCount: widget.timeTable== null
                         ? 5
                         : dayOrder_1.length,
                     itemBuilder: (context, index) {
@@ -174,11 +174,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable.isUndefinedOrNull)
+                                    color: (widget.timeTable== null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_1[index]['color_code'])),
-                                    child: (widget.timeTable.isUndefinedOrNull)
+                                    child: (widget.timeTable== null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -284,7 +284,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable.isUndefinedOrNull
+                    itemCount: widget.timeTable== null
                         ? 5
                         : dayOrder_2.length,
                     itemBuilder: (context, index) {
@@ -300,11 +300,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable.isUndefinedOrNull)
+                                    color: (widget.timeTable== null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_2[index]['color_code'])),
-                                    child: (widget.timeTable.isUndefinedOrNull)
+                                    child: (widget.timeTable== null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -357,7 +357,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable.isUndefinedOrNull
+                    itemCount: widget.timeTable== null
                         ? 5
                         : dayOrder_3.length,
                     itemBuilder: (context, index) {
@@ -373,11 +373,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable.isUndefinedOrNull)
+                                    color: (widget.timeTable== null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_3[index]['color_code'])),
-                                    child: (widget.timeTable.isUndefinedOrNull)
+                                    child: (widget.timeTable== null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -432,7 +432,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable.isUndefinedOrNull
+                    itemCount: widget.timeTable == null
                         ? 5
                         : dayOrder_4.length,
                     itemBuilder: (context, index) {
@@ -448,11 +448,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable.isUndefinedOrNull)
+                                    color: (widget.timeTable== null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_4[index]['color_code'])),
-                                    child: (widget.timeTable.isUndefinedOrNull)
+                                    child: (widget.timeTable== null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -507,7 +507,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable.isUndefinedOrNull
+                    itemCount: widget.timeTable== null
                         ? 5
                         : dayOrder_5.length,
                     itemBuilder: (context, index) {
@@ -523,11 +523,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable.isUndefinedOrNull)
+                                    color: (widget.timeTable== null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_5[index]['color_code'])),
-                                    child: (widget.timeTable.isUndefinedOrNull)
+                                    child: (widget.timeTable== null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -582,7 +582,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable.isUndefinedOrNull
+                    itemCount: widget.timeTable== null
                         ? 5
                         : dayOrder_6.length,
                     itemBuilder: (context, index) {
@@ -596,11 +596,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable.isUndefinedOrNull)
+                                    color: (widget.timeTable== null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_6[index]['color_code'])),
-                                    child: (widget.timeTable.isUndefinedOrNull)
+                                    child: (widget.timeTable == null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
