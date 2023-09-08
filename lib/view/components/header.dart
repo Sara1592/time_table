@@ -237,6 +237,7 @@ class _HeaderState extends State<Header> {
                   ),
                   SizedBox(
                     width: width * 0.15,
+                    height: height * 0.06,
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.00),
                       child: DropdownButtonFormField(
@@ -256,7 +257,7 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 45.0),
+                                color: Colors.white, size: 40.0),
                           ),
                           contentPadding:
                               EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
@@ -311,6 +312,7 @@ class _HeaderState extends State<Header> {
                   ),
                   SizedBox(
                     width: width * 0.13,
+                    height: height * 0.06,
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: DropdownButtonFormField(
@@ -329,7 +331,7 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 45.0),
+                                color: Colors.white, size: 40.0),
                           ),
                           contentPadding:
                               EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
@@ -384,6 +386,7 @@ class _HeaderState extends State<Header> {
                   ),
                   SizedBox(
                     width: width * 0.15,
+                    height: height * 0.06,
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: DropdownButtonFormField(
@@ -402,7 +405,7 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 45.0),
+                                color: Colors.white, size: 40.0),
                           ),
                           contentPadding:
                               EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
@@ -453,6 +456,7 @@ class _HeaderState extends State<Header> {
                   ),
                   SizedBox(
                     width: width * 0.19,
+                    height: height * 0.06,
                     child: Padding(
                       padding: const EdgeInsets.only(left: 40.0),
                       child: DropdownButtonFormField(
@@ -471,7 +475,7 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 45.0),
+                                color: Colors.white, size: 40.0),
                           ),
                           contentPadding:
                               EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
@@ -512,7 +516,7 @@ class _HeaderState extends State<Header> {
                         left: width * 0.05, top: height * 0.030),
                     child: SizedBox(
                       width: width * 0.15,
-                      height: height * 0.07,
+                      height: height * 0.06,
                       child: ElevatedButton(
                         onPressed: _isSearchButtonEnabled
                             ? () {
@@ -523,7 +527,7 @@ class _HeaderState extends State<Header> {
 
                                     context
                                         .read<TimetableAdminCubit>()
-                                        .fetchDeptClassTimeTableList(1,1,1);
+                                        .fetchDeptClassTimeTableList(1, 1, 1);
                                   },
                                 );
                               }
@@ -592,7 +596,7 @@ class _HeaderState extends State<Header> {
             children: [
               Padding(
                 padding:
-                    EdgeInsets.only(top: height * 0.01, left: width * 0.09),
+                    EdgeInsets.only(top: height * 0.005, left: width * 0.09),
                 child: Text("Staff Details",
                     style: GoogleFonts.montserrat(
                       textStyle: const TextStyle(
@@ -711,7 +715,7 @@ class _HeaderState extends State<Header> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: EdgeInsets.only(
-                            left: width * 0.06, top: height * 0.03),
+                            left: width * 0.06, top: height * 0.01),
                         child: SizedBox(
                           height: height * 0.12,
                           child: ListView.builder(

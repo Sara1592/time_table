@@ -17,13 +17,12 @@ class TimeTableDashboard extends StatefulWidget {
   List? timeTable;
   List? staffTimeTable;
   Map<String, dynamic>? toUpdate;
-  
+
   TimeTableDashboard({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
     required this.toUpdate,
-   
   }) : super(key: key);
 
   @override
@@ -51,12 +50,12 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
           //   child: CustomAppbar(),
           // ),
           Container(
-              height: height * 0.55,
+              height: height * 0.38,
               color: Color.fromARGB(255, 255, 255, 255),
               child: Column(
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(top: height * 0.03),
+                    padding: EdgeInsets.only(top: height * 0.01),
                     child: Header(toUpdate: widget.toUpdate),
                   ),
                   // StaffHorizontList(),
@@ -77,7 +76,9 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                           children: [
                             Row(
                               children: [
-                                PeriodAllocation(timeTable: widget.timeTable, deptDetails: widget.toUpdate),
+                                PeriodAllocation(
+                                    timeTable: widget.timeTable,
+                                    deptDetails: widget.toUpdate),
                               ],
                             ),
                           ],
@@ -101,7 +102,6 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                                     StaffPeroidAllocation(
                                       staffTimeTable: widget.staffTimeTable,
                                     ),
-                                    
                                   ],
                                 ),
                               ],
