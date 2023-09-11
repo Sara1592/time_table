@@ -16,10 +16,12 @@ import 'timetable_content.dart';
 
 class PeriodAllocation extends StatefulWidget {
   List? timeTable;
+  Map<String, dynamic>? periodsUpdate;
   Map<String, dynamic>? deptDetails;
   PeriodAllocation({
     Key? key,
     required this.timeTable,
+    this.periodsUpdate,
     required this.deptDetails,
   }) : super(key: key);
 
@@ -37,6 +39,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
   List<Widget> dayodersix = [];
   var update;
   List finalListToUpdate = [];
+  Map<String, dynamic> periodsUpdateList = {};
   @override
   void initState() {
     // TODO: implement initState
@@ -45,39 +48,68 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
 
   @override
   Widget build(BuildContext context) {
-    // print(widget.deptDetails.isUndefinedOrNull ? "empty" : widget.deptDetails);
-    var deptDetails =
-        widget.deptDetails== null ? "empty" : widget.deptDetails;
-    var dayOrder_1 = widget.timeTable== null
+    // print(widget.periodsUpdate == null ? "empty" : widget.periodsUpdate);
+    var deptDetails = widget.deptDetails == null ? "empty" : widget.deptDetails;
+    var dayOrder_1 = widget.timeTable == null
         ? []
-        : widget.timeTable![0]["data"]["dayorder_1"]
-            .map((e) => e["subject_detail"])
-            .toList();
-    var dayOrder_2 = widget.timeTable== null
+        : widget.periodsUpdate == null
+            ? widget.timeTable![0]["data"]["dayorder_1"]
+                .map((e) => e["subject_detail"])
+                .toList()
+            : widget.periodsUpdate!["dayorder_1"] ??
+                widget.timeTable![0]["data"]["dayorder_1"]
+                    .map((e) => e["subject_detail"])
+                    .toList();
+    var dayOrder_2 = widget.timeTable == null
         ? []
-        : widget.timeTable![0]["data"]["dayorder_2"]
-            .map((e) => e["subject_detail"])
-            .toList();
-    var dayOrder_3 = widget.timeTable== null
+        : widget.periodsUpdate == null
+            ? widget.timeTable![0]["data"]["dayorder_2"]
+                .map((e) => e["subject_detail"])
+                .toList()
+            : widget.periodsUpdate!["dayorder_2"] ??
+                widget.timeTable![0]["data"]["dayorder_2"]
+                    .map((e) => e["subject_detail"])
+                    .toList();
+    var dayOrder_3 = widget.timeTable == null
         ? []
-        : widget.timeTable![0]["data"]["dayorder_3"]
-            .map((e) => e["subject_detail"])
-            .toList();
-    var dayOrder_4 = widget.timeTable== null
+        : widget.periodsUpdate == null
+            ? widget.timeTable![0]["data"]["dayorder_3"]
+                .map((e) => e["subject_detail"])
+                .toList()
+            : widget.periodsUpdate!["dayorder_3"] ??
+                widget.timeTable![0]["data"]["dayorder_3"]
+                    .map((e) => e["subject_detail"])
+                    .toList();
+    var dayOrder_4 = widget.timeTable == null
         ? []
-        : widget.timeTable![0]["data"]["dayorder_4"]
-            .map((e) => e["subject_detail"])
-            .toList();
-    var dayOrder_5 = widget.timeTable== null
+        : widget.periodsUpdate == null
+            ? widget.timeTable![0]["data"]["dayorder_4"]
+                .map((e) => e["subject_detail"])
+                .toList()
+            : widget.periodsUpdate!["dayorder_4"] ??
+                widget.timeTable![0]["data"]["dayorder_4"]
+                    .map((e) => e["subject_detail"])
+                    .toList();
+    var dayOrder_5 = widget.timeTable == null
         ? []
-        : widget.timeTable![0]["data"]["dayorder_5"]
-            .map((e) => e["subject_detail"])
-            .toList();
-    var dayOrder_6 = widget.timeTable== null
+        : widget.periodsUpdate == null
+            ? widget.timeTable![0]["data"]["dayorder_5"]
+                .map((e) => e["subject_detail"])
+                .toList()
+            : widget.periodsUpdate!["dayorder_5"] ??
+                widget.timeTable![0]["data"]["dayorder_5"]
+                    .map((e) => e["subject_detail"])
+                    .toList();
+    var dayOrder_6 = widget.timeTable == null
         ? []
-        : widget.timeTable![0]["data"]["dayorder_6"]
-            .map((e) => e["subject_detail"])
-            .toList();
+        : widget.periodsUpdate == null
+            ? widget.timeTable![0]["data"]["dayorder_6"]
+                .map((e) => e["subject_detail"])
+                .toList()
+            : widget.periodsUpdate!["dayorder_6"] ??
+                widget.timeTable![0]["data"]["dayorder_6"]
+                    .map((e) => e["subject_detail"])
+                    .toList();
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
@@ -160,9 +192,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable== null
-                        ? 5
-                        : dayOrder_1.length,
+                    itemCount: widget.timeTable == null ? 5 : dayOrder_1.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -174,11 +204,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable== null)
+                                    color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_1[index]['color_code'])),
-                                    child: (widget.timeTable== null)
+                                    child: (widget.timeTable == null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -198,10 +228,6 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                               return true;
                             },
                             onAccept: (data) async {
-                              // print(
-                              //     "Drop ${widget.timeTable.isUndefinedOrNull ? "Data" : "${widget.timeTable![0]["data"]["dayorder_1"][index]["period_no"]}${widget.timeTable![0]["data"]["dayorder_1"][index]["dayorder"]}"}");
-
-                              // print("Before ${dayOrder_1}");
                               // int indexToReplace = index;
                               // var dat = data;
                               dayOrder_1[index] = await data;
@@ -215,52 +241,14 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                     ["dayorder_1"][index]["period_no"],
                                 "sub_code": dayOrder_1[index]['sub_code'],
                               });
-                              // = {
-                              //   "dept_id": 1,
-                              //   "batch_id": 1,
-                              //   "class_code": 1,
-                              //   "dayorder": widget.timeTable![0]["data"]
-                              //       ["dayorder_1"][index]["dayorder"],
-                              //   "period_no": widget.timeTable![0]["data"]
-                              //       ["dayorder_1"][index]["period_no"],
-                              //   "sub_code": dayOrder_1[index]['sub_code'],
-                              // };
-                              // print(dayOrder_1[index]['sub_code']);
-                              // context
-                              //     .read<TimetableAdminCubit>()
-                              //     .getDayorderPeriodNoSbuCode(
-                              //         dayOrder_1,
-                              //         widget.timeTable![0]["data"]["dayorder_1"]
-                              //             [index]["dayorder"],
-                              //         widget.timeTable![0]["data"]["dayorder_1"]
-                              //             [index]["period_no"],
-                              //         dayOrder_1[index]['sub_code']);
-
-                              // setState(() {
-                              //   context
-                              //       .read<TimetableAdminCubit>()
-                              //       .getDayorderPeriodNoSbuCode(
-                              //           widget.timeTable![0]["data"]["dayorder_1"]
-                              //               [index]["dayorder"],
-                              //           widget.timeTable![0]["data"]["dayorder_1"]
-                              //               [index]["period_no"],
-                              //           dayOrder_1[index]['sub_code']);
-                              // });
-                              // dayOrder_1[indexToReplace] = dat;
-
-                              // var obj = {
-                              //   "dayorder": widget.timeTable![0]["data"]
-                              //       ["dayorder_1"][index]["dayorder"],
-                              //   "period_no": widget.timeTable![0]["data"]
-                              //       ["dayorder_1"][index]["period_no"],
-                              //   "sub_code": dayOrder_1[index]['sub_code']
-                              // };
-                              // Future.delayed(
-                              //   Duration(seconds: 2),
-                              //   () => ,
-                              // );
-
-                              // print("After ${obj.runtimeType}");
+                              periodsUpdateList["dayorder_1"] = dayOrder_1;
+                              // periodsUpdateList
+                              //     .addAll({"dayorder_1": dayOrder_1});
+                              //  = {"dayorder_1": dayOrder_1};
+                              // print(dayOrder_1);
+                              context
+                                  .read<TimetableAdminCubit>()
+                                  .periodsChanged(periodsUpdateList);
                             },
                           ),
                           SizedBox(
@@ -284,9 +272,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable== null
-                        ? 5
-                        : dayOrder_2.length,
+                    itemCount: widget.timeTable == null ? 5 : dayOrder_2.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -300,11 +286,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable== null)
+                                    color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_2[index]['color_code'])),
-                                    child: (widget.timeTable== null)
+                                    child: (widget.timeTable == null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -334,6 +320,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                     ["dayorder_2"][index]["period_no"],
                                 "sub_code": dayOrder_2[index]['sub_code'],
                               });
+                              periodsUpdateList["dayorder_2"] = dayOrder_2;
+
+                              context
+                                  .read<TimetableAdminCubit>()
+                                  .periodsChanged(periodsUpdateList);
                             },
                           ),
                           SizedBox(
@@ -357,9 +348,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable== null
-                        ? 5
-                        : dayOrder_3.length,
+                    itemCount: widget.timeTable == null ? 5 : dayOrder_3.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -373,11 +362,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable== null)
+                                    color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_3[index]['color_code'])),
-                                    child: (widget.timeTable== null)
+                                    child: (widget.timeTable == null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -409,6 +398,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                     ["dayorder_3"][index]["period_no"],
                                 "sub_code": dayOrder_3[index]['sub_code'],
                               });
+                              periodsUpdateList["dayorder_3"] = dayOrder_3;
+
+                              context
+                                  .read<TimetableAdminCubit>()
+                                  .periodsChanged(periodsUpdateList);
                             },
                           ),
                           SizedBox(
@@ -432,9 +426,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable == null
-                        ? 5
-                        : dayOrder_4.length,
+                    itemCount: widget.timeTable == null ? 5 : dayOrder_4.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -448,11 +440,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable== null)
+                                    color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_4[index]['color_code'])),
-                                    child: (widget.timeTable== null)
+                                    child: (widget.timeTable == null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -484,6 +476,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                     ["dayorder_4"][index]["period_no"],
                                 "sub_code": dayOrder_4[index]['sub_code'],
                               });
+                              periodsUpdateList["dayorder_4"] = dayOrder_4;
+
+                              context
+                                  .read<TimetableAdminCubit>()
+                                  .periodsChanged(periodsUpdateList);
                             },
                           ),
                           SizedBox(
@@ -507,9 +504,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable== null
-                        ? 5
-                        : dayOrder_5.length,
+                    itemCount: widget.timeTable == null ? 5 : dayOrder_5.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -523,11 +518,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable== null)
+                                    color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_5[index]['color_code'])),
-                                    child: (widget.timeTable== null)
+                                    child: (widget.timeTable == null)
                                         ? Text('')
                                         : Center(
                                             child: Text(
@@ -559,6 +554,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                     ["dayorder_5"][index]["period_no"],
                                 "sub_code": dayOrder_5[index]['sub_code'],
                               });
+                              periodsUpdateList["dayorder_5"] = dayOrder_5;
+
+                              context
+                                  .read<TimetableAdminCubit>()
+                                  .periodsChanged(periodsUpdateList);
                             },
                           ),
                           SizedBox(
@@ -582,9 +582,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                 children: [
                   Expanded(
                       child: ListView.builder(
-                    itemCount: widget.timeTable== null
-                        ? 5
-                        : dayOrder_6.length,
+                    itemCount: widget.timeTable == null ? 5 : dayOrder_6.length,
                     itemBuilder: (context, index) {
                       return Column(
                         children: [
@@ -596,7 +594,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                 child: Container(
                                     height: height * 0.13,
                                     width: width * 0.07,
-                                    color: (widget.timeTable== null)
+                                    color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
                                         : Color(int.parse(
                                             dayOrder_6[index]['color_code'])),
@@ -632,6 +630,11 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                     ["dayorder_6"][index]["period_no"],
                                 "sub_code": dayOrder_6[index]['sub_code'],
                               });
+                              periodsUpdateList["dayorder_6"] = dayOrder_6;
+
+                              context
+                                  .read<TimetableAdminCubit>()
+                                  .periodsChanged(periodsUpdateList);
                               // print(data);
                             },
                           ),
@@ -652,7 +655,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
           height: height * 0.07,
           child: ElevatedButton(
             onPressed: () async {
-              print(finalListToUpdate);
+              // print(finalListToUpdate);
               await context
                   .read<TimetableAdminCubit>()
                   .updateDeptClassTimetable(finalListToUpdate);

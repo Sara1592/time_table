@@ -188,4 +188,14 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
     }
   }
+
+  periodsChanged(changesList) async {
+    emit(state.copyWith(status: "loading"));
+    try {
+      emit(state.copyWith(status: "loaded4", periodSList: changesList));
+    } catch (e) {
+      print("PeriodsChanged $e");
+      emit(state.copyWith(status: "error", errorMessage: e.toString()));
+    }
+  }
 }

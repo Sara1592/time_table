@@ -16,12 +16,15 @@ class TimetableAdminLogic extends StatelessWidget {
         builder: (context, state) {
           // print("List1 ${state.list}");
           // print("List2 ${state.list}");
-          // print("ListMessage ${state.dayorder_1}");
-          // if (state.status == "success") {
+          // print("ListMessage ${state.periodSList}");
+          // if (state.status == "loaded4") {
+          //   // print("ListMessage ${state.periodSList}");
+
           //   return TimeTableScreen(
-          //     timeTable: null,
-          //     staffTimeTable: null,
-          //     toUpdate: null,
+          //     timeTable: state.list,
+          //     staffTimeTable: state.list1,
+          //     toUpdate: state.updateDetails,
+          //     periodsUpdate: state.periodSList,
           //   );
           // }
 
@@ -29,6 +32,7 @@ class TimetableAdminLogic extends StatelessWidget {
             timeTable: state.list,
             staffTimeTable: state.list1,
             toUpdate: state.updateDetails,
+            periodsUpdate: state.periodSList,
           );
         },
         listener: (context, state) {
@@ -58,6 +62,9 @@ class TimetableAdminLogic extends StatelessWidget {
             // print(state.list);
             EasyLoading.dismiss();
           } else if (state.status == 'loaded') {
+            // print(state.list);
+            EasyLoading.dismiss();
+          } else if (state.status == 'loaded4') {
             // print(state.list);
             EasyLoading.dismiss();
           } else if (state.status == 'success') {

@@ -16,12 +16,14 @@ import 'header.dart';
 class TimeTableDashboard extends StatefulWidget {
   List? timeTable;
   List? staffTimeTable;
+  Map<String, dynamic>? periodsUpdate;
   Map<String, dynamic>? toUpdate;
 
   TimeTableDashboard({
     Key? key,
     required this.timeTable,
     required this.staffTimeTable,
+    this.periodsUpdate,
     required this.toUpdate,
   }) : super(key: key);
 
@@ -78,7 +80,10 @@ class _TimeTableDashboardState extends State<TimeTableDashboard> {
                               children: [
                                 PeriodAllocation(
                                     timeTable: widget.timeTable,
-                                    deptDetails: widget.toUpdate),
+                                    deptDetails: widget.toUpdate,
+                                    periodsUpdate: widget.periodsUpdate,
+
+                                    ),
                               ],
                             ),
                           ],
