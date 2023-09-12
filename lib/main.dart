@@ -6,6 +6,7 @@ import 'package:student_management_web/view/time_table_screen.dart';
 import 'controllers/controller.dart';
 import 'cubit/timetable_admin_cubit.dart';
 import 'cubit/timetable_admin_logic.dart';
+import 'view/components/timetable_content.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,9 +23,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => TimetableAdminCubit(),
         ),
-        // BlocProvider(
-        //   create: (context) => SubjectBloc(),
-        // ),
       ],
       child: MaterialApp(
           title: 'Time Table',

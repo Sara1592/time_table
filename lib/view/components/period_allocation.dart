@@ -656,9 +656,16 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
           child: ElevatedButton(
             onPressed: () async {
               // print(finalListToUpdate);
+              var cubitRead = context.read<TimetableAdminCubit>();
               await context
                   .read<TimetableAdminCubit>()
                   .updateDeptClassTimetable(finalListToUpdate);
+              cubitRead.isShow = false;
+              cubitRead.selectedVal = null;
+              cubitRead.selectedValBat = null;
+              cubitRead.selectedValYear = null;
+              cubitRead.selectedValClass = null;
+              cubitRead.isSearchButtonEnabled = false;
             },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Color(0xffFFB900)),

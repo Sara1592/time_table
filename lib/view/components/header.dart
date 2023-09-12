@@ -23,31 +23,32 @@ class Header extends StatefulWidget {
 }
 
 class _HeaderState extends State<Header> {
-  late List<Color> _containerColor;
-  late List<Color> _textColor;
+  List<Color>? _containerColor;
+  List<Color>? _textColor;
   int _lastClickedIndex = -1;
 
   void _changeColorOnTap(int index) {
     setState(() {
       if (_lastClickedIndex != -1) {
-        _containerColor[_lastClickedIndex] = Colors.white;
-        _textColor[_lastClickedIndex] = Color(0xFF363636);
+        _containerColor![_lastClickedIndex] = Colors.white;
+        _textColor![_lastClickedIndex] = Color(0xFF363636);
       }
 
-      _containerColor[index] = Color(0xFF006C9E);
-      _textColor[index] = Colors.white;
+      _containerColor![index] = Color(0xFF006C9E);
+      _textColor![index] = Colors.white;
       _lastClickedIndex = index;
     });
   }
 
-  bool _isSearchButtonEnabled = false;
+  // bool _isSearchButtonEnabled = false;
 
   void _updateSearchButtonState() {
     setState(() {
-      _isSearchButtonEnabled = _selectedVal != null &&
-          _selectedValBat != null &&
-          _selectedValYear != null &&
-          _selectedValClass != null;
+      var cubit = context.read<TimetableAdminCubit>();
+      cubit.isSearchButtonEnabled = cubit.selectedVal != null &&
+          cubit.selectedValBat != null &&
+          cubit.selectedValYear != null &&
+          cubit.selectedValClass != null;
     });
   }
 
@@ -62,29 +63,32 @@ class _HeaderState extends State<Header> {
   }
 
   List _Department = [];
-  int? _selectedVal;
+  // int? _selectedVal;
   fetch() async {
-    _selectedVal = null;
-    await context.read<TimetableAdminCubit>().deptInitial();
-    _Department = context.read<TimetableAdminCubit>().deptList;
+    var cubit = context.read<TimetableAdminCubit>();
+    cubit.selectedVal = null;
+    await cubit.deptInitial();
+    _Department = cubit.deptList;
   }
 
   List _Batch = [];
-  int? _selectedValBat;
+  // int? _selectedValBat;
 
   List _Year = [];
-  int? _selectedValYear;
+  // int? _selectedValYear;
 
   List _Class = [];
-  int? _selectedValClass;
+  // int? _selectedValClass;
 
   fetchDeptBatch(val) async {
-    _selectedValBat = null;
-    _selectedValYear = null;
-    _selectedValClass = null;
+    var cubit = context.read<TimetableAdminCubit>();
+    cubit.selectedValBat = null;
+    cubit.selectedValYear = null;
+    cubit.selectedValClass = null;
+
     // context.read<TimetableAdminCubit>().deptClassTimeTableList = [];
-    await context.read<TimetableAdminCubit>().fetchDeptBatchList(val);
-    _Batch = context.read<TimetableAdminCubit>().deptBatchList;
+    await cubit.fetchDeptBatchList(val);
+    _Batch = cubit.deptBatchList;
     _Year = _Batch;
     _Class = _Batch;
   }
@@ -92,8 +96,9 @@ class _HeaderState extends State<Header> {
   static List staffdata = [];
   List staffSub = [];
   fetchDeptStaffList(val) async {
-    await context.read<TimetableAdminCubit>().getDeptStaffList(val);
-    var staffdata1 = context.read<TimetableAdminCubit>().deptStaffList;
+    var cubit = context.read<TimetableAdminCubit>();
+    await cubit.getDeptStaffList(val);
+    var staffdata1 = cubit.deptStaffList;
     staffdata = staffdata1;
     // print(staffdata);
     // staffdata = staffdata1[0];
@@ -106,10 +111,9 @@ class _HeaderState extends State<Header> {
   List deptStaffSub = [];
   bool isTrue = false;
   fetchDeptStaffSubList(val) async {
-    await context
-        .read<TimetableAdminCubit>()
-        .getDeptStaffSubList(staffdata[val]['user_id']);
-    var list = context.read<TimetableAdminCubit>().deptStaffSubList;
+    var cubit = context.read<TimetableAdminCubit>();
+    await cubit.getDeptStaffSubList(staffdata[val]['user_id']);
+    var list = cubit.deptStaffSubList;
     deptStaffSub = list.map((e) => e['subject_detail']).toList();
     // print(deptStaffSub);
   }
@@ -118,7 +122,7 @@ class _HeaderState extends State<Header> {
   var class_ID;
   var batch_ID;
 
-  bool _isShow = false;
+  // bool _isShow = false;
   bool _isoopsShow = false;
   bool _isJavaShow = false;
   bool _isJavaShow1 = false;
@@ -143,8 +147,7 @@ class _HeaderState extends State<Header> {
 
   @override
   Widget build(BuildContext context) {
-    var toUpdateDetails =
-        widget.toUpdate == null ? "" : widget.toUpdate;
+    var toUpdateDetails = widget.toUpdate == null ? "" : widget.toUpdate;
     // print("ToUpdate ${widget.toUpdate.isUndefinedOrNull ? "" : toUpdateDetails![""]}");
     var arrColors = [
       Color.fromARGB(255, 0, 108, 158),
@@ -242,7 +245,7 @@ class _HeaderState extends State<Header> {
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.00),
                       child: DropdownButtonFormField(
-                        value: _selectedVal,
+                        value: context.read<TimetableAdminCubit>().selectedVal,
                         validator: (value) =>
                             value == null ? 'Enter your Department' : null,
                         icon: const Visibility(
@@ -280,9 +283,14 @@ class _HeaderState extends State<Header> {
                             )).toList(),
                         onChanged: (val) {
                           setState(() {
-                            _selectedVal = val as int;
+                            var cubit = context.read<TimetableAdminCubit>();
+                            cubit.selectedVal = val as int;
 
-                            _isShow = false;
+                            cubit.isShow = false;
+                            // _changeColorOnTap(_lastClickedIndex);
+                            _containerColor![0] = Colors.white;
+                            _textColor![0] = Color(0xFF363636);
+                            // _lastClickedIndex = -1;
 
                             fetchDeptBatch(val);
                             dept_ID = val;
@@ -317,7 +325,8 @@ class _HeaderState extends State<Header> {
                     child: Padding(
                       padding: EdgeInsets.only(left: width * 0.02),
                       child: DropdownButtonFormField(
-                        value: _selectedValBat,
+                        value:
+                            context.read<TimetableAdminCubit>().selectedValBat,
                         validator: (value) =>
                             value == null ? 'Enter your Batch' : null,
                         icon: const Visibility(
@@ -354,7 +363,8 @@ class _HeaderState extends State<Header> {
                             )).toList(),
                         onChanged: (value) {
                           setState(() {
-                            _selectedValBat = value as int;
+                            context.read<TimetableAdminCubit>().selectedValBat =
+                                value as int;
                             context
                                 .read<TimetableAdminCubit>()
                                 .deptStaffList
@@ -426,10 +436,13 @@ class _HeaderState extends State<Header> {
                               value: e['id'],
                               child: Text(e['year']),
                             )).toList(),
-                        value: _selectedValYear,
+                        value:
+                            context.read<TimetableAdminCubit>().selectedValYear,
                         onChanged: (val) {
                           setState(() {
-                            _selectedValYear = val as int;
+                            context
+                                .read<TimetableAdminCubit>()
+                                .selectedValYear = val as int;
                             _updateSearchButtonState();
                             // print("Year ID $val");
                           });
@@ -495,10 +508,14 @@ class _HeaderState extends State<Header> {
                               value: e['id'],
                               child: Text(e['sessions']),
                             )).toList(),
-                        value: _selectedValClass,
+                        value: context
+                            .read<TimetableAdminCubit>()
+                            .selectedValClass,
                         onChanged: (val) {
                           setState(() {
-                            _selectedValClass = val as int;
+                            context
+                                .read<TimetableAdminCubit>()
+                                .selectedValClass = val as int;
                             _updateSearchButtonState();
                             class_ID = val;
                           });
@@ -519,12 +536,17 @@ class _HeaderState extends State<Header> {
                       width: width * 0.15,
                       height: height * 0.06,
                       child: ElevatedButton(
-                        onPressed: _isSearchButtonEnabled
+                        onPressed: context
+                                .read<TimetableAdminCubit>()
+                                .isSearchButtonEnabled
                             ? () {
                                 setState(
                                   () {
                                     fetchDeptStaffList(dept_ID);
-                                    _isShow = !_isShow;
+                                    context.read<TimetableAdminCubit>().isShow =
+                                        !context
+                                            .read<TimetableAdminCubit>()
+                                            .isShow;
 
                                     context
                                         .read<TimetableAdminCubit>()
@@ -548,7 +570,9 @@ class _HeaderState extends State<Header> {
                         //   }
                         // },
                         style: ElevatedButton.styleFrom(
-                          primary: _isSearchButtonEnabled
+                          primary: context
+                                  .read<TimetableAdminCubit>()
+                                  .isSearchButtonEnabled
                               ? Color.fromARGB(255, 9, 26, 47)
                               : Colors.grey,
                           shape: RoundedRectangleBorder(
@@ -574,7 +598,9 @@ class _HeaderState extends State<Header> {
                                   // color:
                                   //     const Color.fromARGB(255, 255, 255, 255),
                                   fontWeight: FontWeight.w700,
-                                  color: _isSearchButtonEnabled
+                                  color: context
+                                          .read<TimetableAdminCubit>()
+                                          .isSearchButtonEnabled
                                       ? Colors.white
                                       : Colors.black),
                             ),
@@ -590,7 +616,7 @@ class _HeaderState extends State<Header> {
         ),
         SizedBox(
             child: Visibility(
-          visible: _isShow,
+          visible: context.read<TimetableAdminCubit>().isShow,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -647,7 +673,7 @@ class _HeaderState extends State<Header> {
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(9)),
                                       // color: Color.fromARGB(255, 255, 255, 255),
-                                      color: _containerColor[index],
+                                      color: _containerColor![index],
                                       boxShadow: [
                                         BoxShadow(
                                           color: Color.fromARGB(
@@ -669,7 +695,7 @@ class _HeaderState extends State<Header> {
                                                   fontWeight: FontWeight.bold,
                                                   // color: Color.fromARGB(
                                                   //     255, 54, 54, 54)
-                                                  color: _textColor[index]),
+                                                  color: _textColor![index]),
                                             )),
                                       ),
                                       Padding(
@@ -685,7 +711,7 @@ class _HeaderState extends State<Header> {
                                                   fontSize: 10.0,
                                                   fontWeight: FontWeight.w500,
                                                   // color: Color(0xffAFAFAF),
-                                                  color: _textColor[index],
+                                                  color: _textColor![index],
                                                 )),
                                             Padding(
                                               padding: EdgeInsets.only(
@@ -696,7 +722,7 @@ class _HeaderState extends State<Header> {
                                                     fontSize: 10.0,
                                                     fontWeight: FontWeight.w500,
                                                     // color: Color(0xffAFAFAF),
-                                                    color: _textColor[index],
+                                                    color: _textColor![index],
                                                   )),
                                             ),
                                           ],

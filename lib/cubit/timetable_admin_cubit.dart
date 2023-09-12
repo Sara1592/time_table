@@ -11,6 +11,12 @@ part 'timetable_admin_state.dart';
 class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   API_Service _api_service = API_Service();
   TimetableAdminCubit() : super(TimetableAdminState());
+  bool isShow = false;
+  int? selectedVal;
+  int? selectedValBat;
+  int? selectedValYear;
+  int? selectedValClass;
+  bool isSearchButtonEnabled = false;
   List deptList = [];
   List deptBatchList = [];
   List deptStaffList = [];
@@ -31,12 +37,12 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   }
 
   fetchDeptBatchList(val) async {
-    emit(state.copyWith(status: "loading"));
+    emit(state.copyWith(status: "loading123"));
     try {
       var batchList = await _api_service.deptBatchList(val);
       deptBatchList = batchList;
       // print("fe $deptBatchList");
-      emit(state.copyWith(status: "loaded"));
+      emit(state.copyWith(status: "loaded123"));
     } catch (e) {
       print("FetchDeptBatchList $e");
       emit(state.copyWith(status: "error", errorMessage: e.toString()));
@@ -119,7 +125,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   }
 
   getDeptStaffWeekTimetable(userID) async {
-    emit(state.copyWith(status: "loading"));
+    emit(state.copyWith(status: "loading1"));
     try {
       List deptStaffWeekTimetable = [];
 
@@ -145,7 +151,7 @@ class TimetableAdminCubit extends Cubit<TimetableAdminState> {
   }
 
   getDeptStaffSubList(val) async {
-    emit(state.copyWith(status: "loading"));
+    emit(state.copyWith(status: "loading1"));
     try {
       var deptStaffSub = await _api_service.deptStaffSubjectList(val);
       // print(deptStaffSub.runtimeType);

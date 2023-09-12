@@ -17,26 +17,38 @@ class TimetableAdminLogic extends StatelessWidget {
           // print("List1 ${state.list}");
           // print("List2 ${state.list}");
           // print("ListMessage ${state.periodSList}");
-          // if (state.status == "loaded4") {
-          //   // print("ListMessage ${state.periodSList}");
+          if (state.status == "loaded1") {
+            // print("ListMessage ${state.periodSList}");
 
-          //   return TimeTableScreen(
-          //     timeTable: state.list,
-          //     staffTimeTable: state.list1,
-          //     toUpdate: state.updateDetails,
-          //     periodsUpdate: state.periodSList,
-          //   );
-          // }
+            return TimeTableScreen(
+              timeTable: state.list,
+              staffTimeTable: state.list1,
+              toUpdate: state.updateDetails,
+              periodsUpdate: state.periodSList,
+            );
+          } else if (state.status == "loaded2" ||
+              state.status == "loaded3" ||
+              state.status == "loading1" ||
+              state.status == "loaded4") {
+            // print("ListMessage ${state.periodSList}");
+
+            return TimeTableScreen(
+              timeTable: state.list,
+              staffTimeTable: state.list1,
+              toUpdate: state.updateDetails,
+              periodsUpdate: state.periodSList,
+            );
+          }
 
           return TimeTableScreen(
-            timeTable: state.list,
-            staffTimeTable: state.list1,
-            toUpdate: state.updateDetails,
-            periodsUpdate: state.periodSList,
+            timeTable: null,
+            staffTimeTable: null,
+            toUpdate: null,
+            periodsUpdate: null,
           );
         },
         listener: (context, state) {
-          if (state.status == 'loading') {
+          if (state.status == 'loading' || state.status == 'loading1') {
             EasyLoading.show(
                 status: "Loading", maskType: EasyLoadingMaskType.black);
           } else if (state.status == 'error') {
@@ -65,6 +77,9 @@ class TimetableAdminLogic extends StatelessWidget {
             // print(state.list);
             EasyLoading.dismiss();
           } else if (state.status == 'loaded4') {
+            // print(state.list);
+            EasyLoading.dismiss();
+          } else if (state.status == 'loaded123') {
             // print(state.list);
             EasyLoading.dismiss();
           } else if (state.status == 'success') {
