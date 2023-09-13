@@ -48,7 +48,9 @@ class TimetableAdminLogic extends StatelessWidget {
           );
         },
         listener: (context, state) {
-          if (state.status == 'loading' || state.status == 'loading1') {
+          if (state.status == 'loading' ||
+              state.status == 'loading1' ||
+              state.status == 'loading123') {
             EasyLoading.show(
                 status: "Loading", maskType: EasyLoadingMaskType.black);
           } else if (state.status == 'error') {

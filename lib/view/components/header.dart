@@ -286,11 +286,10 @@ class _HeaderState extends State<Header> {
                             var cubit = context.read<TimetableAdminCubit>();
                             cubit.selectedVal = val as int;
 
-                            cubit.isShow = false;
+                            // cubit.isShow = false;
+                            fetchDeptStaffList(1);
+                            cubit.isShow = true;
                             // _changeColorOnTap(_lastClickedIndex);
-                            _containerColor![0] = Colors.white;
-                            _textColor![0] = Color(0xFF363636);
-                            // _lastClickedIndex = -1;
 
                             fetchDeptBatch(val);
                             dept_ID = val;
@@ -542,15 +541,12 @@ class _HeaderState extends State<Header> {
                             ? () {
                                 setState(
                                   () {
-                                    fetchDeptStaffList(dept_ID);
-                                    context.read<TimetableAdminCubit>().isShow =
-                                        !context
-                                            .read<TimetableAdminCubit>()
-                                            .isShow;
+                                    var cubit =
+                                        context.read<TimetableAdminCubit>();
+                                    // fetchDeptStaffList(dept_ID);
+                                    // cubit.isShow = !cubit.isShow;
 
-                                    context
-                                        .read<TimetableAdminCubit>()
-                                        .fetchDeptClassTimeTableList(1, 1, 1);
+                                    cubit.fetchDeptClassTimeTableList(1, 1, 1);
                                   },
                                 );
                               }
