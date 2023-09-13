@@ -17,7 +17,7 @@ class ExceptionHandlers {
       return 'TimeOut. Try again';
     } else if (e == 404) {
       return "Bad Request. Try again";
-    } else if (e == 404) {
+    } else if (e == 400) {
       return "Something went wrong. Try again";
     } else if (e == "Default") {
       return 'Error occured while Communication with Server';
