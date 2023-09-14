@@ -169,15 +169,12 @@ class _HeaderState extends State<Header> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: EdgeInsets.only(bottom: height * 0.01),
-                    child: Text(""),
-                  ),
+                 
                   SizedBox(
                     width: width * 0.05,
                     child: Padding(
                         padding: EdgeInsets.only(
-                          left: width * 0.01,
+                          left: width * 0.01, top:height * 0.03
                         ),
                         child: CustomAppbar()),
                   )
@@ -189,11 +186,11 @@ class _HeaderState extends State<Header> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(left: width * 0.040),
+                      padding: EdgeInsets.only(left: width * 0.037),
                       child: Text(
                         "NO",
                         style: GoogleFonts.montserrat(
-                          fontSize: 14.0,
+                          fontSize: 11.91,
                           fontWeight: FontWeight.w600,
                           color: Color.fromARGB(255, 175, 175, 175),
                         ),
@@ -202,22 +199,27 @@ class _HeaderState extends State<Header> {
                     SizedBox(
                       width: width * 0.1,
                       child: Padding(
-                        padding: EdgeInsets.only(left: width * 0.035),
-                        child: TextFormField(
-                            cursorColor: const Color.fromARGB(255, 26, 25, 25),
-                            decoration: const InputDecoration(
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                enabledBorder: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                ),
-                                hintText: "01",
-                                hintStyle: TextStyle(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 20,
-                                  color: Color.fromARGB(255, 54, 54, 54),
-                                ))),
+                        padding: EdgeInsets.only(left: width * 0.035, top: height * 0.01),
+                        child:Text('01',
+                        style: GoogleFonts.montserrat(
+                        fontSize: 19.5,
+                        fontWeight: FontWeight.w600,
+                        color: Color(0xFF363636)))
+                        // child: TextFormField(
+                        //     cursorColor: const Color.fromARGB(255, 26, 25, 25),
+                        //     decoration: const InputDecoration(
+                        //         focusedBorder: OutlineInputBorder(
+                        //           borderSide: BorderSide.none,
+                        //         ),
+                        //         enabledBorder: OutlineInputBorder(
+                        //           borderSide: BorderSide.none,
+                        //         ),
+                        //         hintText: "01",
+                        //         hintStyle: TextStyle(
+                        //           fontWeight: FontWeight.w800,
+                        //           fontSize: 20,
+                        //           color: Color.fromARGB(255, 54, 54, 54),
+                        //         ))),
                       ),
                     )
                   ],
@@ -228,54 +230,58 @@ class _HeaderState extends State<Header> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsets.only(
-                        left: width * 0.00, bottom: height * 0.01),
+                    padding: EdgeInsets.only(top: height * 0.0084
+                        ),
                     child: Text(
                       "Department Name",
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 11.9,
+                        fontWeight: FontWeight.w500,
                         color: Color.fromARGB(255, 175, 175, 175),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.15,
+                    width: width * 0.13,
                     height: height * 0.06,
                     child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.00),
+                      padding: EdgeInsets.only(top: height * 0.010),
                       child: DropdownButtonFormField(
                         value: context.read<TimetableAdminCubit>().selectedVal,
                         validator: (value) =>
                             value == null ? 'Enter your Department' : null,
                         icon: const Visibility(
                             visible: false, child: Icon(Icons.arrow_downward)),
-                        // iconEnabledColor:
-                        //     const Color.fromARGB(254, 223, 223, 223),
-                        decoration: const InputDecoration(
+                       decoration: const InputDecoration(
                           errorStyle: TextStyle(fontSize: 16.0),
                           suffixIcon: Material(
+                           
+                            elevation: 0.2 ,
                             color: Color.fromARGB(255, 9, 26, 47),
                             borderRadius: BorderRadius.only(
-                              topRight: Radius.circular(6),
-                              bottomRight: Radius.circular(6),
+                              topRight: Radius.circular(6.02),
+                              bottomRight: Radius.circular(6.02),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 40.0),
+                                color: Colors.white, size: 20.0),
                           ),
                           contentPadding:
-                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                              EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),
                           fillColor: Color.fromARGB(254, 223, 223, 223),
                           filled: true,
                           hintText: "Department",
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 54, 54, 54),
+                              fontSize: 11.91,
                               fontWeight: FontWeight.w700),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(Radius.circular(6.02))
                           ),
                           enabledBorder:
-                              OutlineInputBorder(borderSide: BorderSide.none),
+                              OutlineInputBorder(borderSide: BorderSide.none,
+                            borderRadius: BorderRadius.all(Radius.circular(6.02))
+                              ),
                         ),
                         items: _Department.map((e) => DropdownMenuItem(
                               value: e["dept_code"],
@@ -285,12 +291,12 @@ class _HeaderState extends State<Header> {
                           setState(() {
                             var cubit = context.read<TimetableAdminCubit>();
                             cubit.selectedVal = val as int;
-
+                      
                             // cubit.isShow = false;
                             fetchDeptStaffList(1);
                             cubit.isShow = true;
                             // _changeColorOnTap(_lastClickedIndex);
-
+                      
                             fetchDeptBatch(val);
                             dept_ID = val;
                             _updateSearchButtonState();
@@ -308,12 +314,12 @@ class _HeaderState extends State<Header> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.02, bottom: height * 0.01),
+                        top: height * 0.0084, left: width * 0.022),
                     child: Text(
                       "Batch",
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 11.9,
+                        fontWeight: FontWeight.w500,
                         color: Color.fromARGB(255, 175, 175, 175),
                       ),
                     ),
@@ -322,7 +328,7 @@ class _HeaderState extends State<Header> {
                     width: width * 0.13,
                     height: height * 0.06,
                     child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.02),
+                      padding: EdgeInsets.only(left: width * 0.02, top:height * 0.010),
                       child: DropdownButtonFormField(
                         value:
                             context.read<TimetableAdminCubit>().selectedValBat,
@@ -340,21 +346,25 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 40.0),
+                                color: Colors.white, size: 20.0),
                           ),
                           contentPadding:
-                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                              EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),
                           fillColor: Color.fromARGB(254, 223, 223, 223),
                           filled: true,
                           hintText: "Batch",
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 54, 54, 54),
+                              fontSize: 11.91,
                               fontWeight: FontWeight.w700),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide.none,
+                             borderRadius: BorderRadius.all(Radius.circular(6.02))
                           ),
                           enabledBorder:
-                              OutlineInputBorder(borderSide: BorderSide.none),
+                              OutlineInputBorder(borderSide: BorderSide.none,
+                               borderRadius: BorderRadius.all(Radius.circular(6.02))),
+                              
                         ),
                         items: _Batch.map((e) => DropdownMenuItem(
                               value: e['id'],
@@ -384,12 +394,12 @@ class _HeaderState extends State<Header> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.02, bottom: height * 0.01),
+                        top: height * 0.0084, left: width * 0.022),
                     child: Text(
                       "Year",
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 11.91,
+                        fontWeight: FontWeight.w500,
                         color: Color.fromARGB(255, 175, 175, 175),
                       ),
                     ),
@@ -427,9 +437,11 @@ class _HeaderState extends State<Header> {
                               fontWeight: FontWeight.w700),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide.none,
+                             borderRadius: BorderRadius.all(Radius.circular(6.02))
                           ),
                           enabledBorder:
-                              OutlineInputBorder(borderSide: BorderSide.none),
+                              OutlineInputBorder(borderSide: BorderSide.none,
+                               borderRadius: BorderRadius.all(Radius.circular(6.02))),
                         ),
                         items: _Year.map((e) => DropdownMenuItem(
                               value: e['id'],
@@ -499,9 +511,11 @@ class _HeaderState extends State<Header> {
                               color: Colors.black, fontWeight: FontWeight.w700),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide.none,
+                             borderRadius: BorderRadius.all(Radius.circular(6.02))
                           ),
                           enabledBorder:
-                              OutlineInputBorder(borderSide: BorderSide.none),
+                              OutlineInputBorder(borderSide: BorderSide.none,
+                               borderRadius: BorderRadius.all(Radius.circular(6.02))),
                         ),
                         items: _Class.map((e) => DropdownMenuItem(
                               value: e['id'],
