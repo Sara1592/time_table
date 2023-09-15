@@ -263,7 +263,7 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6.02),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 20.0),
+                                color: Colors.white, size: 30.0),
                           ),
                           contentPadding:
                               EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),
@@ -349,7 +349,7 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 20.0),
+                                color: Colors.white, size: 30.0),
                           ),
                           contentPadding:
                               EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),
@@ -405,10 +405,10 @@ class _HeaderState extends State<Header> {
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.15,
+                    width: width * 0.13,
                     height: height * 0.06,
                     child: Padding(
-                      padding: EdgeInsets.only(left: width * 0.02),
+                      padding: EdgeInsets.only(left: width * 0.02, top: height * 0.01),
                       child: DropdownButtonFormField(
                         validator: (value) =>
                             value == null ? 'Enter your Year' : null,
@@ -425,15 +425,16 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 40.0),
+                                color: Colors.white, size: 30.0),
                           ),
                           contentPadding:
-                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                              EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),
                           fillColor: Color.fromARGB(254, 223, 223, 223),
                           filled: true,
                           hintText: "Year",
                           hintStyle: TextStyle(
                               color: Color.fromARGB(255, 54, 54, 54),
+                              fontSize: 11.91,
                               fontWeight: FontWeight.w700),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide.none,
@@ -441,7 +442,7 @@ class _HeaderState extends State<Header> {
                           ),
                           enabledBorder:
                               OutlineInputBorder(borderSide: BorderSide.none,
-                               borderRadius: BorderRadius.all(Radius.circular(6.02))),
+                               borderRadius: BorderRadius.all(Radius.circular(6.02)))
                         ),
                         items: _Year.map((e) => DropdownMenuItem(
                               value: e['id'],
@@ -469,21 +470,21 @@ class _HeaderState extends State<Header> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.03, bottom: height * 0.01),
+                        left: width * 0.03, top: height * 0.01),
                     child: Text(
                       "Class",
                       style: GoogleFonts.montserrat(
-                        fontSize: 14.0,
+                        fontSize: 11.91,
                         fontWeight: FontWeight.w600,
                         color: Color.fromARGB(255, 175, 175, 175),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: width * 0.19,
+                    width: width * 0.13,
                     height: height * 0.06,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 40.0),
+                      padding:  EdgeInsets.only(left:width*0.02, top:height *0.01),
                       child: DropdownButtonFormField(
                         validator: (value) =>
                             value == null ? 'Enter your Section' : null,
@@ -500,23 +501,24 @@ class _HeaderState extends State<Header> {
                               bottomRight: Radius.circular(6),
                             ),
                             child: Icon(Icons.arrow_drop_down,
-                                color: Colors.white, size: 40.0),
+                                color: Colors.white, size: 30.0),
                           ),
                           contentPadding:
-                              EdgeInsets.fromLTRB(10.0, 10.0, 0.0, 0.0),
+                              EdgeInsets.fromLTRB(10.0, 12.0, 10.0, 10.0),
                           fillColor: Color.fromARGB(254, 223, 223, 223),
                           filled: true,
                           hintText: "Section",
                           hintStyle: TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.w700),
+                              color: Color.fromARGB(255, 54, 54, 54),
+                              fontSize: 11.91,
+                              fontWeight: FontWeight.w700),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide.none,
                              borderRadius: BorderRadius.all(Radius.circular(6.02))
                           ),
                           enabledBorder:
                               OutlineInputBorder(borderSide: BorderSide.none,
-                               borderRadius: BorderRadius.all(Radius.circular(6.02))),
-                        ),
+                               borderRadius: BorderRadius.all(Radius.circular(6.02)))                       ),
                         items: _Class.map((e) => DropdownMenuItem(
                               value: e['id'],
                               child: Text(e['sessions']),
@@ -544,9 +546,9 @@ class _HeaderState extends State<Header> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.05, top: height * 0.030),
+                        left: width * 0.03, top: height * 0.040),
                     child: SizedBox(
-                      width: width * 0.15,
+                      width: width * 0.12,
                       height: height * 0.06,
                       child: ElevatedButton(
                         onPressed: context
@@ -604,7 +606,7 @@ class _HeaderState extends State<Header> {
                             Text(
                               'Search',
                               style: GoogleFonts.montserrat(
-                                  fontSize: 19,
+                                  fontSize: 15.52,
                                   // color:
                                   //     const Color.fromARGB(255, 255, 255, 255),
                                   fontWeight: FontWeight.w700,

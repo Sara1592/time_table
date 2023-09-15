@@ -17,7 +17,7 @@ class DayNum extends StatelessWidget {
           Text(
             dayNum,
             style: GoogleFonts.montserrat(
-              fontSize: 16.0,
+              fontSize: 16.89,
               fontWeight: FontWeight.w600,
               color: Color.fromARGB(255, 118, 118, 118),
             ),

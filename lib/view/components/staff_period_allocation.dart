@@ -103,12 +103,23 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
               ],
               
             ),
+            
            
             // DayNum(
             //   dayNum: 'Period No',
             // ),
           ],
         ),
+        SizedBox(
+              height: height *0.9,
+              child: const VerticalDivider(
+               color: Color(0xFF252525),
+                thickness: 0.5,
+                indent: 5,
+                endIndent: 0,
+                width: 20,
+              ),
+            ),
         SizedBox(width: width * 0.004),
         Container(
           height: height * 0.88,
@@ -117,7 +128,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
               Expanded(
                   child: ListView.builder(
@@ -274,7 +285,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
               Expanded(
                   child: ListView.builder(
@@ -431,7 +442,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
               Expanded(
                   child: ListView.builder(
@@ -588,7 +599,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
               Expanded(
                   child: ListView.builder(
@@ -745,7 +756,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
               Expanded(
                   child: ListView.builder(
@@ -902,7 +913,7 @@ class _StaffPeroidAllocationState extends State<StaffPeroidAllocation> {
           child: Column(
             children: [
               SizedBox(
-                height: height * 0.05,
+                height: height * 0.01,
               ),
               Expanded(
                   child: ListView.builder(

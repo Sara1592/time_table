@@ -134,7 +134,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                       bottom: height * 0.03),
                   child: Text("Period No",
                       style: GoogleFonts.montserrat(
-                        fontSize: 16.0,
+                        fontSize: 16.89,
                         fontWeight: FontWeight.w600,
                         color: Color.fromARGB(255, 9, 26, 47),
                       )),
@@ -172,7 +172,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
               ],
             ),
             SizedBox(
-              height: height * 0.8,
+              height: height * 0.85,
               child: const VerticalDivider(
                 color: Color.fromARGB(255, 190, 190, 190),
                 thickness: 1,
@@ -202,7 +202,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                               return InkWell(
                                 onTap: () {},
                                 child: Container(
-                                    height: height * 0.13,
+                                    height: height * 0.14,
                                     width: width * 0.07,
                                     color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
@@ -284,7 +284,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                   // print(index);
                                 },
                                 child: Container(
-                                    height: height * 0.13,
+                                    height: height * 0.14,
                                     width: width * 0.07,
                                     color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
@@ -360,7 +360,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                   // print(index);
                                 },
                                 child: Container(
-                                    height: height * 0.13,
+                                    height: height * 0.14,
                                     width: width * 0.07,
                                     color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
@@ -438,7 +438,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                   // print(index);
                                 },
                                 child: Container(
-                                    height: height * 0.13,
+                                    height: height * 0.14,
                                     width: width * 0.07,
                                     color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
@@ -516,7 +516,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                                   // print(index);
                                 },
                                 child: Container(
-                                    height: height * 0.13,
+                                    height: height * 0.14,
                                     width: width * 0.07,
                                     color: (widget.timeTable == null)
                                         ? Color(0xFF000000)
@@ -592,7 +592,7 @@ class _PeriodAllocationState extends State<PeriodAllocation> {
                               return InkWell(
                                 onTap: () {},
                                 child: Container(
-                                    height: height * 0.13,
+                                    height: height * 0.14,
                                     width: width * 0.07,
                                     color: (widget.timeTable == null)
                                         ? Color(0xFF000000)

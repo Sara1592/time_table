@@ -51,6 +51,11 @@ class _StaffDayOrderState extends State<StaffDayOrder> {
             ),
           ],
         ),
+        const Divider(
+          color: Color(0xFF252525),
+          thickness: 0.5,
+          height: 4,
+        )
       ],
     );
   }
