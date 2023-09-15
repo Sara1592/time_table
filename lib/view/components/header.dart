@@ -287,18 +287,21 @@ class _HeaderState extends State<Header> {
                               value: e["dept_code"],
                               child: Text(e["dept_name"]),
                             )).toList(),
-                        onChanged: (val) {
+                        onChanged: (val)async {
+                           await fetchDeptBatch(val);
+                            dept_ID = val;
                           setState(() {
                             var cubit = context.read<TimetableAdminCubit>();
                             cubit.selectedVal = val as int;
-                      
+                            
+                            // cubit.isShow = true;
                             // cubit.isShow = false;
+                            // cubit.deptStaffList.clear();
+
                             fetchDeptStaffList(1);
                             cubit.isShow = true;
+                          
                             // _changeColorOnTap(_lastClickedIndex);
-                      
-                            fetchDeptBatch(val);
-                            dept_ID = val;
                             _updateSearchButtonState();
                             // print("Dept ID $val");
                           });
@@ -372,12 +375,9 @@ class _HeaderState extends State<Header> {
                             )).toList(),
                         onChanged: (value) {
                           setState(() {
-                            context.read<TimetableAdminCubit>().selectedValBat =
-                                value as int;
-                            context
-                                .read<TimetableAdminCubit>()
-                                .deptStaffList
-                                .clear();
+                            var cubit = context.read<TimetableAdminCubit>();
+                            cubit.selectedValBat = value as int;
+                            // cubit.deptStaffList.clear();
                             batch_ID = value;
                             // print("Batch ID $value");
                             _updateSearchButtonState();
